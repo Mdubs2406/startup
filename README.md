@@ -1,10 +1,10 @@
-# Seek and Serve
+# Ripple
 
-A community oriented web applicated indented to promote acts of service and goodwill. Seek and Serve provides daily inspiration for good deeds and hosts a community message board where users can advertise service opportunities.
+A community oriented web applicated indented to promote acts of service and goodwill. Ripple provides daily inspiration for good deeds and hosts a community message board where users can advertise service opportunities.
 
 ### Elevator pitch
 
-Do you want to help the world become a better place, but just feel overwhelmed by how much needs to be accomplished? The Seek and Serve application provides daily inspiration for simples acts of service that can be seemlessly integrated into your normal routine. When you complete an act of service, you can mark it "Done" to update a running count of good deeds and record your experience in a digital journal. Additionally, if you are aware of service opportunities in your community, you can post on a community message board to raise awareness of that need. The message board is upadated in realtime to provide users with easy access to the most recent and relavent information. 
+Do you want to help the world become a better place, but just feel overwhelmed by how much needs to be accomplished? The Ripple application provides daily inspiration for simples acts of service that can be seemlessly integrated into your normal routine. When you complete an act of service, you can mark it "Done" to update a running count of good deeds and record your experience in a digital journal. Additionally, if you are aware of service opportunities in your community, you can post on a community message board to raise awareness of that need. The message board is upadated in realtime to provide users with easy access to the most recent and relavent information. 
 
 ### Design
 
