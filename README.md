@@ -2,7 +2,7 @@
 
 [My Notes](notes.md)
 
-A community oriented web applicated indent to promote acts of service and goodwill. Seek and Serve provides daily inspired for good deeds and hosts a community message board where users can advertise service opportunities.
+A community oriented web applicated indented to promote acts of service and goodwill. Seek and Serve provides daily inspiration for good deeds and hosts a community message board where users can advertise service opportunities.
 
 > [!NOTE]
 > This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
