@@ -21,9 +21,16 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login over HTTPS
+- Display daily service inspiration on homepage
+- Display total acts of service by all users and today's acts of service on homepage
+- Ability to mark an act of service completed
+- Update service totals in realtime
+- Ability to record service experience in a digital journal
+- Digital journal data stored and retrivable
+- Ability to veiw service opportunities on community message board
+- Ability to post about service opportunites on the message board
+- Message board updated in realtime with each new post
 
 ### Technologies
 
