@@ -41,7 +41,9 @@ I am going to use the required technologies in the following ways.
 - **React** - Provides functionality for login, marking good deeds completed, displaying good deeds total, and backend endpoint calls.
 - **Service** - Backend sercice with endpoints for:
     - Register, login, and logout users. Credentials securely stored in database. Users cannot create journal entries or posts unless authenticated.
+    - Creating digital journal entries.
     - Retriving digital journal contents.
+    - Creating message boarrd posts.
     - Retriving message board posts.
 - **DB/Login** - Store login infromation, users, journal entries, and community posts in database.
 - **WebSocket** - Whenever a user marks the daily service inspiration complete, the total and daily good deeds counters will be updated and boarcast to all users. Whenever a user posts about a service opportunity to the message board, that new post will be boardcast to all users.
