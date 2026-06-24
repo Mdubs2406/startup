@@ -31,10 +31,10 @@ sequenceDiagram
 - Display current daily streak for the user
 - Ability to mark an act of service completed
 - Update service totals in realtime
-- Ability to record service experience in a digital journal (login required)
+- Ability to record service experience in a digital journal
 - Digital journal data stored and retrivable
 - Ability to veiw service opportunities on community message board 
-- Ability to post about service opportunites on the message board (login required)
+- Ability to post about service opportunites on the message board
 - Message board updated in realtime with each new post
 
 ### Technologies
