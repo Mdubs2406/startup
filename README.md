@@ -10,6 +10,8 @@ Do you want to help the world become a better place, but just feel overwhelmed b
 
 ![Design for login page](images/ripple_login.png)
 
+![Design for homepage](images/ripple_home.png)
+
 Diagram Discription
 
 ```mermaid
