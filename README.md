@@ -12,7 +12,7 @@ Do you want to help the world become a better place, but just feel overwhelmed b
 
 ![Design for homepage](images/ripple_home.png)
 
-Diagram Discription
+Sequence diagram depicting how users interact with backend.
 
 ```mermaid
 sequenceDiagram
