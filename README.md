@@ -37,7 +37,7 @@ sequenceDiagram
 I am going to use the required technologies in the following ways.
 
 - **HTML** - Using correct HTML structure, this application will have four HTML pages. The homepage (where daily service inpsiration is displayed), a second for login, a third for the digitial journal, and a fourth for the community message board.
-- **CSS** - Description here
+- **CSS** - Application styling that allows easy veiwing on all screen sizes, maintaining good whitespace, readablity, and functional element access.
 - **React** - Description here
 - **Service** - Description here
 - **DB/Login** - Description here
