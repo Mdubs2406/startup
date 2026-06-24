@@ -8,7 +8,7 @@ Do you want to help the world become a better place, but just feel overwhelmed b
 
 ### Design
 
-![Design image](placeholder.png)
+![Design for login page](images/ripple_login.png)
 
 Diagram Discription
 
