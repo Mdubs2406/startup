@@ -38,10 +38,13 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - Using correct HTML structure, this application will have four HTML pages. The homepage (where daily service inpsiration is displayed), a second for login, a third for the digitial journal, and a fourth for the community message board.
 - **CSS** - Application styling that allows easy veiwing on all screen sizes, maintaining good whitespace, readablity, and functional element access.
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **React** - Provides functionality for login, marking good deeds completed, displaying good deeds total, and backend endpoint calls.
+- **Service** - Backend sercice with endpoints for:
+    - Register, login, and logout users. Credentials securely stored in database. Users cannot create journal entries or posts unless authenticated.
+    - Retriving digital journal contents.
+    - Retriving message board posts.
+- **DB/Login** - Store login infromation, users, journal entries, and community posts in database.
+- **WebSocket** - Whenever a user marks the daily service inspiration complete, the total and daily good deeds counters will be updated and boarcast to all users. Whenever a user posts about a service opportunity to the message board, that new post will be boardcast to all users.
 
 ## 🚀 Specification Deliverable
 
@@ -54,7 +57,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ## 🚀 AWS deliverable
