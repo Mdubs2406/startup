@@ -4,7 +4,7 @@ A community oriented web applicated indented to promote acts of service and good
 
 ### Elevator pitch
 
-Do want to help the world a better place, but just feel overwhelmed by how much needs to be accomplished? The Seek and Serve application provides daily inspiration for simples acts of service that can be seemlessly integrated into your normal routine. When you accomplish you act of service, you can record your experience in a digital journal, which can be easily reviewed in the application. Additionally, if you are aware of service opportunities in your community, you can post on a community message board to raise awareness of that opportunity. The message board is upadated in realtime to provide users with easy access to the most recent and relavent opportunities. 
+Do want to help the world a better place, but just feel overwhelmed by how much needs to be accomplished? The Seek and Serve application provides daily inspiration for simples acts of service that can be seemlessly integrated into your normal routine. When you accomplish you act of service, you can mark it completed to update a running tally of good deeds and record your experience in a digital journal, which can be easily reviewed in the application. Additionally, if you are aware of service opportunities in your community, you can post on a community message board to raise awareness of that opportunity. The message board is upadated in realtime to provide users with easy access to the most recent and relavent information. 
 
 ### Design
 
@@ -23,13 +23,13 @@ sequenceDiagram
 
 - Secure login over HTTPS
 - Display daily service inspiration on homepage
-- Display total acts of service by all users and today's acts of service on homepage
+- Display total acts of service by all users and today's total on homepage
 - Ability to mark an act of service completed
 - Update service totals in realtime
-- Ability to record service experience in a digital journal
+- Ability to record service experience in a digital journal (login required)
 - Digital journal data stored and retrivable
-- Ability to veiw service opportunities on community message board
-- Ability to post about service opportunites on the message board
+- Ability to veiw service opportunities on community message board 
+- Ability to post about service opportunites on the message board (login required)
 - Message board updated in realtime with each new post
 
 ### Technologies
@@ -53,7 +53,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Git commit requirement)
 - [ ] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
-- [ ] Description of key features
+- [x] Description of key features
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
