@@ -2,7 +2,7 @@
 
 This file represents what I have learned about web programming.
 
-- [My startup](https://startup.cs260.click)
+- [My startup](https://github.com/Mdubs2406/startup.git)
 - [My simon](https://simon.cs260.click)
 
 ## Helpful links
