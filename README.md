@@ -14,9 +14,13 @@ Diagram Discription
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor Matt
+    actor Becky
+    Matt->>Server: Records act of service
+    Server -->>Matt: Update good deeds count
+    Server -->>Becky: Update good deeds count
+    Becky->>Server: Post on message board
+    Server -->>Matt: Becky's post
 ```
 
 ### Key features
