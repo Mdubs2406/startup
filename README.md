@@ -4,7 +4,7 @@ A community oriented web applicated indented to promote acts of service and good
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Do want to help the world a better place, but just feel overwhelmed by how much needs to be accomplished? The Seek and Serve application provides daily inspiration for simples acts of service that can be seemlessly integrated into your normal routine. When you accomplish you act of service, you can record your experience in a digital journal, which can be easily reviewed in the application. Additionally, if you are aware of service opportunities in your community, you can post on a community message board to raise awareness of that opportunity. The message board is upadated in realtime to provide users with easy access to the most recent and relavent opportunities. 
 
 ### Design
 
@@ -45,7 +45,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [ ] I completed the prerequisites for this deliverable (Git commit requirement)
 - [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [x] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
