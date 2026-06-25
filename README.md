@@ -71,7 +71,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Rented EC2 server** - Rented a t.3nano
-- [x] **Leased domain name** - lease the domain "rippleeffect.click"
+- [x] **Leased domain name** - leased the domain "rippleeffect.click"
 - [x] **Server accessible** from my domain: https://rippleeffect.click
 
 ## 🚀 HTML deliverable
