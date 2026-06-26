@@ -19,7 +19,9 @@ Interesting things I have learned about AWS
 
 ## HTML
 
-Interesting things I have learned about HTML
+- [Media](https://codepen.io/leesjensen/pen/OJEwgBa)
+- [Structure](https://codepen.io/leesjensen/pen/GRGBqbw)
+- [Input](https://codepen.io/leesjensen/pen/dyVdNej)
 
 ## React
 
