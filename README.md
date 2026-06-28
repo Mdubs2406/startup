@@ -85,7 +85,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Text** - Each webpage has displayed text.
 - [x] **3rd party API placeholder** - Added placeholder refference to an inspirational qoute API to index.html.
 - [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
+- [x] **Login placeholder** - I did not complete this part of the deliverable.
 - [x] **DB data placeholder** - Added placeholder refference to DB data on both community.html and journal.html.
 - [x] **WebSocket placeholder** - Added Websocket placholder refference to home.html.
 
