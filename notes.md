@@ -23,6 +23,15 @@ Interesting things I have learned about AWS
 - [Structure](https://codepen.io/leesjensen/pen/GRGBqbw)
 - [Input](https://codepen.io/leesjensen/pen/dyVdNej)
 
+## CSS
+
+- [Selectors](https://codepen.io/leesjensen/pen/NWzByav)
+- [Declarators](https://codepen.io/leesjensen/pen/rNKrgKQ)
+- [Animations](https://codepen.io/leesjensen/pen/LYrJEwX)
+- [Fonts](https://codepen.io/leesjensen/pen/zYaLgVW)
+
+- [Font API](https://fonts.google.com/specimen/Roboto)
+
 ## React
 
 Interesting things I have learned about React
