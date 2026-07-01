@@ -1,0 +1,112 @@
+<head>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Montserrat:100,400,900|Quicksand");
+
+  body {
+    background-color: black;
+    color: white;
+    font-family: "Montserrat";
+    margin: 0.3em;
+  }
+
+  header {
+    background-color: #434747;
+    padding: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 0.7em;
+  }
+
+  h1 {
+    color: #79daed;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+  }
+
+  h2 {
+    font-weight: 500;
+  }
+
+  section {
+    background-color: #7d8385;
+    padding: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 0.7em;
+    animation: slide-right 1s;
+    overflow-x: hidden;
+  }
+
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  section.fly-in ul {
+    list-style-type: square;
+  }
+
+  #table-data {
+    background-color: white;
+  }
+
+  #table-data td, th {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 1em;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+  }
+
+  footer {
+    text-align: right;
+    font-style: italic;
+    font-weight: 450;
+  }
+  </style>
+</head>  
+
+<body>
+  <header>
+    <h1>Header</h1>
+    <nav>Navigation
+      <div>Div</div>
+      <div>Div</div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="fly-in">
+      <h2>Section</h2>
+      <ul>
+        <li>List</li>
+        <li>List</li>
+        <li>List</li>
+      </ul>
+    </section>
+    <section class="fly-in">
+      <h2>Section</h2>
+      <table id="table-data">
+        <tr>
+          <th>Table</th>
+          <th>Table</th>
+          <th>Table</th>
+        </tr>
+        <tr>
+          <td>table</td>
+          <td>table</td>
+          <td>table</td>
+        </tr>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <div>Footer</div>
+  </footer>
+</body>
