@@ -29,8 +29,9 @@ Interesting things I have learned about AWS
 - [Declarators](https://codepen.io/leesjensen/pen/rNKrgKQ)
 - [Animations](https://codepen.io/leesjensen/pen/LYrJEwX)
 - [Fonts](https://codepen.io/leesjensen/pen/zYaLgVW)
-
 - [Font API](https://fonts.google.com/specimen/Roboto)
+
+Use text-align on text within an element. Use justify-contents on elements within a container.
 
 ## React
 
