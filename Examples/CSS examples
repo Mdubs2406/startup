@@ -1,60 +1,71 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100,400,900|Quicksand");
 
-body {
-  background-color: black;
-  color: white;
-  font-family: "Montserrat";
-  margin: 0.3em;
-}
+  body {
+    background-color: black;
+    color: white;
+    font-family: "Montserrat";
+    margin: 0.3em;
+  }
 
-header {
-  background-color: #434747;
-  padding: 0.7em;
-  border-radius: 10px;
-  margin-bottom: 0.7em;
-}
+  header {
+    background-color: #434747;
+    padding: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 0.7em;
+  }
 
-h1 {
-  color: #79daed;
-  font-weight: bold;
-  border-bottom: 2px solid white;
-}
+  h1 {
+    color: #79daed;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+  }
 
-h2 {
-  font-weight: 500;
-}
+  h2 {
+    font-weight: 500;
+  }
 
-section {
-  background-color: #7d8385;
-  padding: 0.7em;
-  border-radius: 10px;
-  margin-bottom: 0.7em;
-}
+  section {
+    background-color: #7d8385;
+    padding: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 0.7em;
+    animation: slide-right 1s;
+    overflow-x: hidden;
+  }
 
-section.fly-in ul {
-  list-style-type: square;
-}
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 
-#table-data {
-  background-color: white;
-}
+  section.fly-in ul {
+    list-style-type: square;
+  }
 
-#table-data td, th {
-  border: 1px solid black;
-  background-color: white;
-  color: black;
-  font-size: 1em;
-  padding: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
-  text-align: center;
-}
+  #table-data {
+    background-color: white;
+  }
 
-footer {
-  text-align: right;
-  font-style: italic;
-  font-weight: 450;
-}
+  #table-data td, th {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 1em;
+    padding: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+  }
+
+  footer {
+    text-align: right;
+    font-style: italic;
+    font-weight: 450;
+  }
 /*  */
 
 @import url("https://fonts.googleapis.com/css2?family=Rubik Microbe&display=swap");
