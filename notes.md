@@ -29,9 +29,11 @@ Interesting things I have learned about AWS
 - [Declarators](https://codepen.io/leesjensen/pen/rNKrgKQ)
 - [Animations](https://codepen.io/leesjensen/pen/LYrJEwX)
 - [Fonts](https://codepen.io/leesjensen/pen/zYaLgVW)
+    Use text-align on text within an element. Use justify-contents on elements within a container.
 - [Font API](https://fonts.google.com/specimen/Roboto)
-
-Use text-align on text within an element. Use justify-contents on elements within a container.
+- [Float](https://codepen.io/leesjensen/pen/MWBRWPP)
+    Use inline-end when you want the aside to appear at the end of the text-read direction.
+- [Display](https://codepen.io/leesjensen/pen/RwBOPjv)
 
 ## React
 
