@@ -34,6 +34,11 @@ Interesting things I have learned about AWS
 - [Float](https://codepen.io/leesjensen/pen/MWBRWPP)
     Use inline-end when you want the aside to appear at the end of the text-read direction.
 - [Display](https://codepen.io/leesjensen/pen/RwBOPjv)
+- [Grid](https://codepen.io/leesjensen/pen/GRGXoWP)
+- [Flex & Grid](https://codepen.io/leesjensen/pen/XWPdOPp)
+- [Media Orientation](https://codepen.io/leesjensen/pen/rNKZOva)
+- [Bootstrap](https://codepen.io/leesjensen/pen/wvXEmVQ)
+- [Simple Page Layout](https://codepen.io/leesjensen/pen/abamMqL)
 
 ## React
 
