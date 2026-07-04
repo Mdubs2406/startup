@@ -1,8 +1,35 @@
-:root {
-    --primary-pink: #ff2e9a;
+@font-face {
+    font-family: "Playfair Display", serif;
+    src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+}
+
+body {
+    --primary-pink: #FFB6C1;
+    font-family: "Playfair Display";
+}
+
+menu {
+    display: flex;
+}
+
+.banner {
+    width: 100%;
+    overflow: hidden;
 }
 
 #title-block {
     /* box-shadow: 0 2p 4px rgba(0, 0, 0, 0.1); */
     background-color: var(--primary-pink);
+    font-family: "Playfair Display";
+    color: white;
+    padding: 0.2em;
+    text-align: center;
+}
+
+header {
+    font-family: "Playfair Display";
+}
+
+main {
+    font-family: "Playfair Display";
 }
