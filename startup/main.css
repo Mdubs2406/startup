@@ -8,13 +8,7 @@ body {
     font-family: "Playfair Display";
 }
 
-.banner {
-    width: 100%;
-    overflow: hidden;
-}
-
 #title-block {
-    /* box-shadow: 0 2p 4px rgba(0, 0, 0, 0.1); */
     background-color: var(--primary-pink);
     font-family: "Playfair Display";
     color: white;
