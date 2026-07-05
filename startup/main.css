@@ -4,11 +4,10 @@
 }
 
 body > * {
-    --primary-pink: #FFB6C1;
     font-family: "Playfair Display";
 }
 
 #title-block {
-    background-color: var(--primary-pink);
+    background-color: #FFB6C1;;
     color: white;
 }
