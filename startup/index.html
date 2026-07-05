@@ -2,15 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta 
+            name="viewport" 
+            content="width=device-width, initial-scale=1.0"/>
         <title>Login</title>
         <link rel="stylesheet" href="main.css" />
         <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-        crossorigin="anonymous"
-        />
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous"/>
     </head>
     <body>
         <div id="top-banner" class="banner">
@@ -48,20 +49,39 @@
                     Sign in to continue spreading good.
                 </p>
 
-                <form method="post" action="home.html">
-                    <div>
-                        <label for="email">Email: </label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com" required/>
-                    </div>
-                    <div>
-                        <label for="password">Password: </label>
-                        <input type="password" id="password" name="password" required/>
-                    </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form method="post" action="home.html">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    Email: 
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="email@example.com"
+                                    required
+                                    class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">
+                                    Password: 
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="********"
+                                    required
+                                    class="form-control"/>
+                            </div>
 
-                    <button value="login" name="submit" type="submit">Submit</button>
-                    <button value="create" name="create" type="submit">Create</button>
-                </form>
-                <hr />
+                            <button value="login" name="submit" type="submit">Submit</button>
+                            <button value="create" name="create" type="submit">Create</button>
+                        </form>
+                    </div>
+                </div>
 
                 <!-- API placeholder -->
                 <!-- Random Inspirational Quote -->
