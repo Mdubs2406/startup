@@ -15,4 +15,5 @@ body > * {
 .card-header {
     background-color: #FFB6C1 !important;
     color: white !important;
+    font-weight: bold;
 }

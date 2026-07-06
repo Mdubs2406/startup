@@ -27,9 +27,7 @@
                     <h1 class="display-3">
                         Ripple Effect
                     </h1>
-                    <p class="lead">
-                        Small acts. Big Ripples.
-                    </p>
+                    <p class="lead">Small acts. Big Ripples.</p>
                 </div>
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -52,7 +50,7 @@
 
             <main class="py-3">
                 <section id="create-entry" class="card shadow-sm mb-3">
-                    <h3 class="card-header fw-bold">Create a Journal Entry</h3>
+                    <h3 class="card-header">Create a Journal Entry</h3>
                     <div class="card-body">
                         <form method="post" action="journal.html">
                             <div class="input-group mb-2">
@@ -81,24 +79,18 @@
                                     rows="5"
                                     class="form-control mb-2"></textarea>
                             </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                Record Entry
-                            </button>
-                            <button type="reset" class="btn btn-secondary">
-                                Clear
-                            </button>
+                            <button type="submit" class="btn btn-primary">Record Entry</button>
+                            <button type="reset" class="btn btn-secondary">Clear</button>
                         </form>
                     </div>
                 </section>
-                <hr />
 
-                <section id="entries-display">
+                <section id="entries-display" class="card">
                     <!-- DB Placeholder -->
                     <!-- Will recall journal entries from DB -->
-                    <h3>A Record of my Accomplishments</h3>
-                    <table>
-                        <thead>
+                    <h3 class="card-header">A Record of my Accomplishments</h3>
+                    <table class="card-body table table-striped-columns">
+                        <thead class="table-light">
                             <tr>
                                 <th>Date</th>
                                 <th>Time</th>
@@ -117,9 +109,7 @@
             </main>
 
             <footer class="text-center text-muted py-2 border-top mt-2">
-                <span>
-                    Matthew Wellman
-                </span>
+                <span>Matthew Wellman</span>
                 <a class="nav-link" href="https://github.com/Mdubs2406">[GitHub]</a>
             </footer>
         </div>
