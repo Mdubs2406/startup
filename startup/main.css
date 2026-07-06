@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "Playfair Display", serif;
-    src: url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-}
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 @media (max-height: 650px) {
     img {
@@ -17,13 +14,13 @@ body > * {
 }
 
 #title-block {
-    background-color: #FFB6C1;;
+    background-color: #FFB6C1;
     color: white;
 }
 
-.card-header {
-    background-color: #FFB6C1 !important;
-    color: white !important;
+.card .card-header {
+    background-color: #FFB6C1;
+    color: white;
     font-weight: bold;
     text-align: center;
 }
