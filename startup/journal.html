@@ -55,19 +55,17 @@
                     <h3 class="card-header fw-bold">Create a Journal Entry</h3>
                     <div class="card-body">
                         <form method="post" action="journal.html">
-                            <div>
-                                <label for="entry-date" class="form-label">
-                                    Date: 
-                                </label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Date</span>
                                 <input 
                                     type="date" 
                                     id="entry-date" 
                                     name="entry-date"
                                     class="form-control"
                                     required>
-                                <label for="entry-time" class="form-label">
-                                    Time: 
-                                </label>
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Time</span>
                                 <input 
                                     type="time" 
                                     name="entry-time" 
@@ -76,13 +74,20 @@
                                     required>
                             </div>
                             <div>
-                                <label for="entry-desc">Description: </label>
-                                <br />
-                                <textarea name="entry-desc" id="entry-desc" placeholder="How did it go?"></textarea>
+                                <textarea 
+                                    name="entry-desc" 
+                                    id="entry-desc" 
+                                    placeholder="How did it go?"
+                                    rows="5"
+                                    class="form-control mb-2"></textarea>
                             </div>
 
-                            <button type="submit">Record Entry</button>
-                            <button type="reset">Clear</button>
+                            <button type="submit" class="btn btn-primary">
+                                Record Entry
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                Clear
+                            </button>
                         </form>
                     </div>
                 </section>
