@@ -8,8 +8,8 @@
     color: white;
 }
 
-.streak-footer {
-    background-color: #FFB6C1 !important;
-    color: white !important;
+.card .card-footer {
+    background-color: #FFB6C1;
+    color: white;
     font-weight: bold;
 }
