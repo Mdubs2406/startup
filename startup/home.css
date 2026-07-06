@@ -8,8 +8,8 @@
     color: white;
 }
 
-.card .card-footer {
-    background-color: #FFB6C1;
-    color: white;
+.card-footer {
+    background-color: #FFB6C1 !important;
+    color: white !important;
     font-weight: bold;
 }
