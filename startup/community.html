@@ -51,30 +51,30 @@
             <main class="py-3">
                 <section id="create-post" class="card">
                     <h3 class="card-header">Post about a Service Opportunity</h3>
-                    <form method="post" action="community.html">
-                        <div>
-                            <label for="event-name">Event Name: </label>
-                            <input type="text" id="event-name" name="event-name">
-                        </div>
-                        <div>
-                            <label for="event-location">Location: </label>
-                            <input type="text" id="event-location" name="event-location">
-                        </div>
-                        <div>
-                            <label for="event-date">Date: </label>
-                            <input type="date" id="event-date" name="event-date">
-                            <label for="event-time">Time: </label>
-                            <input type="time" id="event-time" name="event-time">
-                        </div>
-                        <div>
-                            <label for="event-desc">Event Description: </label>
-                            <br />
-                            <textarea name="event-description" id="event-desc"></textarea>
-                        </div>
+                    <div class="card-body">
+                        <form method="post" action="community.html">
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Event Name</span>
+                                <input type="text" id="event-name" name="event-name" class="form-control">
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Location</span>
+                                <input type="text" id="event-location" name="event-location" class="form-control">
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text">Date</span>
+                                <input type="date" id="event-date" name="event-date" class="form-control">
+                                <span class="input-group-text">Time</span>
+                                <input type="time" id="event-time" name="event-time"class="form-control">
+                            </div>
+                            <div class="mb-2">
+                                <textarea name="event-description" id="event-desc" placeholder="Event Description" rows="5" class="form-control"></textarea>
+                            </div>
 
-                        <button type="submit">Post</button>
-                        <button type="reset">Clear</button>
-                    </form>
+                            <button type="submit">Post</button>
+                            <button type="reset">Clear</button>
+                        </form>
+                    </div>
                 </section>
                 <hr />
 
