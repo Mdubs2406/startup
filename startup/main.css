@@ -21,3 +21,8 @@ body > * {
     background-color: #6a81a6;
     color: white;
 }
+
+.card-header {
+    background-color: #FFB6C1;
+    color: white;
+}
