@@ -14,56 +14,69 @@
             crossorigin="anonymous"/>
     </head>
     <body>
-        <header>
-            <div id="top-banner" class="banner"><img src="images/floral_header.png" alt="Floral banner"></div>
-            <h1>Ripple Effect</h1>
-            <h3>Small acts. Big Ripples.</h3>
-            <hr />
+        <div id="top-banner">
+            <img 
+                src="images/floral_header.png" 
+                class="img.fluid w-100"
+                alt="Floral banner">
+        </div>
+        <div class="container">
+            <header>
+                <div id="title-block" class="text-center py-1">
+                    <h1 class="display-3">
+                        Ripple Effect
+                    </h1>
+                    <p class="lead">
+                        Small acts. Big Ripples.
+                    </p>
+                </div>
 
-            <nav>
-                <menu>
-                    <li><a href="index.html">Login</a></li>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="community.html">Community</a></li>
-                    <li><a href="journal.html">My Journal</a></li>
-                </menu>
-            </nav>
-            <hr />
+                <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+                    <ul class="navbar-nav flex-row flex-wrap mx-auto">
+                        <li class="nav-item mx-4">
+                            <a class="nav-link active" href="index.html">Login</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="community.html">Community</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link" href="journal.html">My Journal</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
 
-            <div>
-                User:
-                <span class="user-name">John Doe</span>
-            </div>
-            <hr />
-        </header>
+            <main>
+                <div>
+                    <!-- Websocket Placeholder-->
+                    <!-- Counts will updated in realtime -->
+                    <h3>Today <span>3</span> Good Deeds</h3>
+                    <h3>Total <span>142</span> Good Deeds</h3>
+                </div>
+                <hr />
 
-        <main>
-            <div>
-                <!-- Websocket Placeholder-->
-                 <!-- Counts will updated in realtime -->
-                <h3>Today <span>3</span> Good Deeds</h3>
-                <h3>Total <span>142</span> Good Deeds</h3>
-            </div>
-            <hr />
+                <div>
+                    <h5>Everyday Kindness</h5>
+                    <h4>Hold the door open for a stranger</h4>
+                    <h6>A small gesture that takes two seconds, but can brighten someone's entire day.</h6>
+                </div>
+                <hr />
 
-            <div>
-                <h5>Everyday Kindness</h5>
-                <h4>Hold the door open for a stranger</h4>
-                <h6>A small gesture that takes two seconds, but can brighten someone's entire day.</h6>
-            </div>
-            <hr />
+                <div>
+                    <h4><span>3</span>-day streak!</h4>
+                    <h6>You've done goood <span>3</span> days running. Keep Going!</h6>
+                </div>
+            </main>
 
-            <div>
-                <h4><span>3</span>-day streak!</h4>
-                <h6>You've done goood <span>3</span> days running. Keep Going!</h6>
-            </div>
-        </main>
-
-        <footer>
-            <hr />
-            <span>Matthew Wellman</span>
-            <br />
-            <a href="https://github.com/Mdubs2406">(GitHub)</a>
-        </footer>
+            <footer>
+                <hr />
+                <span>Matthew Wellman</span>
+                <br />
+                <a href="https://github.com/Mdubs2406">(GitHub)</a>
+            </footer>
+        </div>
     </body>
 </html>
