@@ -11,18 +11,3 @@ body > * {
     background-color: #FFB6C1;;
     color: white;
 }
-
-#deed-count-daily {
-    background-color: #6aa670;
-    color: white;
-}
-
-#deed-count-total {
-    background-color: #6a81a6;
-    color: white;
-}
-
-.card-header {
-    background-color: #FFB6C1;
-    color: white;
-}
