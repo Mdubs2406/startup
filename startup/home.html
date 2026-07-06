@@ -49,14 +49,25 @@
                 </nav>
             </header>
 
-            <main>
-                <div>
+            <main class="py-3">
+                <div class="row justify-content-center mb-3">
                     <!-- Websocket Placeholder-->
                     <!-- Counts will updated in realtime -->
-                    <h3>Today <span>3</span> Good Deeds</h3>
-                    <h3>Total <span>142</span> Good Deeds</h3>
+                    <div id="deed-count-daily"class="col-auto display-6 border border-light rounded mx-1">
+                        Today 
+                        <span class="fw-bold">
+                            3
+                        </span> 
+                        Good Deeds
+                    </div>
+                    <div id="deed-count-total" class="col-auto display-6 border border-light rounded mx-1">
+                        Total 
+                        <span class="fw-bold">
+                            142
+                        </span> 
+                        Good Deeds
+                    </div>
                 </div>
-                <hr />
 
                 <div>
                     <h5>Everyday Kindness</h5>
