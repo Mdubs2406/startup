@@ -42,4 +42,7 @@ Interesting things I have learned about AWS
 
 ## React
 
-Interesting things I have learned about React
+- Create a launch.json for JS debugging
+- [Component Simple](https://codepen.io/leesjensen/pen/abaqeGa)
+- [Component Properties](https://codepen.io/leesjensen/pen/RNbxOXz)
+- [Child Component](https://codepen.io/leesjensen/pen/GgKyLye)
