@@ -47,3 +47,4 @@ Interesting things I have learned about AWS
 - [Component Properties](https://codepen.io/leesjensen/pen/RNbxOXz)
 - [Child Component](https://codepen.io/leesjensen/pen/GgKyLye)
     - (variableName)label.text(attribute) You define the attribute name when you pass it into the function
+- [Component State](https://codepen.io/leesjensen/pen/MWqVgyq)
