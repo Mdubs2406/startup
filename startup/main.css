@@ -18,9 +18,9 @@ body > * {
     color: white;
 }
 
-.card .card-header {
-    background-color: #FFB6C1;
-    color: white;
+.card-header {
+    background-color: #FFB6C1 !important;
+    color: white !important;
     font-weight: bold;
     text-align: center;
 }
