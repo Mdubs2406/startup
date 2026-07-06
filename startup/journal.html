@@ -50,25 +50,41 @@
                 </nav>
             </header>
 
-            <main>
-                <section id="create-entry">
-                    <h3>Create a Journal Entry</h3>
-                    <form method="post" action="journal.html">
-                        <div>
-                            <label for="entry-date">Date: </label>
-                            <input type="date" id="entry-date" name="entry-date">
-                            <label for="entry-time">Time: </label>
-                            <input type="time" name="entry-time" id="entry-time">
-                        </div>
-                        <div>
-                            <label for="entry-desc">Description: </label>
-                            <br />
-                            <textarea name="entry-desc" id="entry-desc" placeholder="How did it go?"></textarea>
-                        </div>
+            <main class="py-3">
+                <section id="create-entry" class="card shadow-sm mb-3">
+                    <h3 class="card-header fw-bold">Create a Journal Entry</h3>
+                    <div class="card-body">
+                        <form method="post" action="journal.html">
+                            <div>
+                                <label for="entry-date" class="form-label">
+                                    Date: 
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="entry-date" 
+                                    name="entry-date"
+                                    class="form-control"
+                                    required>
+                                <label for="entry-time" class="form-label">
+                                    Time: 
+                                </label>
+                                <input 
+                                    type="time" 
+                                    name="entry-time" 
+                                    id="entry-time"
+                                    class="form-control"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="entry-desc">Description: </label>
+                                <br />
+                                <textarea name="entry-desc" id="entry-desc" placeholder="How did it go?"></textarea>
+                            </div>
 
-                        <button type="submit">Record Entry</button>
-                        <button type="reset">Clear</button>
-                    </form>
+                            <button type="submit">Record Entry</button>
+                            <button type="reset">Clear</button>
+                        </form>
+                    </div>
                 </section>
                 <hr />
 
