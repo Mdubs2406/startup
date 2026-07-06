@@ -24,3 +24,11 @@ body > * {
     font-weight: bold;
     text-align: center;
 }
+
+tr:hover {
+    background-color: #ffe3e7;
+}
+
+.quote-source::before {
+    content: " - ";
+}
