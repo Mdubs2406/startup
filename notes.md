@@ -48,3 +48,4 @@ Interesting things I have learned about AWS
 - [Child Component](https://codepen.io/leesjensen/pen/GgKyLye)
     - (variableName)label.text(attribute) You define the attribute name when you pass it into the function
 - [Component State](https://codepen.io/leesjensen/pen/MWqVgyq)
+- [React-router-dom v6](https://codepen.io/leesjensen/pen/poKLKaX)
