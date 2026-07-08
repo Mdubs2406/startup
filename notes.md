@@ -49,3 +49,7 @@ Interesting things I have learned about AWS
     - (variableName)label.text(attribute) You define the attribute name when you pass it into the function
 - [Component State](https://codepen.io/leesjensen/pen/MWqVgyq)
 - [React-router-dom v6](https://codepen.io/leesjensen/pen/poKLKaX)
+
+## Setup Routing
+- Install and configure Vite (npm init -y, npm install vite@latest -D)
+- Update package.json "scrpits"
