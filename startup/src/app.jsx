@@ -47,7 +47,13 @@ export default function App() {
                         </nav>
                     </header>
 
-                    <main>App components go here</main>
+                    <Routes>
+                        <Route path='/' element={<login />} exact />
+                        <Route path='/home' element={<Home />} />
+                        <Route path='/journal' element={<Journal />} />
+                        <Route path='/community' element={<Community />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
 
                     <footer className="text-center text-muted py-2 border-top mt-2">
                     <span>
@@ -59,4 +65,8 @@ export default function App() {
             </div>
         </BrowserRouter>
     );
+}
+
+function NotFound() {
+  return <main className="container-fluid text-center">404: Return to sender. Address unknown.</main>;
 }
