@@ -14,54 +14,53 @@ export default function App() {
             <div className="body">
                 <div id="top-banner">
                     <img 
-                        src="./public/floral_header.png" 
+                        src="/floral_header.png" 
                         className="img-fluid w-100"
                         alt="Floral banner" />
                 </div>
-                <div className="container">
-                    <header>
-                        <div id="title-block" className="text-center py-1">
-                            <h1 className="display-3">
-                                Ripple Effect
-                            </h1>
-                            <p className="lead">
-                                Small acts. Big Ripples.
-                            </p>
-                        </div>
+                
+                <header className="container-fluid">
+                    <div id="title-block" className="text-center py-1">
+                        <h1 className="display-3">
+                            Ripple Effect
+                        </h1>
+                        <p className="lead">
+                            Small acts. Big Ripples.
+                        </p>
+                    </div>
 
-                        <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-                            <ul className="navbar-nav flex-row flex-wrap mx-auto">
-                                <li className="nav-item px-4">
-                                    <NavLink className="nav-link" to="">Login</NavLink>
-                                </li>
-                                <li className="nav-item px-4">
-                                    <NavLink className="nav-link" to="home">Home</NavLink>
-                                </li>
-                                <li className="nav-item px-4">
-                                    <NavLink className="nav-link" to="community">Community</NavLink>
-                                </li>
-                                <li className="nav-item px-4">
-                                    <NavLink className="nav-link" to="journal">My Journal</NavLink>
-                                </li>
-                            </ul>
-                        </nav>
-                    </header>
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+                        <ul className="navbar-nav flex-row flex-wrap mx-auto">
+                            <li className="nav-item px-4">
+                                <NavLink className="nav-link" to="">Login</NavLink>
+                            </li>
+                            <li className="nav-item px-4">
+                                <NavLink className="nav-link" to="home">Home</NavLink>
+                            </li>
+                            <li className="nav-item px-4">
+                                <NavLink className="nav-link" to="community">Community</NavLink>
+                            </li>
+                            <li className="nav-item px-4">
+                                <NavLink className="nav-link" to="journal">My Journal</NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
 
-                    <Routes>
-                        <Route path='/' element={<login />} exact />
-                        <Route path='/home' element={<Home />} />
-                        <Route path='/journal' element={<Journal />} />
-                        <Route path='/community' element={<Community />} />
-                        <Route path='*' element={<NotFound />} />
-                    </Routes>
+                <Routes>
+                    <Route path='/' element={<Login />} exact />
+                    <Route path='/home' element={<Home />} />
+                    <Route path='/journal' element={<Journal />} />
+                    <Route path='/community' element={<Community />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
 
-                    <footer className="text-center text-muted py-2 border-top mt-2">
+                <footer className="container-fluid text-center text-muted py-2 border-top mt-2">
                     <span>
                         Matthew Wellman
                     </span>
                     <a className="nav-link" href="https://github.com/Mdubs2406">[GitHub]</a>
                 </footer>
-                </div>
             </div>
         </BrowserRouter>
     );
