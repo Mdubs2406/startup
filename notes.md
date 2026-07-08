@@ -53,3 +53,5 @@ Interesting things I have learned about AWS
 ## Setup Routing
 - Install and configure Vite (npm init -y, npm install vite@latest -D)
 - Update package.json "scrpits"
+- Convert to React Bootstrap (npm install bootstrap react-bootstrap)
+- 
