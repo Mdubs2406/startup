@@ -35,13 +35,13 @@ export default function App() {
                                     <NavLink className="nav-link" to="">Login</NavLink>
                                 </li>
                                 <li className="nav-item px-4">
-                                    <a className="nav-link" href="home.html">Home</a>
+                                    <NavLink className="nav-link" to="home">Home</NavLink>
                                 </li>
                                 <li className="nav-item px-4">
-                                    <a className="nav-link" href="community.html">Community</a>
+                                    <NavLink className="nav-link" to="community">Community</NavLink>
                                 </li>
                                 <li className="nav-item px-4">
-                                    <a className="nav-link" href="journal.html">My Journal</a>
+                                    <NavLink className="nav-link" to="journal">My Journal</NavLink>
                                 </li>
                             </ul>
                         </nav>
