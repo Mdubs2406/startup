@@ -31,8 +31,8 @@ export function Journal() {
                                     rows="5"
                                     class="form-control"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Record Entry</button>
-                            <button type="reset" class="btn btn-secondary">Clear</button>
+                            <button type="submit" class="btn btn-primary mx-1">Record Entry</button>
+                            <button type="reset" class="btn btn-secondary mx-1">Clear</button>
                         </form>
                     </div>
                 </section>

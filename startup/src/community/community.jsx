@@ -24,8 +24,8 @@ export function Community() {
                             <div className="mb-2">
                                 <textarea name="event-description" id="event-desc" placeholder="Event Description" rows="5" className="form-control"></textarea>
                             </div>
-                            <button type="submit" className="btn btn-primary">Post</button>
-                            <button type="reset" className="btn btn-secondary">Clear</button>
+                            <button type="submit" className="btn btn-primary mx-1">Post</button>
+                            <button type="reset" className="btn btn-secondary mx-1">Clear</button>
                         </form>
                     </div>
                 </section>

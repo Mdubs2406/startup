@@ -36,8 +36,8 @@ main {
     text-align: center;
 }
 
-tr:hover {
-    background-color: #ffe3e7;
+.table tbody tr:hover {
+    --bs-table-bg: #ffe3e7 !important;
 }
 
 .quote-source::before {
