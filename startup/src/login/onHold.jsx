@@ -9,7 +9,7 @@ export function onHold(props) {
     const [accessError, setAccessError] = React.useState(null);
 
     // These two funcitons will be updated once the DB is setup
-    async function loginAccount() {
+    async function signInAccount() {
         localStorage.setItem('email', email);
         props.onLogin(email);
     }
@@ -55,7 +55,7 @@ export function onHold(props) {
                                     type="submit" 
                                     className="mx-1"
                                     variant="primary"
-                                    onClick={() => loginAccount()}
+                                    onClick={() => signInAccount()}
                                     disabled={!email || !password}>
                                     Submit
                                 </Button>
