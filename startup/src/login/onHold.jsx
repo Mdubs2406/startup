@@ -31,7 +31,9 @@ export function onHold(props) {
                                     name="email" 
                                     placeholder="email@example.com"
                                     required
-                                    className="form-control" />
+                                    className="form-control" 
+                                    value = {email}
+                                    onChange={(x) => setEmail(x.target.value)}/>
                             </div>
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Password</span>
@@ -41,7 +43,9 @@ export function onHold(props) {
                                     name="password" 
                                     placeholder="********"
                                     required
-                                    className="form-control"/>
+                                    className="form-control"
+                                    value = {password}
+                                    onChange={(x) => setPassword(x.target.value)}/>
                             </div>
 
                             <div>
