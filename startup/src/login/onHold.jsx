@@ -49,20 +49,26 @@ export function onHold(props) {
                             </div>
 
                             <div>
-                                <button 
+                                <Button 
                                     value="login" 
                                     name="submit" 
                                     type="submit" 
-                                    className="btn btn-primary mx-1">
+                                    className="mx-1"
+                                    variant="primary"
+                                    onClick={() => loginAccount()}
+                                    disabled={!email || !password}>
                                     Submit
-                                </button>
-                                <button 
+                                </Button>
+                                <Button 
                                     value="create" 
                                     name="create" 
                                     type="submit" 
-                                    className="btn btn-secondary mx-1">
+                                    className="mx-1"
+                                    variant="secondary"
+                                    onClick={() => createAcount()}
+                                    disabled={!email || !password}>
                                     Create Account
-                                </button>
+                                </Button>
                             </div>
                         </form>
                     </div>
