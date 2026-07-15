@@ -11,5 +11,5 @@ export function Memo(props) {
                 <Button onClick={props.dismiss}>Dismiss</Button>
             </Modal.Footer>
         </Modal>
-    )
+    );
 }
