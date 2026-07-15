@@ -8,5 +8,14 @@ export function onHold(props) {
     const [password, setPassword] = React.useState(props.password);
     const [accessError, setAccessError] = React.useState(null);
 
-    
+    // These two funcitons will be updated once the DB is setup
+    async function loginAccount() {
+        localStorage.setItem('email', email);
+        props.onLogin(email);
+    }
+
+    async function createAcount() {
+        localStorage.setItem('email', email);
+        props.onLogin(email);
+    }
 }
