@@ -1,4 +1,7 @@
 import React from 'react';
+import { access } from './acces';
+import { onHold } from './onHold';
+import { userPortal } from './userPortal';
 
 export function Login() {
     return (
@@ -12,7 +15,7 @@ export function Login() {
 
                 <div className="row justify-content-center">
                     <div className="col-md-6">
-                        <form method="post" action="home.html">
+                        <form method="post" action="/home">
                             <div className="input-group mb-3">
                                 <span className="input-group-text">Email</span>
                                 <input 
@@ -20,7 +23,7 @@ export function Login() {
                                     id="email" 
                                     name="email" 
                                     placeholder="email@example.com"
-                                    required
+                                    // required
                                     className="form-control" />
                             </div>
                             <div className="input-group mb-3">
@@ -30,7 +33,7 @@ export function Login() {
                                     id="password" 
                                     name="password" 
                                     placeholder="********"
-                                    required
+                                    // required
                                     className="form-control"/>
                             </div>
 
