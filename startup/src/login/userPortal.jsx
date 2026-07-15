@@ -2,17 +2,17 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-export function userPortal(props) {
+export function userPortal(email, onSignOut) {
     const nav = useNavigate();
 
     function signOut() {
         localStorage.removeItem('email');
-        props.onSignOut();
+        onSignOut();
     }
 
     return (
         <div className="card">
-            <div>Hello, {props.email}. We hope you having a wonderful day!</div>
+            <div>Hello, {email}. We hope you having a wonderful day!</div>
             <Button variant='primary' onClick={() => nav('/home')}>
                 Explore
             </Button>
