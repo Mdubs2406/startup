@@ -3,20 +3,20 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import { Memo } from './memo';
 
-export function onHold(props) {
-    const [email, setEmail] = React.useState(props.userName);
-    const [password, setPassword] = React.useState(props.password);
+export function onHold(email, password, onSignIn) {
+    const [email, setEmail] = React.useState(email);
+    const [password, setPassword] = React.useState(password);
     const [accessError, setAccessError] = React.useState(null);
 
     // These two funcitons will be updated once the DB is setup
     async function signInAccount() {
         localStorage.setItem('email', email);
-        props.onLogin(email);
+        onSignIn(email);
     }
 
     async function createAcount() {
         localStorage.setItem('email', email);
-        props.onLogin(email);
+        onSignIn(email);
     }
 
     return (
