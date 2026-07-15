@@ -8,7 +8,7 @@ import { Home } from './home/home';
 import { Journal } from './journal/journal';
 import { Community } from './community/community';
 
-export default function App() {
+function App() {
     return (
         <BrowserRouter>
             <div className="body">
@@ -69,3 +69,5 @@ export default function App() {
 function NotFound() {
   return <main className="container-fluid text-center">404: Return to sender. Address unknown.</main>;
 }
+
+export default App;
