@@ -8,7 +8,7 @@ export function Memo(props) {
         <Modal {...props} show={props.message} centered>
             <Modal.Body>{props.message}</Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.dismiss}>Dismiss</Button>
+                <Button variant='secondary' onClick={props.dismiss}>Dismiss</Button>
             </Modal.Footer>
         </Modal>
     );
