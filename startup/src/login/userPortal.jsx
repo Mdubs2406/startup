@@ -11,7 +11,7 @@ export function userPortal(props) {
     }
 
     return (
-        <div>
+        <div className="card">
             <div>Hello, {props.email}. We hope you having a wonderful day!</div>
             <Button variant='primary' onClick={() => nav('/home')}>
                 Explore
