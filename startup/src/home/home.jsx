@@ -5,12 +5,20 @@ export function Home() {
     const [deed, setDeed] = React.useState('Awaiting Inspiration...');
     const [inspo, setInpo] = React.useState('...something great is coming!');
     {/*These will access a data base later, placeholder for now*/}
-    const [streak, setStreak] = React.useState(localStorage.getItem('streak') || 0);
-    const [dayCount, setDayCount] = React.useState(localStorage.getItem('dayCount') || 7);
-    const [totalCount, setTotalCount] = React.useState(localStorage.getItem('totalCount') || 107);
-    const [lastCompleted, setLastCompleted] = React.useState(localStorage.getItem('lastCompleted') || null);
-    
+    const [stats, setStats] = React.useState({
+        streak: 0,
+        dayCount: 7,
+        totalCount: 119,
+        lastCompleted: null
+    })
 
+    React.useEffect(() => {
+        const statsText = localStorage.getItem('stats');
+        if (statsText) {
+            setStats(JSON.parse(statsText));
+        }
+    }, []);
+    
     React.useEffect(() => {
         {/*These will request from DB*/}
         setDeed('Hold the door open for a stranger');
