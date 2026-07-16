@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+
 import { DisplayStreak, NoStreak } from './displayStreak';
+import { CompleteDeed } from './completeDeed';
 
 export function Home() {
     const [deed, setDeed] = React.useState('Awaiting Inspiration...');
@@ -46,16 +47,14 @@ export function Home() {
                     <div className="card-body text-center">
                         <h4 className="card-title">{deed}</h4>
                         <h6 className="card-text text-center mb-3">{inspo}</h6>
-                        <Button>
-                            <button type="submit" className="btn btn-primary mx-1">I did it!</button>
-                        </Button>
+                        <CompleteDeed stats={stats} setStats={setStats} />
                     </div>
                     <div className="card-footer"></div>
                 </div>
 
                 <div className="card mx-2">
-                    {stats.streak !== 0 && DisplayStreak(stats.streak)}
-                    {stats.streak === 0 && NoStreak()}
+                    {stats.streak !== 0 && <DisplayStreak streak={stats.streak} />}
+                    {stats.streak === 0 && <NoStreak />}
                 </div>
             </main>
     );

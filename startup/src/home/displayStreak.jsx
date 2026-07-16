@@ -1,6 +1,6 @@
 import React from "react";
 
-export function DisplayStreak(streak) {
+export function DisplayStreak({ streak }) {
     return (
         <div>
             <h4 className="card-title text-center pt-2">🔥<span>{streak}</span>-day🔥streak!</h4>
