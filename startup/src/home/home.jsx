@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import { DisplayStreak, NoStreak } from './displayStreak';
 
 export function Home() {
     const [deed, setDeed] = React.useState('Awaiting Inspiration...');
@@ -20,7 +21,6 @@ export function Home() {
     }, []);
     
     React.useEffect(() => {
-        {/*These will request from DB*/}
         setDeed('Hold the door open for a stranger');
         setInpo('A small gesture that takes two seconds, but can brighten someone\'s entire day.')
     }, []);
@@ -30,11 +30,11 @@ export function Home() {
                 <div className="row justify-content-evenly mb-3">
                     {/* Websocket Placeholder. Counts will updated in realtime */}
                     <div id="deed-count-daily"className="col-auto display-6 border border-light rounded pb-1">
-                        <span className="fw-bold me-3">{dayCount}</span> 
+                        <span className="fw-bold me-3">{stats.dayCount}</span> 
                         Good Deeds Today
                     </div>
                     <div id="deed-count-total" className="col-auto display-6 border border-light rounded pb-1">
-                        <span className=" me-3">{totalCount}</span> 
+                        <span className=" me-3">{stats.totalCount}</span> 
                         Total Good Deeds
                     </div>
                 </div>
@@ -54,8 +54,8 @@ export function Home() {
                 </div>
 
                 <div className="card mx-2">
-                    <h4 className="card-title text-center pt-2">🔥<span>3</span>-day🔥streak!</h4>
-                    <div className="card-footer text-center">You've done goood <span>3</span> days running. Keep Going!</div>
+                    {stats.streak !== 0 && DisplayStreak(stats.streak)}
+                    {stats.streak === 0 && NoStreak()}
                 </div>
             </main>
     );
