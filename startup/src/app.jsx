@@ -7,8 +7,13 @@ import { Login } from './login/login';
 import { Home } from './home/home';
 import { Journal } from './journal/journal';
 import { Community } from './community/community';
+import { Access } from './login/access';
 
 function App() {
+    const [userEmail, setUserEmail] = React.useState(localStorage.getItem('userEmail') || '');
+    const currentAccessState = userEmail ? Access.Granted : Access.Hold;
+    const [AccessSate, setAccess] = React.useState(currentAccessState);
+
     return (
         <BrowserRouter>
             <div className="body">
