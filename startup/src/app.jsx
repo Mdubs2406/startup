@@ -3,16 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import { Login } from './login/login';
+import { SignIn } from './signIn/signIn';
 import { Home } from './home/home';
 import { Journal } from './journal/journal';
 import { Community } from './community/community';
-import { Access } from './login/access';
+import { Access } from './signIn/access';
 
 function App() {
-    const [userEmail, setUserEmail] = React.useState(localStorage.getItem('userEmail') || '');
+    const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
+    const [password, setPassword] = React.useState(localStorage.getItem('Password') || '');
     const currentAccessState = userEmail ? Access.Granted : Access.Hold;
-    const [AccessState, setAccess] = React.useState(currentAccessState);
+    const [accessState, updateAccess] = React.useState(currentAccessState);
 
     return (
         <BrowserRouter>
@@ -37,16 +38,16 @@ function App() {
                     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
                         <ul className="navbar-nav flex-row flex-wrap mx-auto">
                             <li className="nav-item px-4">
-                                <NavLink className="nav-link" to="">Login</NavLink>
+                                <NavLink className="nav-link" to="">Sign In</NavLink>
                             </li>
-                            {AccessState === Access.Granted && (
+                            {accessState === Access.Granted && (
                                 <li className="nav-item px-4">
                                 <NavLink className="nav-link" to="home">Home</NavLink>
                             </li>)}
-                            {AccessState ==  Access.Granted && (<li className="nav-item px-4">
+                            {accessState ==  Access.Granted && (<li className="nav-item px-4">
                                 <NavLink className="nav-link" to="community">Community</NavLink>
                             </li>)}
-                            {AccessState === Access.Granted && (<li className="nav-item px-4">
+                            {accessState === Access.Granted && (<li className="nav-item px-4">
                                 <NavLink className="nav-link" to="journal">My Journal</NavLink>
                             </li>)}
                         </ul>
@@ -54,7 +55,15 @@ function App() {
                 </header>
 
                 <Routes>
-                    <Route path='/' element={<Login />} exact />
+                    <Route path='/' element={<SignIn 
+                        email={userEmail} 
+                        password={password} 
+                        access={accessState} 
+                        setAccess={(userEmail, accessState) => {
+                            updateAccess(accessState);
+                            setUserEmail(userEmail);
+                        }}
+                    />} exact />
                     <Route path='/home' element={<Home />} />
                     <Route path='/journal' element={<Journal />} />
                     <Route path='/community' element={<Community />} />
