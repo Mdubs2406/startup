@@ -12,7 +12,7 @@ import { Access } from './login/access';
 function App() {
     const [userEmail, setUserEmail] = React.useState(localStorage.getItem('userEmail') || '');
     const currentAccessState = userEmail ? Access.Granted : Access.Hold;
-    const [AccessSate, setAccess] = React.useState(currentAccessState);
+    const [AccessState, setAccess] = React.useState(currentAccessState);
 
     return (
         <BrowserRouter>
@@ -39,15 +39,16 @@ function App() {
                             <li className="nav-item px-4">
                                 <NavLink className="nav-link" to="">Login</NavLink>
                             </li>
-                            <li className="nav-item px-4">
+                            {AccessState === Access.Granted && (
+                                <li className="nav-item px-4">
                                 <NavLink className="nav-link" to="home">Home</NavLink>
-                            </li>
-                            <li className="nav-item px-4">
+                            </li>)}
+                            {AccessState ==  Access.Granted && (<li className="nav-item px-4">
                                 <NavLink className="nav-link" to="community">Community</NavLink>
-                            </li>
-                            <li className="nav-item px-4">
+                            </li>)}
+                            {AccessState === Access.Granted && (<li className="nav-item px-4">
                                 <NavLink className="nav-link" to="journal">My Journal</NavLink>
-                            </li>
+                            </li>)}
                         </ul>
                     </nav>
                 </header>
