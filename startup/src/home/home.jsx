@@ -7,17 +7,26 @@ export function Home() {
     const [deed, setDeed] = React.useState('Awaiting Inspiration...');
     const [inspo, setInpo] = React.useState('...something great is coming!');
     {/*These will access a data base later, placeholder for now*/}
-    const [stats, setStats] = React.useState({
-        streak: 0,
+    const [globalStats, setGlobalStats] = React.useState({
         dayCount: 7,
-        totalCount: 119,
+        totalCount: 119
+    })
+    const [userStats, setUserStats] = React.useState({
+        streak: 0,
         lastCompleted: null
     })
 
     React.useEffect(() => {
-        const statsText = localStorage.getItem('stats');
-        if (statsText) {
-            setStats(JSON.parse(statsText));
+        const globalStatsText = localStorage.getItem('globalStats');
+        if (globalStatsText) {
+            setGlobalStats(JSON.parse(globalStatsText));
+        }
+    }, []);
+
+    React.useEffect(() => {
+        const userStatsText = localStorage.getItem('userStats');
+        if (userStatsText) {
+            setUserStats(JSON.parse(userStatsText));
         }
     }, []);
     
@@ -31,11 +40,11 @@ export function Home() {
                 <div className="row justify-content-evenly mb-3">
                     {/* Websocket Placeholder. Counts will updated in realtime */}
                     <div id="deed-count-daily"className="col-auto display-6 border border-light rounded pb-1">
-                        <span className="fw-bold me-3">{stats.dayCount}</span> 
+                        <span className="fw-bold me-3">{globalStats.dayCount}</span> 
                         Good Deeds Today
                     </div>
                     <div id="deed-count-total" className="col-auto display-6 border border-light rounded pb-1">
-                        <span className=" me-3">{stats.totalCount}</span> 
+                        <span className=" me-3">{globalStats.totalCount}</span> 
                         Total Good Deeds
                     </div>
                 </div>
@@ -47,14 +56,14 @@ export function Home() {
                     <div className="card-body text-center">
                         <h4 className="card-title">{deed}</h4>
                         <h6 className="card-text text-center mb-3">{inspo}</h6>
-                        <CompleteDeed stats={stats} setStats={setStats} />
+                        <CompleteDeed globalStats={globalStats} setGlobalStats={setGlobalStats} userStats={userStats} setUserStats={setUserStats} />
                     </div>
                     <div className="card-footer"></div>
                 </div>
 
                 <div className="card mx-2">
-                    {stats.streak !== 0 && <DisplayStreak streak={stats.streak} />}
-                    {stats.streak === 0 && <NoStreak />}
+                    {userStats.streak !== 0 && <DisplayStreak streak={userStats.streak} />}
+                    {userStats.streak === 0 && <NoStreak />}
                 </div>
             </main>
     );

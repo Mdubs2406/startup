@@ -1,26 +1,31 @@
 import Button from 'react-bootstrap/Button';
 
-export function CompleteDeed({ stats, setStats }) {
+export function CompleteDeed({ globalStats, setGlobalStats, userStats, setUserStats }) {
 
     function updateStats() {
         const today = new Date().toDateString();
 
-        let updatedStats = {
-            ...stats,
-            dayCount: stats.dayCount + 1,
-            totalCount: stats.totalCount + 1
+        // to simulate updaing data in server
+        let newGlobalStats = {
+            ...globalStats,
+            dayCount: globalStats.dayCount + 1,
+            totalCount: globalStats.totalCount + 1
         };
 
-        if (stats.lastCompleted !== today) {
-            updatedStats = {
-                ...updatedStats,
-                streak: stats.streak + 1,
+        let newUserStats = {...userStats};
+
+        if (userStats.lastCompleted !== today) {
+            newUserStats = {
+                ...userStats,
+                streak: userStats.streak + 1,
                 lastCompleted: today
-            }
+            };
         };
 
-        setStats(updatedStats);
-        localStorage.setItem('stats', JSON.stringify(updatedStats));
+        setGlobalStats(newGlobalStats);
+        setUserStats(newUserStats);
+        localStorage.setItem('globalStats', JSON.stringify(newGlobalStats));
+        localStorage.setItem('userStats', JSON.stringify(newUserStats));
     }
 
     return (
