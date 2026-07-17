@@ -1,6 +1,36 @@
 import React from 'react';
 
 export function Community() {
+    const [comPosts, setComPosts] = React.useState([]);
+
+    // Simulate calling a service to update Community Posts
+    React.useEffect(() => {
+        const comPostsText = localStorage.getItem('comPosts');
+        if (comPostsText) {
+            setComPosts(JSON.parse(comPostsText));
+        }
+    }, []);
+
+    const postRows = [];
+    if (comPosts.length) {
+        for (const [name, desc, date, time] of comPosts.posts()) {
+            postRows.push(
+                <tr>
+                   <th>{name}</th>
+                    <th>{desc}</th>
+                    <th>{date}</th>
+                    <th>{time}</th> 
+                </tr>
+            );
+        }
+    } else {
+        postRows.push(
+            <tr>
+                <td colSpan='4' className='text-center'>No post yet. Share Yours!</td>
+            </tr>
+        )
+    }
+
     return (
         <main className="py-3">
                 <section id="create-post" className="card mb-3 mx-2">
@@ -42,14 +72,7 @@ export function Community() {
                                 <th>Time</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Park Clean Up</td>
-                                <td>Help clean up City Park!</td>
-                                <td>Aug 14th, 2026</td>
-                                <td>10:00 AM</td>
-                            </tr>
-                        </tbody>
+                        <tbody>{postRows}</tbody>
                     </table>
                 </section>
         </main>
