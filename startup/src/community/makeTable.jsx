@@ -1,16 +1,6 @@
 import React from "react";
 
-export function MakeTable() {
-  const [comPosts, setComPosts] = React.useState([]);
-
-  // Simulate calling a service to update Community Posts
-  React.useEffect(() => {
-    const comPostsText = localStorage.getItem('comPosts');
-    if (comPostsText) {
-      setComPosts(JSON.parse(comPostsText));
-    }
-  }, []);
-
+export function MakeTable({ comPosts }) {
   const postRows = [];
   if (comPosts.length) {
     for (const [i, post] of comPosts.entries()) {

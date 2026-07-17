@@ -1,6 +1,6 @@
 import React from "react";
 
-export function MakePost() {
+export function MakePost({ setComPosts }) {
   const [name, setName] = React.useState('');
   const [desc, setDesc] = React.useState('');
   const [date, setDate] = React.useState('');
@@ -8,14 +8,7 @@ export function MakePost() {
 
   function logPost(name, desc, date, time) {
     const newPost = { name, desc, date, time };
-    const comPosts = JSON.parse(localStorage.getItem('comPosts')) || [];
-
-    comPosts.unshift(newPost);
-    localStorage.setItem('comPosts', JSON.stringify(comPosts));
-  }
-
-  function updatePost() {
-    
+    setComPosts(posts => [newPost, ...posts]);
   }
 
   return (
@@ -26,7 +19,6 @@ export function MakePost() {
             x.preventDefault();
             logPost(name, desc, date, time);
 
-            
             setName('');
             setDate('');
             setDesc('');
