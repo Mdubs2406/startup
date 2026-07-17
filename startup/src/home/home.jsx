@@ -35,6 +35,21 @@ export function Home() {
         setInpo('A small gesture that takes two seconds, but can brighten someone\'s entire day.')
     }, []);
 
+    // Simulates WebSocket updating the Deed Count
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setGlobalStats(e => {
+                const newStats = {
+                    dayCount: e.dayCount + 1,
+                    totalCount: e.totalCount + 1
+                };
+                localStorage.setItem('globalStats', JSON.stringify(newStats));
+                return newStats;
+            });
+        return () => clearInterval(interval);
+    }, 3500);
+    });
+
     return (
         <main className="py-3">
                 <div className="row justify-content-evenly mb-3">
@@ -67,4 +82,4 @@ export function Home() {
                 </div>
             </main>
     );
-}
+};
