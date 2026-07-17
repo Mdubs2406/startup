@@ -5,7 +5,16 @@ import Button from 'react-bootstrap/Button';
 export function Hold(props) {
     const [email, setEmail] = React.useState(props.email);
     const [password, setPassword] = React.useState(props.password);
+
     const [accessError, setAccessError] = React.useState(null);
+    const [qoute, setQoute] = React.useState('A wise man once said...');
+    const [quoteSource, setQuoteSource] = React.useState('Someone, probably');
+
+    // Later, this will be updated to request a qoute from and API
+    React.useEffect(() => {
+        setQoute("You don't have to great to start, but you have to start to be great.");
+        setQuoteSource("Zig Ziglar");
+    }, []);
 
     // These two funcitons will be updated once the DB is setup
     async function signInAccount() {
@@ -77,12 +86,8 @@ export function Hold(props) {
             {/* API placeholder. Random Inspirational Quote */}
             <div id="inspiration-quote" className="card border-light text-center mt-3">
                 <div className="card-body">
-                    <h4 className="card-title">
-                        "You don't have to great to start, but you have to start to be great."
-                    </h4>
-                    <p className="card-text quote-source">
-                        Zig Ziglar
-                    </p>
+                    <h4 className="card-title">{qoute}</h4>
+                    <p className="card-text quote-source">{quoteSource}</p>
                 </div>
             </div>
         </>

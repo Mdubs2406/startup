@@ -46,7 +46,7 @@ export function Home() {
                 localStorage.setItem('globalStats', JSON.stringify(newStats));
                 return newStats;
             });
-        }, 7500);
+        }, 5000);
     }, []);
 
     return (
