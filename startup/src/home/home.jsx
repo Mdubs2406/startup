@@ -39,16 +39,15 @@ export function Home() {
     React.useEffect(() => {
         const interval = setInterval(() => {
             setGlobalStats(e => {
-                const newStats = {
+                const newStats = { 
                     dayCount: e.dayCount + 1,
                     totalCount: e.totalCount + 1
                 };
                 localStorage.setItem('globalStats', JSON.stringify(newStats));
                 return newStats;
             });
-        return () => clearInterval(interval);
-    }, 3500);
-    });
+        }, 3500);
+    }, []);
 
     return (
         <main className="py-3">
