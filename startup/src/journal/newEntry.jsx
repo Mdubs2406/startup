@@ -1,7 +1,7 @@
 import React from "react";
 import { Journal } from "./journal";
 
-export function NewEntry({ setJournal, Journal }) {
+export function NewEntry({ setJournal}) {
   const [date, setDate] = React.useState('');
   const [time, setTime] = React.useState('');
   const [desc, setDesc] = React.useState('');

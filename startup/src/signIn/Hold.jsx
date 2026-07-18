@@ -7,12 +7,12 @@ export function Hold(props) {
     const [password, setPassword] = React.useState(props.password);
 
     const [accessError, setAccessError] = React.useState(null);
-    const [qoute, setQoute] = React.useState('A wise man once said...');
+    const [quote, setQuote] = React.useState('A wise man once said...');
     const [quoteSource, setQuoteSource] = React.useState('Someone, probably');
 
     // Later, this will be updated to request a qoute from and API
     React.useEffect(() => {
-        setQoute("You don't have to great to start, but you have to start to be great.");
+        setQuote("You don't have to great to start, but you have to start to be great.");
         setQuoteSource("Zig Ziglar");
     }, []);
 
@@ -86,7 +86,7 @@ export function Hold(props) {
             {/* API placeholder. Random Inspirational Quote */}
             <div id="inspiration-quote" className="card border-light text-center mt-3">
                 <div className="card-body">
-                    <h4 className="card-title">{qoute}</h4>
+                    <h4 className="card-title">{quote}</h4>
                     <p className="card-text quote-source">{quoteSource}</p>
                 </div>
             </div>
