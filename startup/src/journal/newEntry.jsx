@@ -1,6 +1,14 @@
 import React from "react";
 
 export function NewEntry({ setJournal }) {
+  const [date, setDate] = React.useState('');
+  const [time, setTime] = React.useState('');
+  const [desc, setDesc] = React.useState('');
+
+  function logEntry(date, time, desc) {
+    const newEntry = {date, time, desc};
+    setJournal(entrys => [NewEntry, ...entrys]);
+  }
 
   return(
     <section id="create-entry" className="card shadow-sm mb-3 mx-2">
