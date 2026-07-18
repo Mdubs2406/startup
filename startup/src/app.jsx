@@ -8,7 +8,6 @@ import { Home } from './home/home';
 import { Journal } from './journal/journal';
 import { Community } from './community/community';
 import { Access } from './signIn/access';
-import { Memo } from './memo';
 
 function App() {
     const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
@@ -22,11 +21,6 @@ function App() {
     React.useEffect(() => {
         localStorage.setItem("comPosts", JSON.stringify(comPosts));
     }, [comPosts]);
-
-    const [memo, setMemo] = React.useState({
-        show: false,
-        message: ''
-    });
 
     return (
         <BrowserRouter>
