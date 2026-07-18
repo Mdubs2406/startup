@@ -8,12 +8,25 @@ import { Home } from './home/home';
 import { Journal } from './journal/journal';
 import { Community } from './community/community';
 import { Access } from './signIn/access';
+import { Memo } from './memo';
 
 function App() {
     const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
     const [password, setPassword] = React.useState(localStorage.getItem('Password') || '');
     const currentAccessState = userEmail ? Access.Granted : Access.Hold;
     const [accessState, updateAccess] = React.useState(currentAccessState);
+
+    const [comPosts, setComPosts] = React.useState(() => {
+        return JSON.parse(localStorage.getItem("comPosts")) || [];
+    });
+    React.useEffect(() => {
+        localStorage.setItem("comPosts", JSON.stringify(comPosts));
+    }, [comPosts]);
+
+    const [memo, setMemo] = React.useState({
+        show: false,
+        message: ''
+    });
 
     return (
         <BrowserRouter>
@@ -64,9 +77,14 @@ function App() {
                             setUserEmail(userEmail);
                         }}
                     />} exact />
-                    <Route path='/home' element={<Home />} />
+                    <Route path='/home' element={<Home 
+                        comPosts={comPosts}
+                    />} />
                     <Route path='/journal' element={<Journal />} />
-                    <Route path='/community' element={<Community />} />
+                    <Route path='/community' element={<Community 
+                        comPosts={comPosts}
+                        setComPosts={setComPosts}
+                    />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
 
