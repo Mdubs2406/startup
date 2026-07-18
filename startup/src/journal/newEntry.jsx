@@ -1,6 +1,6 @@
 import React from "react";
 
-export function NewEntry() {
+export function NewEntry({ setJournal }) {
 
   return(
     <section id="create-entry" className="card shadow-sm mb-3 mx-2">

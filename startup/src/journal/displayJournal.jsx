@@ -1,6 +1,6 @@
 import React from "react";
 
-export function DisplayJournal() {
+export function DisplayJournal({ journal }) {
 
   return(
     <section id="entries-display" className="card mx-2">
