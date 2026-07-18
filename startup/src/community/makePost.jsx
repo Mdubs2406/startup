@@ -1,6 +1,6 @@
 import React from "react";
 
-export function MakePost({ setComPosts }) {
+export function MakePost({ setComPosts, setShow }) {
   const [name, setName] = React.useState('');
   const [desc, setDesc] = React.useState('');
   const [date, setDate] = React.useState('');
@@ -18,6 +18,7 @@ export function MakePost({ setComPosts }) {
         <form onSubmit={(x) => {
             x.preventDefault();
             logPost(name, desc, date, time);
+            setShow(true);
 
             setName('');
             setDate('');

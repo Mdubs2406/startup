@@ -8,6 +8,7 @@ import { Home } from './home/home';
 import { Journal } from './journal/journal';
 import { Community } from './community/community';
 import { Access } from './signIn/access';
+import { PostNotification } from './notification/postNotification';
 
 function App() {
     const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
@@ -21,6 +22,17 @@ function App() {
     React.useEffect(() => {
         localStorage.setItem("comPosts", JSON.stringify(comPosts));
     }, [comPosts]);
+
+    const [show, setShow] = React.useState(false);
+    React.useEffect(() => {
+        if (!show) {
+            return;
+        }
+        const timer = setTimeout(() => {
+            setShow(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, [show]);
 
     return (
         <BrowserRouter>
@@ -51,7 +63,7 @@ function App() {
                                 <li className="nav-item px-4">
                                 <NavLink className="nav-link" to="home">Home</NavLink>
                             </li>)}
-                            {accessState ==  Access.Granted && (<li className="nav-item px-4">
+                            {accessState ===  Access.Granted && (<li className="nav-item px-4">
                                 <NavLink className="nav-link" to="community">Community</NavLink>
                             </li>)}
                             {accessState === Access.Granted && (<li className="nav-item px-4">
@@ -59,6 +71,7 @@ function App() {
                             </li>)}
                         </ul>
                     </nav>
+                    {accessState === Access.Granted && <PostNotification show={show} />}
                 </header>
 
                 <Routes>
@@ -78,6 +91,7 @@ function App() {
                     <Route path='/community' element={<Community 
                         comPosts={comPosts}
                         setComPosts={setComPosts}
+                        setShow={setShow}
                     />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>

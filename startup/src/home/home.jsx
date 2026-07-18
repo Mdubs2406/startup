@@ -3,7 +3,7 @@ import React from 'react';
 import { DisplayStreak, NoStreak } from './displayStreak';
 import { CompleteDeed } from './completeDeed';
 
-export function Home() {
+export function Home({ comPosts }) {
     const [deed, setDeed] = React.useState('Awaiting Inspiration...');
     const [inspo, setInpo] = React.useState('...something great is coming!');
     {/*These will access a data base later, placeholder for now*/}
