@@ -12,7 +12,7 @@ export function Journal() {
 
     return (
         <main className="py-3">
-            <NewEntry setJournal={setJournal}/>
+            <NewEntry setJournal={setJournal} />
             <DisplayJournal journal={journal}/>
         </main>
     );
