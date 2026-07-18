@@ -1,6 +1,24 @@
 import React from "react";
 
 export function DisplayJournal({ journal }) {
+  const journalRows = [];
+  if (journal.length) {
+    for (const [i, entry] of journal.entries()) {
+      journalRows.push(
+        <tr key={i}>
+          <td>{entry.date}</td>
+          <td>{entry.time}</td>
+          <td>{entry.desc}</td>
+        </tr>
+      );
+    }
+  } else {
+    journalRows.push(
+      <tr key='empty'>
+        <td colSpan='4' className='text-center'>Start recording your story of kindness!</td>
+      </tr>
+    )
+  }
 
   return(
     <section id="entries-display" className="card mx-2">
@@ -14,13 +32,7 @@ export function DisplayJournal({ journal }) {
             <th>Description</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Nov. 8th, 2022</td>
-            <td>3:55 PM</td>
-            <td>Helped elderly heighbor mow lawn</td>
-          </tr>
-        </tbody>
+        <tbody>{journalRows}</tbody>
       </table>
     </section>
   );
