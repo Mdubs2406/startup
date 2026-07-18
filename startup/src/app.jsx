@@ -12,7 +12,7 @@ import { PostNotification } from './notification/postNotification';
 
 function App() {
     const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
-    const [password, setPassword] = React.useState(localStorage.getItem('Password') || '');
+    const [password, setPassword] = React.useState('');
     const currentAccessState = userEmail ? Access.Granted : Access.Hold;
     const [accessState, updateAccess] = React.useState(currentAccessState);
 

@@ -22,7 +22,7 @@ export function Hold(props) {
         props.onSignIn(email);
     }
 
-    async function createAcount() {
+    async function createAccount() {
         localStorage.setItem('email', email);
         props.onSignIn(email);
     }
