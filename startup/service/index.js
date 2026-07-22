@@ -33,11 +33,18 @@ const checkAuth = async (req, res, next) => {};
 
 apiRouter.get('/home', checkAuth, (req, res) => {});
 
-apiRouter.get('/community', checkAuth, (req, res) => {});
+apiRouter.get('/community', checkAuth, (req, res) => {
+  res.send(communityBoard);
+});
 
-apiRouter.post('/community/post', checkAuth, (req, res) => {});
+apiRouter.post('/community/post', checkAuth, (req, res) => {
+  updatePosts(req.body);
+  res.send(communityBoard);
+});
 
-apiRouter.get('/journal', checkAuth, (req, res) => {});
+apiRouter.get('/journal', checkAuth, (req, res) => {
+  res.send(findJournal(req.body));
+});
 
 apiRouter.post('jounrnal/write', checkAuth, (req, res) => {});
 
@@ -60,6 +67,20 @@ function updateJounrnal(newList) {
    for (const [i, prevList] of userJournals.entries()) {
     if (userName === prevList[0]) {
       userJournals[i] = newList;
+      break;
     }
    }
+}
+
+function findJournal(userName) {
+  let userList = [];
+  for (const [i, list] of userJournals.entries()){
+    if (userName === list[0]) {
+      userList = list;
+    }
+  }
+  if (userList.length === 0) {
+    userList.push(userName);
+  }
+  return userList;
 }
