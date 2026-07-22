@@ -64,7 +64,9 @@ apiRouter.get('/journal', checkAuth, (req, res) => {
   res.send(findJournal(req.body));
 });
 
-apiRouter.post('jounrnal/write', checkAuth, (req, res) => {});
+apiRouter.post('jounrnal/write', checkAuth, (req, res) => {
+  res.send(updateJounrnal(req.body));
+});
 
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message});
@@ -80,28 +82,23 @@ function updatePosts(newPost) {
   return communityBoard;
 }
 
-function updateJounrnal(newList) {
+function updateJournal(newList) {
    const userName = newList[0];
+
    for (const [i, prevList] of allUserJournals.entries()) {
     if (userName === prevList[0]) {
       allUserJournals[i] = newList;
-      break;
+      return;
     }
    }
+
+   allUserJournals.push(newList);
 }
 
 function findJournal(userName) {
-  let userList = [];
-  for (const list of userJournals.entries()){
-    if (userName === list[0]) {
-      userList = list;
-      break;
-    }
-  }
-  if (userList.length === 0) {
-    userList.push(userName);
-  }
-  return userList;
+  const userList = allUserJournals.find(list => list[0] === userName);
+
+  return userList ?? [userName];
 }
 
 function updateCounts(userName) {
