@@ -40,3 +40,11 @@ apiRouter.post('/community/post', checkAuth, (req, res) => {});
 apiRouter.get('/journal', checkAuth, (req, res) => {});
 
 apiRouter.post('jounrnal/write', checkAuth, (req, res) => {});
+
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message});
+});
+
+app.use((req, res) => {
+  res.send('index.html', { root: 'public'});
+});
