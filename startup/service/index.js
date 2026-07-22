@@ -11,7 +11,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 let usersLogin = [];
-let usersJournal = [];
+let userJournals = [];
 let communityBoard = [];
 
 let apiRouter = express.Router();
@@ -48,3 +48,18 @@ app.use(function (err, req, res, next) {
 app.use((req, res) => {
   res.send('index.html', { root: 'public'});
 });
+
+// supporting functions
+function updatePosts(newPost) {
+  communityBoard.push(newPost);
+  return communityBoard;
+}
+
+function updateJounrnal(newList) {
+   const userName = newList[0];
+   for (const [i, prevList] of userJournals.entries()) {
+    if (userName === prevList[0]) {
+      userJournals[i] = newList;
+    }
+   }
+}
