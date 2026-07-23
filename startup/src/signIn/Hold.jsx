@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 export function Hold(props) {
     const [email, setEmail] = React.useState(props.email);
     const [password, setPassword] = React.useState(props.password);
-
+    const [loading, setLoading] = React.useState(false);
     const [accessError, setAccessError] = React.useState(null);
     const [quote, setQuote] = React.useState('A wise man once said, it is a good day to do something good.');
     const [quoteSource, setQuoteSource] = React.useState('Someone, probably');
@@ -20,11 +20,15 @@ export function Hold(props) {
     }, []);
 
     function signInAccount() {
+        setLoading(true);
         requestUserAccess(`/api/users/signin`);
+        setLoading(false);
     }
 
     function createAccount() {
+        setLoading(true);
         requestUserAccess(`/api/users/create`);
+        setLoading(false);
     }
 
     async function requestUserAccess(endpoint) {
@@ -87,7 +91,7 @@ export function Hold(props) {
                             className="mx-1"
                             variant="primary"
                             onClick={signInAccount}
-                            disabled={!email || !password}>
+                            disabled={loading || !email || !password}>
                             Submit
                         </Button>
                         <Button 
@@ -97,7 +101,7 @@ export function Hold(props) {
                             className="mx-1"
                             variant="secondary"
                             onClick={createAccount}
-                            disabled={!email || !password}>
+                            disabled={loading || !email || !password}>
                             Create Account
                         </Button>
                     </div>
