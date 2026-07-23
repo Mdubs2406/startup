@@ -38,7 +38,18 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
+  const user = await findAccount('email', req.body.email);
 
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      user.token = uuid.v4();
+      setCookie(res, user.token);
+      res.send({ email: user.email });
+      return;
+    }
+  } else {
+    res.status(401).send({ msg: 'Incorrect Password or Username.' });
+  }
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
@@ -124,8 +135,6 @@ function setCookie(res, Token) {
     sameSite: 'strict',
   })
 }
-
-
 
 // Journal
 function findJournal(userData) {
