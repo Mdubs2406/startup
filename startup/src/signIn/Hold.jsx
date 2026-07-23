@@ -36,8 +36,8 @@ export function Hold(props) {
             localStorage.setItem('email', email);
             props.onSignIn(email);
         } else {
-            const acccessError = await res.json();
-            // setDisplayError(`${accessError.msg}`);
+            const err = await res.json();
+            setAccessError(`${accessError.msg}`);
         }
     }
 
