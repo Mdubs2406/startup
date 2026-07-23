@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 
+const cookieName = 'cookieName';
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -40,30 +42,36 @@ apiRouter.post('/auth/create', async (req, res) => {
 apiRouter.post('/auth/login', async (req, res) => {
   const user = await findAccount('email', req.body.email);
 
-  if (user) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
-      setCookie(res, user.token);
-      res.send({ email: user.email });
-      return;
-    }
+  if (user && (await bcrypt.compare(req.body.password, user.password))) {
+    user.authToken = uuid.v4();
+    setCookie(res, user.authToken);
+    res.send({ email: user.email });
+    return;
   } else {
     res.status(401).send({ msg: 'Incorrect Password or Username.' });
   }
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-  const user = await findAccount('token', req.cookies['authkey']);
+  const user = await findAccount('token', req.cookies['cookieName']);
 
   if (user) {
-    delete user.token;
+    delete user.authToken;
   }
 
-  res.clearCookie('authKey');
+  res.clearCookie('cookieName');
   res.status(204).end();
 });
 
-const checkAuth = async (req, res, next) => {};
+const checkAuth = async (req, res, next) => {
+  const user = await findAccount('token', req.cookies['cookieName']);
+
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'User not authorized.'});
+  }
+};
 
 apiRouter.get('/home', checkAuth, (req, res) => {
   const stats = findUserStats(req.body);
@@ -119,7 +127,7 @@ async function createAccount(email, password) {
   const account = {
     email,
     password: passwordHash,
-    token: uuid.v4(),
+    authToken: uuid.v4(),
   };
 
   usersLogin.push(account);
@@ -135,7 +143,7 @@ function findAccount(idType, value) {
 }
 
 function setCookie(res, Token) {
-  res.cookie('authKey', Token, {
+  res.cookie('cookieName', Token, {
     maxAge: 1000 * 60 * 60 * 24,
     secure: true,
     httpOnly: true,
