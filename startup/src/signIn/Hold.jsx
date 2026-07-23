@@ -12,8 +12,12 @@ export function Hold(props) {
 
     // Later, this will be updated to request a qoute from and API
     React.useEffect(() => {
-        setQuote("You don't have to great to start, but you have to start to be great.");
-        setQuoteSource("Zig Ziglar");
+        fetch('https://api.quotable.io/random?tags=inspirational|wisdom&minLength=40&maxLength=120')
+            .then((res) => res.json())
+            .then((quoteData) => {
+                setQuote(quoteData.content);
+                setQuoteSource(quoteData.author);
+        }).catch();
     }, []);
 
     // These two funcitons will be updated once the DB is setup
