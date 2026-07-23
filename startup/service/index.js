@@ -4,8 +4,6 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 
-const authCookieName = 'token';
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -29,7 +27,14 @@ let apiRouter = express.Router();
 app.use('/api', apiRouter);
 
 apiRouter.post('/auth/create', async (req, res) => {
+  if (await findAccount('email', req.body.email)) {
+    res.status(409).send({msg: 'You already have an account. Use login instead.'});
+  } else {
+    const user = await createAccount(req.body.email, req.body.password);
 
+    setCookie(res, user.authToken);
+    res.send({ email: user.email });
+  }
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
@@ -48,7 +53,7 @@ apiRouter.get('/home', checkAuth, (req, res) => {
   res.send({
     totalCount,
     dayCount,
-    streak: stats.streak
+    streak: stats.streak,
   });
 });
 
@@ -58,7 +63,7 @@ apiRouter.post('/home/count', checkAuth, (req, res) => {
   res.send({
     totalCount,
     dayCount,
-    streak: stats.streak
+    streak: stats.streak,
   });
 });
 
@@ -87,7 +92,48 @@ app.use((req, res) => {
   res.send('index.html', { root: 'public'});
 });
 
-// supporting functions
+// supporting functions //
+
+// Login
+async function createAccount(email, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const account = {
+    email,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+
+  usersLogin.push(account);
+  return account;
+}
+
+function findAccount(idType, value) {
+  if (!value) {
+    return;
+  } else {
+    return usersLogin.find((id) => id[idType] === value);
+  }
+}
+
+function setCookie(res, Token) {
+  res.cookie('authKey', Token, {
+    maxAge: 1000 * 60 * 60 * 24,
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  })
+}
+
+
+
+// Journal
+function findJournal(userData) {
+  const userList = allUserJournals.find(list => list[0] === userData.userName);
+
+  return userList ?? [userData.userName];
+}
+
 function updateJournal(journalData) {
    for (const [i, prevList] of allUserJournals.entries()) {
     if (journalData.userName === prevList[0]) {
@@ -100,11 +146,7 @@ function updateJournal(journalData) {
    return journalData.list;
 }
 
-function findJournal(userData) {
-  const userList = allUserJournals.find(list => list[0] === userData.userName);
-
-  return userList ?? [userData.userName];
-}
+// Home
 
 function findUserStats(userData) {
   let stats = allUserStats.find(stats => stats.userName === userData.userName);
@@ -113,7 +155,7 @@ function findUserStats(userData) {
     stats = {
       userName: userData.userName,
       streak: 0,
-      lastCompleted: null
+      lastCompleted: null,
     }
 
     allUserStats.push(stats);
