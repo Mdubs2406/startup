@@ -16,7 +16,9 @@ export function Hold(props) {
             .then((quoteData) => {
                 setQuote(quoteData[0].q);
                 setQuoteSource(quoteData[0].a);
-        }).catch();
+        }).catch(() => {
+            // Will display default states
+        });
     }, []);
 
     function signInAccount() {
