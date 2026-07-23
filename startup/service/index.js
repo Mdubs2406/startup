@@ -156,19 +156,18 @@ function findJournal(userData) {
 }
 
 function updateJournal(journalData) {
-   for (const [i, prevList] of allUserJournals.entries()) {
-    if (journalData.userEmail === prevList[0]) {
-      allUserJournals[i] = journalData.list;
-      return journalData.list;
+   for (const [i, List] of allUserJournals.entries()) {
+    if (journalData.userEmail === List[0]) {
+      allUserJournals[i].push(journalData.entry);
+      return allUserJournals[i];
     }
    }
 
-   allUserJournals.push(journalData.list);
-   return journalData.list;
+   allUserJournals.push([journalData.userEmail, journalData.entry]);
+  return [journalData.userEmail, journalData.entry];
 }
 
 // Home
-
 function findUserStats(userData) {
   let stats = allUserStats.find(stats => stats.email === userData.userEmail);
 
