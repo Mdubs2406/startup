@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hold } from './Hold';
+import { Hold } from './hold';
 import { UserPortal } from './userPortal';
 import { Access } from './access';
 

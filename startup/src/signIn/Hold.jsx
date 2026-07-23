@@ -18,13 +18,27 @@ export function Hold(props) {
 
     // These two funcitons will be updated once the DB is setup
     async function signInAccount() {
-        localStorage.setItem('email', email);
-        props.onSignIn(email);
+        requestUserAcces(`/api/users/signin`);
     }
 
     async function createAccount() {
-        localStorage.setItem('email', email);
-        props.onSignIn(email);
+        requestUserAcces(`/api/users/create`);
+    }
+
+    async function requestUserAcces() {
+        const res = await fetch(endpoint, {
+            method: 'post',
+            headers: {'Content-type': 'application/json; charset=UTF-8'},
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (res?.status === 200) {
+            localStorage.setItem('email', email);
+            props.onSignIn(email);
+        } else {
+            const acccessError = await res.json();
+            // setDisplayError(`${accessError.msg}`);
+        }
     }
 
     return (

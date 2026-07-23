@@ -28,7 +28,7 @@ let dayCount = 0;
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-apiRouter.post('/auth/create', async (req, res) => {
+apiRouter.post('/users/create', async (req, res) => {
   if (await findAccount('email', req.body.email)) {
     res.status(409).send({msg: 'You already have an account. Use login instead.'});
   } else {
@@ -39,7 +39,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   }
 });
 
-apiRouter.post('/auth/login', async (req, res) => {
+apiRouter.post('/users/signin', async (req, res) => {
   const user = await findAccount('email', req.body.email);
 
   if (user && (await bcrypt.compare(req.body.password, user.password))) {
@@ -52,7 +52,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   }
 });
 
-apiRouter.delete('/auth/logout', async (req, res) => {
+apiRouter.delete('/users/logout', async (req, res) => {
   const user = await findAccount('authToken', req.cookies[cookieName]);
 
   if (user) {
