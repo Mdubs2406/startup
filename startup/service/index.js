@@ -4,19 +4,19 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 
-const cookieName = 'cookieName';
+const cookieName = 'authKey';
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
-// {userName, password}
+// {userEmail, password}
 let usersLogin = [];
 
-// [userName, {date, time, desc}, ...]
+// [userEmail, {date, time, desc}, ...]
 let allUserJournals = [];
 
-// {userName, streak, lastCompleted}
+// {userEmai, streak, lastCompleted}
 let allUserStats = [];
 
 // {name, desc, date, time}
@@ -48,25 +48,26 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.send({ email: user.email });
     return;
   } else {
-    res.status(401).send({ msg: 'Incorrect Password or Username.' });
+    res.status(401).send({ msg: 'Incorrect Email or Password.' });
   }
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
-  const user = await findAccount('token', req.cookies['cookieName']);
+  const user = await findAccount('authToken', req.cookies[cookieName]);
 
   if (user) {
     delete user.authToken;
   }
 
-  res.clearCookie('cookieName');
+  res.clearCookie(cookieName);
   res.status(204).end();
 });
 
 const checkAuth = async (req, res, next) => {
-  const user = await findAccount('token', req.cookies['cookieName']);
+  const user = await findAccount('authToken', req.cookies[cookieName]);
 
   if (user) {
+    req.body.email = user.email;
     next();
   } else {
     res.status(401).send({ msg: 'User not authorized.'});
@@ -135,15 +136,11 @@ async function createAccount(email, password) {
 }
 
 function findAccount(idType, value) {
-  if (!value) {
-    return;
-  } else {
-    return usersLogin.find((user) => user[idType] === value);
-  }
+  return usersLogin.find(user => user[idType] === value);
 }
 
 function setCookie(res, Token) {
-  res.cookie('cookieName', Token, {
+  res.cookie(cookieName, Token, {
     maxAge: 1000 * 60 * 60 * 24,
     secure: true,
     httpOnly: true,
@@ -153,14 +150,14 @@ function setCookie(res, Token) {
 
 // Journal
 function findJournal(userData) {
-  const userList = allUserJournals.find(list => list[0] === userData.userName);
+  const userList = allUserJournals.find(list => list[0] === userData.email);
 
-  return userList ?? [userData.userName];
+  return userList ?? [userData.email];
 }
 
 function updateJournal(journalData) {
    for (const [i, prevList] of allUserJournals.entries()) {
-    if (journalData.userName === prevList[0]) {
+    if (journalData.email === prevList[0]) {
       allUserJournals[i] = journalData.list;
       return journalData.list;
     }
@@ -173,11 +170,11 @@ function updateJournal(journalData) {
 // Home
 
 function findUserStats(userData) {
-  let stats = allUserStats.find(stats => stats.userName === userData.userName);
+  let stats = allUserStats.find(stats => stats.email === userData.email);
 
   if (!stats) {
     stats = {
-      userName: userData.userName,
+      email: userData.email,
       streak: 0,
       lastCompleted: null,
     }
@@ -192,7 +189,7 @@ function updateCounts(userData) {
   totalCount++;
   dayCount++;
 
-  const stats = findUserStats(userData.userName);
+  const stats = findUserStats(userData.email);
   const today = new Date().toDateString();
 
   if (stats.lastCompleted !== today) {
