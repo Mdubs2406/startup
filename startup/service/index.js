@@ -53,7 +53,14 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
+  const user = await findAccount('token', req.cookies['authkey']);
 
+  if (user) {
+    delete user.token;
+  }
+
+  res.clearCookie('authKey');
+  res.status(204).end();
 });
 
 const checkAuth = async (req, res, next) => {};
@@ -123,7 +130,7 @@ function findAccount(idType, value) {
   if (!value) {
     return;
   } else {
-    return usersLogin.find((id) => id[idType] === value);
+    return usersLogin.find((user) => user[idType] === value);
   }
 }
 
