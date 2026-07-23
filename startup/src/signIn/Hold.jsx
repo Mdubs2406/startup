@@ -20,18 +20,16 @@ export function Hold(props) {
     }, []);
 
     function signInAccount() {
-        setLoading(true);
         requestUserAccess(`/api/users/signin`);
-        setLoading(false);
     }
 
     function createAccount() {
-        setLoading(true);
         requestUserAccess(`/api/users/create`);
-        setLoading(false);
     }
 
     async function requestUserAccess(endpoint) {
+        setLoading(true);
+
         try {
             const res = await fetch(endpoint, {
                 method: 'POST',
@@ -48,6 +46,8 @@ export function Hold(props) {
             }
         } catch (err) {
             setAccessError('Unable to connect to the server.');
+        } finally {
+            setLoading(false);
         }
     }
 
