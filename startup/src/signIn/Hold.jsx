@@ -7,41 +7,43 @@ export function Hold(props) {
     const [password, setPassword] = React.useState(props.password);
 
     const [accessError, setAccessError] = React.useState(null);
-    const [quote, setQuote] = React.useState('A wise man once said...');
+    const [quote, setQuote] = React.useState('A wise man once said, it is a good day to do something good.');
     const [quoteSource, setQuoteSource] = React.useState('Someone, probably');
 
-    // Later, this will be updated to request a qoute from and API
     React.useEffect(() => {
-        fetch('https://api.quotable.io/random?tags=inspirational|wisdom&minLength=40&maxLength=120')
+        fetch('https://zenquotes.io/api/random')
             .then((res) => res.json())
             .then((quoteData) => {
-                setQuote(quoteData.content);
-                setQuoteSource(quoteData.author);
+                setQuote(quoteData[0].q);
+                setQuoteSource(quoteData[0].a);
         }).catch();
     }, []);
 
-    // These two funcitons will be updated once the DB is setup
-    async function signInAccount() {
-        requestUserAcces(`/api/users/signin`);
+    function signInAccount() {
+        requestUserAccess(`/api/users/signin`);
     }
 
-    async function createAccount() {
-        requestUserAcces(`/api/users/create`);
+    function createAccount() {
+        requestUserAccess(`/api/users/create`);
     }
 
-    async function requestUserAcces() {
-        const res = await fetch(endpoint, {
-            method: 'post',
-            headers: {'Content-type': 'application/json; charset=UTF-8'},
-            body: JSON.stringify({ email, password }),
-        });
+    async function requestUserAccess(endpoint) {
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {'Content-type': 'application/json; charset=UTF-8'},
+                body: JSON.stringify({ email, password }),
+            });
 
-        if (res?.status === 200) {
-            localStorage.setItem('email', email);
-            props.onSignIn(email);
-        } else {
-            const err = await res.json();
-            setAccessError(`${accessError.msg}`);
+            if (res.ok) {
+                localStorage.setItem('email', email);
+                props.onSignIn(email);
+            } else {
+                const err = await res.json();
+                setAccessError(err.msg || 'Login failed.');
+            }
+        } catch (err) {
+            setAccessError('Unable to connect to the server.');
         }
     }
 
@@ -84,7 +86,7 @@ export function Hold(props) {
                             type="submit" 
                             className="mx-1"
                             variant="primary"
-                            onClick={() => signInAccount()}
+                            onClick={signInAccount}
                             disabled={!email || !password}>
                             Submit
                         </Button>
@@ -94,7 +96,7 @@ export function Hold(props) {
                             type="submit" 
                             className="mx-1"
                             variant="secondary"
-                            onClick={() => createAccount()}
+                            onClick={createAccount}
                             disabled={!email || !password}>
                             Create Account
                         </Button>
