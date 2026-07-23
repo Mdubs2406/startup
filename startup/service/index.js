@@ -67,7 +67,7 @@ const checkAuth = async (req, res, next) => {
   const user = await findAccount('authToken', req.cookies[cookieName]);
 
   if (user) {
-    req.body.email = user.email;
+    req.body.userEmail = user.email;
     next();
   } else {
     res.status(401).send({ msg: 'User not authorized.'});
@@ -139,8 +139,8 @@ function findAccount(idType, value) {
   return usersLogin.find(user => user[idType] === value);
 }
 
-function setCookie(res, Token) {
-  res.cookie(cookieName, Token, {
+function setCookie(res, token) {
+  res.cookie(cookieName, token, {
     maxAge: 1000 * 60 * 60 * 24,
     secure: true,
     httpOnly: true,
@@ -150,14 +150,14 @@ function setCookie(res, Token) {
 
 // Journal
 function findJournal(userData) {
-  const userList = allUserJournals.find(list => list[0] === userData.email);
+  const userList = allUserJournals.find(list => list[0] === userData.userEmail);
 
-  return userList ?? [userData.email];
+  return userList ?? [userData.userEmail];
 }
 
 function updateJournal(journalData) {
    for (const [i, prevList] of allUserJournals.entries()) {
-    if (journalData.email === prevList[0]) {
+    if (journalData.userEmail === prevList[0]) {
       allUserJournals[i] = journalData.list;
       return journalData.list;
     }
@@ -170,11 +170,11 @@ function updateJournal(journalData) {
 // Home
 
 function findUserStats(userData) {
-  let stats = allUserStats.find(stats => stats.email === userData.email);
+  let stats = allUserStats.find(stats => stats.email === userData.userEmail);
 
   if (!stats) {
     stats = {
-      email: userData.email,
+      email: userData.userEmail,
       streak: 0,
       lastCompleted: null,
     }
@@ -189,7 +189,7 @@ function updateCounts(userData) {
   totalCount++;
   dayCount++;
 
-  const stats = findUserStats(userData.email);
+  const stats = findUserStats(userData.userEmail);
   const today = new Date().toDateString();
 
   if (stats.lastCompleted !== today) {
