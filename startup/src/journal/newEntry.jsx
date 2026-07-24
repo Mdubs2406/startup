@@ -5,6 +5,8 @@ export function NewEntry({ setJournal}) {
   const [date, setDate] = React.useState('');
   const [time, setTime] = React.useState('');
   const [desc, setDesc] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState(null);
 
   function logEntry(date, time, desc) {
     const newEntry = {date, time, desc};
@@ -12,6 +14,7 @@ export function NewEntry({ setJournal}) {
   }
 
   return(
+    <>
     <section id="create-entry" className="card shadow-sm mb-3 mx-2">
       <h3 className="card-header">Create a Journal Entry</h3>
       <div className="card-body">
@@ -74,5 +77,8 @@ export function NewEntry({ setJournal}) {
         </form>
       </div>
     </section>
+
+    <ErrorDisplay msg={errorMsg} dismiss={() => setErrorMsg(null)} />
+    </>
   );
 }
