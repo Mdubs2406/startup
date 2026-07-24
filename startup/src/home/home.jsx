@@ -8,6 +8,7 @@ export function Home({ comPosts }) {
     const [userStreak, setUserStreak] = React.useState(0);
     const [deedDesc, setDeedDesc] = React.useState('Hold the door open for a stranger');
     const [deedSnip, setDeedSnip] = React.useState('A small gesture that takes two seconds, but can brighten someone\'s entire day.');
+    const [loading, setLoading] = React.useState(false);
 
     React.useEffect(() => {
         fetch(`/api/home`)
@@ -22,13 +23,17 @@ export function Home({ comPosts }) {
     }, []);
 
     async function updateHome() {
-        fetch(`/api/home/count`)
-            .then((res) => res.json())
-            .then((data) => {
-                setTotalCount(data.totalCount);
-                setDayCount(data.dayCount);
-                setUserStreak(data.streak);
-            })
+        setLoading(true);
+        try {
+            const res = await fetch('/api/home/count');
+            const data = await res.json();
+
+            setTotalCount(data.totalCount);
+            setDayCount(data.dayCount);
+            setUserStreak(data.streak);
+        } finally {
+            setLoading(false);
+        }
     }
 
     // Simulates WebSocket updating the Deed Count
@@ -69,6 +74,7 @@ export function Home({ comPosts }) {
                     <button
                         className="btn btn-primary mx-1"
                         onClick={updateHome}
+                        disabled={loading}
                     >I did it!</button>
                 </div>
                 <div className="card-footer"></div>
