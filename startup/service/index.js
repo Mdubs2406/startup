@@ -68,6 +68,22 @@ apiRouter.delete('/users/signout', async (req, res) => {
   res.status(204).end();
 });
 
+
+apiRouter.get('/quote', async (req, res) => {
+  try {
+    const response = await fetch('https://zenquotes.io/api/random');
+
+    if (!response.ok) {
+      throw new Error('Could not retrieve quote');
+    }
+
+    const data = await response.json();
+    res.send(data);
+  } catch (error) {
+    res.status(500).send({ msg: 'Could not retrieve quote' });
+  }
+});
+
 const checkAuth = async (req, res, next) => {
   const user = await findAccount('authToken', req.cookies[cookieName]);
 

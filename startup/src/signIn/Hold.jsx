@@ -11,13 +11,20 @@ export function Hold(props) {
   const [quoteSource, setQuoteSource] = React.useState('Someone, probably');
 
   React.useEffect(() => {
-    fetch('https://zenquotes.io/api/random')
-      .then((res) => res.json())
+    fetch('/api/quote')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Could not retrieve quote');
+        }
+
+        return res.json();
+      })
       .then((quoteData) => {
         setQuote(quoteData[0].q);
         setQuoteSource(quoteData[0].a);
-      }).catch(() => {
-        // Will display default states
+      })
+      .catch(() => {
+        // Keep default quote and source
       });
   }, []);
 
@@ -111,6 +118,7 @@ export function Hold(props) {
         <div className="card-body">
           <h4 className="card-title">{quote}</h4>
           <p className="card-text quote-source">{quoteSource}</p>
+          <p>Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a></p>
         </div>
       </div>
 
