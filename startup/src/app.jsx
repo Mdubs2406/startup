@@ -84,9 +84,7 @@ function App() {
                             setUserEmail(userEmail);
                         }}
                     />} exact />
-                    <Route path='/home' element={<Home 
-                        comPosts={comPosts}
-                    />} />
+                    <Route path='/home' element={<Home />} />
                     <Route path='/journal' element={<Journal />} />
                     <Route path='/community' element={<Community 
                         comPosts={comPosts}
