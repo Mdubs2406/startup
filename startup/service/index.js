@@ -35,7 +35,7 @@ app.use('/api', apiRouter);
 
 apiRouter.post('/users/create', async (req, res) => {
   if (await findAccount('email', req.body.email)) {
-    res.status(409).send({msg: 'You already have an account. Use login instead.'});
+    res.status(409).send({ msg: 'You already have an account. Use login instead.' });
   } else {
     const user = await createAccount(req.body.email, req.body.password);
 
@@ -75,7 +75,7 @@ const checkAuth = async (req, res, next) => {
     req.user = user;
     next();
   } else {
-    res.status(401).send({ msg: 'User not authorized.'});
+    res.status(401).send({ msg: 'User not authorized.' });
   }
 };
 
@@ -106,9 +106,9 @@ apiRouter.get('/community', checkAuth, (req, res) => {
 });
 
 apiRouter.post('/community/post', checkAuth, (req, res) => {
-  communityBoard.push({ 
+  communityBoard.push({
     author: req.user.email.split('@')[0],
-    content: req.body, 
+    content: req.body,
     postDate: new Date().toISOString(),
   });
   res.send(communityBoard);
@@ -123,11 +123,11 @@ apiRouter.post('/journal/save', checkAuth, (req, res) => {
 });
 
 app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, msg: err.message});
+  res.status(500).send({ type: err.name, msg: err.message });
 });
 
 app.use((req, res) => {
-  res.send('index.html', { root: 'public'});
+  res.send('index.html', { root: 'public' });
 });
 
 // supporting functions //
@@ -153,7 +153,7 @@ function findAccount(idType, value) {
 function setCookie(res, token) {
   res.cookie(cookieName, token, {
     maxAge: 1000 * 60 * 60 * 24,
-    secure: true,
+    secure: false,
     httpOnly: true,
     sameSite: 'strict',
   })
@@ -167,12 +167,12 @@ function findJournal(user) {
 }
 
 function updateJournal(req) {
-   for (const [i, List] of allUserJournals.entries()) {
+  for (const [i, List] of allUserJournals.entries()) {
     if (req.user.email === List[0]) {
       allUserJournals[i].push(req.body);
       return allUserJournals[i];
     }
-   }
+  }
 
   allUserJournals.push([req.user.email, req.body]);
   return [req.user.email, req.body];
@@ -221,7 +221,7 @@ function updateDeed() {
   if (lastUpdate !== today) {
     lastUpdate = today;
     currentDeed = deedPrompts();
-  } 
+  }
 }
 
 // Service hosting

@@ -4,6 +4,7 @@ export function MakeTable({ comPosts }) {
   const postRows = [];
   if (comPosts.length) {
     for (let i = comPosts.length-1; i >= 0; i--) {
+      let post = comPosts[i];
       postRows.push(
         <tr key={i}>
           <td>{post.author}</td>

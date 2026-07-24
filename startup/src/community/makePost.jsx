@@ -65,7 +65,7 @@ export function MakePost({ setComPosts, setShow }) {
               className="form-control" 
               required
               value={title} 
-              onChange={(x) => setName(x.target.value)} />
+              onChange={(x) => setTitle(x.target.value)} />
           </div>
           <div className="input-group mb-2">
             <span className="input-group-text">Date</span>
