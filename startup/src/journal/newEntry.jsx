@@ -1,4 +1,5 @@
 import React from "react";
+import { ErrorDisplay } from "../notification/errorDisplay";
 
 export function NewEntry({ setJournal}) {
   const [date, setDate] = React.useState('');

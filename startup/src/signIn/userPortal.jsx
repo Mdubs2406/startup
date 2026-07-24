@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import { ErrorDisplay } from "./errorDisplay";
+import { ErrorDisplay } from "../notification/errorDisplay";
 
 export function UserPortal(props) {
   const nav = useNavigate();

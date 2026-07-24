@@ -1,6 +1,7 @@
 import React from 'react';
 import { NewEntry } from './newEntry';
 import { DisplayJournal } from './displayJournal';
+import { ErrorDisplay } from "../notification/errorDisplay";
 
 export function Journal() {
   const [journal, setJournal] = React.useState([]);
