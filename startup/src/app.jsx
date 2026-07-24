@@ -91,7 +91,12 @@ function App() {
           <span>
             Matthew Wellman
           </span>
-          <a className="nav-link" href="https://github.com/Mdubs2406">[GitHub]</a>
+          <a 
+            className="nav-link" 
+            href="https://github.com/Mdubs2406"
+            target="_blank"
+            rel="noopener noreferrer"
+          >| GitHub |</a>
         </footer>
       </div>
     </BrowserRouter>
