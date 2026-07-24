@@ -17,7 +17,7 @@ let usersLogin = [];
 // [userEmail, {date, time, desc}, ...]
 let allUserJournals = [];
 
-// {userEmail, streak, lastCompleted}
+// [{userEmail, streak, lastCompleted}, ...]
 let allUserStats = [];
 
 // {name, desc, date, time}
