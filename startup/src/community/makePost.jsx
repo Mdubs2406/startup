@@ -1,4 +1,5 @@
 import React from "react";
+import { ErrorDisplay } from "../notification/errorDisplay";
 
 export function MakePost({ setComPosts, setShow }) {
   const [name, setName] = React.useState('');
@@ -6,9 +7,11 @@ export function MakePost({ setComPosts, setShow }) {
   const [date, setDate] = React.useState('');
   const [time, setTime] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [accessError, setAccessError] = React.useState(null);
 
   async function logPost(name, desc, date, time) {
     setLoading(true);
+    setAccessError(null);
 
     try {
       const res = await fetch(`/api/community/post`, {
@@ -24,26 +27,33 @@ export function MakePost({ setComPosts, setShow }) {
 
       const data = await res.json();
       setComPosts(data);
+      return true;
 
       } catch (error) {
-        // setErrorMsg()
+        setAccessError('Unable to connect to the server.');
+        return false;
       } finally {
         setLoading(false);
       }
     }
 
   return (
+    <>
     <section id="create-post" className="card mb-3 mx-2">
       <h3 className="card-header">Post about a Service Opportunity</h3>
       <div className="card-body">
-        <form onSubmit={(x) => {
+        <form onSubmit={async (x) => {
             x.preventDefault();
-            logPost(name, desc, date, time);
 
-            setName('');
-            setDate('');
-            setDesc('');
-            setTime('');
+            const success = await logPost(name, desc, date, time);
+
+            if (success) {
+              setShow(true);
+              setName('');
+              setDate('');
+              setDesc('');
+              setTime('');
+            }
           }}
         >
           <div className="input-group mb-2">
@@ -108,5 +118,8 @@ export function MakePost({ setComPosts, setShow }) {
         </form>
       </div>
     </section>
+
+    <ErrorDisplay msg={accessError} dismiss={() => setAccessError(null)} />
+    </>
   )
 }
