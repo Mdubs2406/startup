@@ -109,7 +109,7 @@ apiRouter.post('/community/post', checkAuth, (req, res) => {
   communityBoard.push({ 
     author: req.user.email.split('@')[0],
     content: req.body, 
-    date: new Date().toISOString(),
+    postDate: new Date().toISOString(),
   });
   res.send(communityBoard);
 });

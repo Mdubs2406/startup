@@ -6,10 +6,10 @@ export function MakeTable({ comPosts }) {
     for (const [i, post] of comPosts.entries()) {
       postRows.push(
         <tr key={i}>
-          <td>{post.name}</td>
-          <td>{post.desc}</td>
-          <td>{post.date}</td>
-          <td>{post.time}</td>
+          <td>{post.content.name}</td>
+          <td>{post.content.desc}</td>
+          <td>{post.content.date}</td>
+          <td>{post.content.time}</td>
         </tr>
       );
     }
