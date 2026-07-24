@@ -123,7 +123,7 @@ apiRouter.post('/journal/write', checkAuth, (req, res) => {
 });
 
 app.use(function (err, req, res, next) {
-  res.status(500).send({ type: err.name, message: err.message});
+  res.status(500).send({ type: err.name, msg: err.message});
 });
 
 app.use((req, res) => {

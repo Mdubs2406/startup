@@ -30,7 +30,7 @@ export function MakePost({ setComPosts, setShow }) {
       return true;
 
       } catch (error) {
-        setAccessError('Unable to connect to the server.');
+        setAccessError(error.message);
         return false;
       } finally {
         setLoading(false);
