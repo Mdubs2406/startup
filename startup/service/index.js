@@ -118,7 +118,7 @@ apiRouter.get('/journal', checkAuth, (req, res) => {
   res.send(findJournal(req.user));
 });
 
-apiRouter.post('/journal/write', checkAuth, (req, res) => {
+apiRouter.post('/journal/save', checkAuth, (req, res) => {
   res.send(updateJournal(req));
 });
 

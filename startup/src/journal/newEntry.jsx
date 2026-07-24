@@ -1,5 +1,4 @@
 import React from "react";
-import { Journal } from "./journal";
 
 export function NewEntry({ setJournal}) {
   const [date, setDate] = React.useState('');
@@ -8,9 +7,32 @@ export function NewEntry({ setJournal}) {
   const [loading, setLoading] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
 
-  function logEntry(date, time, desc) {
-    const newEntry = {date, time, desc};
-    setJournal(entrys => [newEntry, ...entrys]);
+  async function logEntry(date, time, desc) {
+    setLoading(true);
+    setErrorMsg(null);
+
+    try {
+      const res = await fetch(`/api/journal/save`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ date, time, desc }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.msg || 'Could not save to journal');
+      }
+
+      const data = await res.json();
+      setJournal(data);
+      return true;
+
+    } catch (error) {
+      setErrorMsg(error.message);
+      return false;
+    } finally {
+      setLoading(false);
+    }
   }
 
   return(
@@ -18,13 +40,16 @@ export function NewEntry({ setJournal}) {
     <section id="create-entry" className="card shadow-sm mb-3 mx-2">
       <h3 className="card-header">Create a Journal Entry</h3>
       <div className="card-body">
-        <form onSubmit={(x) => {
+        <form onSubmit={async (x) => {
           x.preventDefault();
-          logEntry(date, time, desc);
 
-          setDate('');
-          setTime('');
-          setDesc('');
+          const success = await logEntry(date, time, desc);
+
+          if (success) {
+            setDate('');
+            setTime('');
+            setDesc('');
+          }
         }}
         >
           <div className="input-group mb-2">
@@ -64,15 +89,17 @@ export function NewEntry({ setJournal}) {
           <button 
             type="submit" 
             className="btn btn-primary mx-1"
+            disabled={loading}
             >Record Entry</button>
           <button 
-            type="reset" 
+            type="button" 
             className="btn btn-secondary mx-1"
             onClick={() => {
               setDate('');
               setTime('');
               setDesc('');
             }}
+            disabled={loading}
             >Clear</button>
         </form>
       </div>
