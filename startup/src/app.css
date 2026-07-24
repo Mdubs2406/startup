@@ -1,61 +1,62 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 @media (max-height: 650px) {
-    img {
-        display: none;
-    }
-    footer {
-        display: none;
-    }
+  img {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
 }
 
 .body {
-    font-family: "Playfair Display";
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family: "Playfair Display";
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: stretch;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 #title-block {
-    background-color: #FFB6C1;
-    color: white;
+  background-color: #FFB6C1;
+  color: white;
 }
 
 .card-header {
-    background-color: #FFB6C1 !important;
-    color: white !important;
-    font-weight: bold;
-    text-align: center;
+  background-color: #FFB6C1 !important;
+  color: white !important;
+  font-weight: bold;
+  text-align: center;
 }
 
 .table tbody tr:hover {
-    --bs-table-bg: #ffe3e7 !important;
+  --bs-table-bg: #ffe3e7 !important;
 }
 
 .quote-source::before {
-    content: " - ";
+  content: " - ";
 }
 
 #deed-count-daily {
-    background-color: #6aa670;
-    color: white;
+  background-color: #6aa670;
+  color: white;
 }
 
 #deed-count-total {
-    background-color: #6a81a6;
-    color: white;
+  background-color: #6a81a6;
+  color: white;
 }
 
 .card-footer {
-    background-color: #FFB6C1 !important;
-    color: white !important;
-    font-weight: bold;
+  background-color: #FFB6C1 !important;
+  color: white !important;
+  font-weight: bold;
 }

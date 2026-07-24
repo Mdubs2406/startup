@@ -11,91 +11,91 @@ import { Access } from './signIn/access';
 import { PostNotification } from './notification/postNotification';
 
 function App() {
-    const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
-    const currentAccessState = userEmail ? Access.Granted : Access.Hold;
-    const [accessState, updateAccess] = React.useState(currentAccessState);
-    const [show, setShow] = React.useState(false);
+  const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
+  const currentAccessState = userEmail ? Access.Granted : Access.Hold;
+  const [accessState, updateAccess] = React.useState(currentAccessState);
+  const [show, setShow] = React.useState(false);
 
-    React.useEffect(() => {
-        if (!show) {
-            return;
-        }
-        const timer = setTimeout(() => {
-            setShow(false);
-        }, 5000);
-        return () => clearTimeout(timer);
-    }, [show]);
+  React.useEffect(() => {
+    if (!show) {
+      return;
+    }
+    const timer = setTimeout(() => {
+      setShow(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [show]);
 
-    return (
-        <BrowserRouter>
-            <div className="body">
-                <div id="top-banner">
-                    <img 
-                        src="/floral_header.png" 
-                        className="img-fluid w-100"
-                        alt="Floral banner" />
-                </div>
-                
-                <header className="container-fluid">
-                    <div id="title-block" className="text-center py-1">
-                        <h1 className="display-3">
-                            Ripple Effect
-                        </h1>
-                        <p className="lead">
-                            Small acts. Big Ripples.
-                        </p>
-                    </div>
+  return (
+    <BrowserRouter>
+      <div className="body">
+        <div id="top-banner">
+          <img
+            src="/floral_header.png"
+            className="img-fluid w-100"
+            alt="Floral banner" />
+        </div>
 
-                    {accessState === Access.Granted && (
-                        <div>{userEmail.split('@')[0]}</div>
-                    )}
+        <header className="container-fluid">
+          <div id="title-block" className="text-center py-1">
+            <h1 className="display-3">
+              Ripple Effect
+            </h1>
+            <p className="lead">
+              Small acts. Big Ripples.
+            </p>
+          </div>
 
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-                        <ul className="navbar-nav flex-row flex-wrap mx-auto">
-                            <li className="nav-item px-4">
-                                <NavLink className="nav-link" to="">Sign In</NavLink>
-                            </li>
-                            {accessState === Access.Granted && (
-                                <li className="nav-item px-4">
-                                <NavLink className="nav-link" to="home">Home</NavLink>
-                            </li>)}
-                            {accessState ===  Access.Granted && (<li className="nav-item px-4">
-                                <NavLink className="nav-link" to="community">Community</NavLink>
-                            </li>)}
-                            {accessState === Access.Granted && (<li className="nav-item px-4">
-                                <NavLink className="nav-link" to="journal">My Journal</NavLink>
-                            </li>)}
-                        </ul>
-                    </nav>
-                    {accessState === Access.Granted && <PostNotification show={show} />}
-                </header>
+          {accessState === Access.Granted && (
+            <div>{userEmail.split('@')[0]}</div>
+          )}
 
-                <Routes>
-                    <Route path='/' element={<SignIn 
-                        email={userEmail} 
-                        access={accessState} 
-                        setAccess={(userEmail, accessState) => {
-                            updateAccess(accessState);
-                            setUserEmail(userEmail);
-                        }}
-                    />} exact />
-                    <Route path='/home' element={<Home />} />
-                    <Route path='/journal' element={<Journal />} />
-                    <Route path='/community' element={<Community 
-                        setShow={setShow}
-                    />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+            <ul className="navbar-nav flex-row flex-wrap mx-auto">
+              <li className="nav-item px-4">
+                <NavLink className="nav-link" to="">Sign In</NavLink>
+              </li>
+              {accessState === Access.Granted && (
+                <li className="nav-item px-4">
+                  <NavLink className="nav-link" to="home">Home</NavLink>
+                </li>)}
+              {accessState === Access.Granted && (<li className="nav-item px-4">
+                <NavLink className="nav-link" to="community">Community</NavLink>
+              </li>)}
+              {accessState === Access.Granted && (<li className="nav-item px-4">
+                <NavLink className="nav-link" to="journal">My Journal</NavLink>
+              </li>)}
+            </ul>
+          </nav>
+          {accessState === Access.Granted && <PostNotification show={show} />}
+        </header>
 
-                <footer className="container-fluid text-center text-muted py-2 border-top mt-2">
-                    <span>
-                        Matthew Wellman
-                    </span>
-                    <a className="nav-link" href="https://github.com/Mdubs2406">[GitHub]</a>
-                </footer>
-            </div>
-        </BrowserRouter>
-    );
+        <Routes>
+          <Route path='/' element={<SignIn
+            email={userEmail}
+            access={accessState}
+            setAccess={(userEmail, accessState) => {
+              updateAccess(accessState);
+              setUserEmail(userEmail);
+            }}
+          />} exact />
+          <Route path='/home' element={<Home />} />
+          <Route path='/journal' element={<Journal />} />
+          <Route path='/community' element={<Community
+            setShow={setShow}
+          />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+
+        <footer className="container-fluid text-center text-muted py-2 border-top mt-2">
+          <span>
+            Matthew Wellman
+          </span>
+          <a className="nav-link" href="https://github.com/Mdubs2406">[GitHub]</a>
+        </footer>
+      </div>
+    </BrowserRouter>
+  );
 }
 
 function NotFound() {
