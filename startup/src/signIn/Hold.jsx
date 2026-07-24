@@ -38,10 +38,10 @@ export function Hold(props) {
                 props.onSignIn(email);
             } else {
                 const err = await res.json();
-                setAccessError(err.msg || 'Login failed.');
+                throw new Error(err.msg || 'Unable to sigin');
             }
-        } catch (err) {
-            setAccessError('Unable to connect to the server.');
+        } catch (error) {
+            setAccessError(error.message);
         } finally {
             setLoading(false);
         }
@@ -57,50 +57,54 @@ export function Hold(props) {
             </p>
             <div className="row justify-content-center">
                 <div className="col-md-6">
-                    <div className="input-group mb-3">
-                        <span className="input-group-text">Email</span>
+                    <form onSubmit={(x) => {
+                        x.preventDefault();
+                        requestUserAccess(`/api/users/signin`);
+                    }}>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text">Email</span>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="email@example.com"
+                                    className="form-control" 
+                                    value = {email}
+                                    onChange={(x) => setEmail(x.target.value)}/>
+                        </div>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text">Password</span>
                             <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                placeholder="email@example.com"
-                                className="form-control" 
-                                value = {email}
-                                onChange={(x) => setEmail(x.target.value)}/>
-                    </div>
-                    <div className="input-group mb-3">
-                        <span className="input-group-text">Password</span>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            placeholder="********"
-                            className="form-control"
-                            value = {password}
-                            onChange={(x) => setPassword(x.target.value)}/>
-                    </div>
-                    <div>
-                        <Button 
-                            value="login" 
-                            name="submit" 
-                            type="submit" 
-                            className="mx-1"
-                            variant="primary"
-                            onClick={() => requestUserAccess(`/api/users/signin`)}
-                            disabled={loading || !email || !password}>
-                            Submit
-                        </Button>
-                        <Button 
-                            value="create" 
-                            name="create" 
-                            type="submit" 
-                            className="mx-1"
-                            variant="secondary"
-                            onClick={() => requestUserAccess(`/api/users/create`)}
-                            disabled={loading || !email || !password}>
-                            Create Account
-                        </Button>
-                    </div>
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="********"
+                                className="form-control"
+                                value = {password}
+                                onChange={(x) => setPassword(x.target.value)}/>
+                        </div>
+                        <div>
+                            <Button 
+                                value="login" 
+                                name="submit" 
+                                type="submit" 
+                                className="mx-1"
+                                variant="primary"
+                                disabled={loading || !email || !password}>
+                                Submit
+                            </Button>
+                            <Button 
+                                value="create" 
+                                name="create" 
+                                type="button" 
+                                className="mx-1"
+                                variant="secondary"
+                                onClick={() => requestUserAccess(`/api/users/create`)}
+                                disabled={loading || !email || !password}>
+                                Create Account
+                            </Button>
+                        </div>
+                    </form>
                 </div>
             </div>
             {/* API placeholder. Random Inspirational Quote */}
