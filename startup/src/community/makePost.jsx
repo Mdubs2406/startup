@@ -2,14 +2,14 @@ import React from "react";
 import { ErrorDisplay } from "../notification/errorDisplay";
 
 export function MakePost({ setComPosts, setShow }) {
-  const [name, setName] = React.useState('');
+  const [title, setTitle] = React.useState('');
   const [desc, setDesc] = React.useState('');
   const [date, setDate] = React.useState('');
   const [time, setTime] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [accessError, setAccessError] = React.useState(null);
 
-  async function logPost(name, desc, date, time) {
+  async function logPost(title, desc, date, time) {
     setLoading(true);
     setAccessError(null);
 
@@ -17,7 +17,7 @@ export function MakePost({ setComPosts, setShow }) {
       const res = await fetch(`/api/community/post`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({ name, desc, date, time }),
+        body: JSON.stringify({ title, desc, date, time }),
       });
       
       if (!res.ok) {
@@ -45,11 +45,11 @@ export function MakePost({ setComPosts, setShow }) {
         <form onSubmit={async (x) => {
             x.preventDefault();
 
-            const success = await logPost(name, desc, date, time);
+            const success = await logPost(title, desc, date, time);
 
             if (success) {
               setShow(true);
-              setName('');
+              setTitle('');
               setDate('');
               setDesc('');
               setTime('');
@@ -64,7 +64,7 @@ export function MakePost({ setComPosts, setShow }) {
               name="event-name" 
               className="form-control" 
               required
-              value={name} 
+              value={title} 
               onChange={(x) => setName(x.target.value)} />
           </div>
           <div className="input-group mb-2">
@@ -108,7 +108,7 @@ export function MakePost({ setComPosts, setShow }) {
             type="button" 
             className="btn btn-secondary mx-1"
             onClick={() => {
-              setName('');
+              setTitle('');
               setDate('');
               setDesc('');
               setTime('');

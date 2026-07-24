@@ -3,7 +3,7 @@ import { Hold } from './hold';
 import { UserPortal } from './userPortal';
 import { Access } from './access';
 
-export function SignIn({email, password, access, setAccess}) {
+export function SignIn({email, access, setAccess}) {
     return (
         <main className="py-3 text-center">
             <div>
@@ -12,7 +12,7 @@ export function SignIn({email, password, access, setAccess}) {
                     setAccess(email, Access.Hold)} 
                 />}
                 {access === Access.Hold && 
-                    <Hold email={email} password={password} onSignIn={(userEmail) => 
+                    <Hold email={email} onSignIn={(userEmail) => 
                         setAccess(userEmail, Access.Granted)} 
                 />}
             </div>

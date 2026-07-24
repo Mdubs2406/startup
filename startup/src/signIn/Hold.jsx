@@ -3,9 +3,9 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import { ErrorDisplay } from "../notification/errorDisplay";
 
-export function Hold(props) {
-    const [email, setEmail] = React.useState(props.email);
-    const [password, setPassword] = React.useState(props.password);
+export function Hold({ email }) {
+    const [email, setEmail] = React.useState(email);
+    const [password, setPassword] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const [accessError, setAccessError] = React.useState(null);
     const [quote, setQuote] = React.useState('A wise man once said, it is a good day to do something good.');

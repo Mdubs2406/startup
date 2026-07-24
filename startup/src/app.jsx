@@ -12,7 +12,6 @@ import { PostNotification } from './notification/postNotification';
 
 function App() {
     const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
-    const [password, setPassword] = React.useState('');
     const currentAccessState = userEmail ? Access.Granted : Access.Hold;
     const [accessState, updateAccess] = React.useState(currentAccessState);
     const [show, setShow] = React.useState(false);
@@ -47,6 +46,10 @@ function App() {
                         </p>
                     </div>
 
+                    {accessState === Access.Granted && (
+                        <div>{userEmail.split('@')[0]}</div>
+                    )}
+
                     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
                         <ul className="navbar-nav flex-row flex-wrap mx-auto">
                             <li className="nav-item px-4">
@@ -70,7 +73,6 @@ function App() {
                 <Routes>
                     <Route path='/' element={<SignIn 
                         email={userEmail} 
-                        password={password} 
                         access={accessState} 
                         setAccess={(userEmail, accessState) => {
                             updateAccess(accessState);

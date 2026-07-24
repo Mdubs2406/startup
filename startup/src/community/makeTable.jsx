@@ -6,7 +6,8 @@ export function MakeTable({ comPosts }) {
     for (const [i, post] of comPosts.entries()) {
       postRows.push(
         <tr key={i}>
-          <td>{post.content.name}</td>
+          <td>{post.author}</td>
+          <td>{post.content.title}</td>
           <td>{post.content.desc}</td>
           <td>{post.content.date}</td>
           <td>{post.content.time}</td>
@@ -27,7 +28,8 @@ export function MakeTable({ comPosts }) {
       <table className="card-body table table-striped-columns">
         <thead className="table-light">
           <tr>
-            <th>Name</th>
+            <th>Author</th>
+            <th>Title</th>
             <th>Description</th>
             <th>Date</th>
             <th>Time</th>
