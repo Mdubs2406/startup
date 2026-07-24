@@ -3,7 +3,7 @@ import React from "react";
 export function MakeTable({ comPosts }) {
   const postRows = [];
   if (comPosts.length) {
-    for (const [i, post] of comPosts.entries()) {
+    for (const i=comPosts.length-1; i > 0; i--) {
       postRows.push(
         <tr key={i}>
           <td>{post.author}</td>

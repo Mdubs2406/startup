@@ -3,15 +3,15 @@ import React from "react";
 export function DisplayJournal({ journal }) {
   const journalRows = [];
   if (journal.length) {
-    for (const [i, entry] of journal.entries()) {
+    for (const i=journal.length-1; i > 0; i--) {
+      let entry = journal[i];
       journalRows.push(
         <tr key={i}>
           <td>{entry.date}</td>
           <td>{entry.time}</td>
           <td>{entry.desc}</td>
         </tr>
-      );
-    }
+    )}
   } else {
     journalRows.push(
       <tr key='empty'>
