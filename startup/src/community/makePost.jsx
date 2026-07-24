@@ -5,11 +5,32 @@ export function MakePost({ setComPosts, setShow }) {
   const [desc, setDesc] = React.useState('');
   const [date, setDate] = React.useState('');
   const [time, setTime] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
-  function logPost(name, desc, date, time) {
-    const newPost = { name, desc, date, time };
-    setComPosts(posts => [newPost, ...posts]);
-  }
+  async function logPost(name, desc, date, time) {
+    setLoading(true);
+
+    try {
+      const res = await fetch(`/api/community/post`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ name, desc, date, time }),
+      });
+      
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.msg || 'Could not save post');
+      } 
+
+      const data = await res.json();
+      setComPosts(data);
+
+      } catch (error) {
+        // setErrorMsg()
+      } finally {
+        setLoading(false);
+      }
+    }
 
   return (
     <section id="create-post" className="card mb-3 mx-2">
@@ -18,7 +39,6 @@ export function MakePost({ setComPosts, setShow }) {
         <form onSubmit={(x) => {
             x.preventDefault();
             logPost(name, desc, date, time);
-            setShow(true);
 
             setName('');
             setDate('');
@@ -72,6 +92,7 @@ export function MakePost({ setComPosts, setShow }) {
           <button 
             type="submit" 
             className="btn btn-primary mx-1"
+            disabled={loading}
             >Post</button>
           <button 
             type="button" 
@@ -82,6 +103,7 @@ export function MakePost({ setComPosts, setShow }) {
               setDesc('');
               setTime('');
             }}
+            disabled={loading}
             >Clear</button>
         </form>
       </div>
