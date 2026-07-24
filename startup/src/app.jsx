@@ -15,15 +15,8 @@ function App() {
     const [password, setPassword] = React.useState('');
     const currentAccessState = userEmail ? Access.Granted : Access.Hold;
     const [accessState, updateAccess] = React.useState(currentAccessState);
-
-    const [comPosts, setComPosts] = React.useState(() => {
-        return JSON.parse(localStorage.getItem("comPosts")) || [];
-    });
-    React.useEffect(() => {
-        localStorage.setItem("comPosts", JSON.stringify(comPosts));
-    }, [comPosts]);
-
     const [show, setShow] = React.useState(false);
+
     React.useEffect(() => {
         if (!show) {
             return;
@@ -87,8 +80,6 @@ function App() {
                     <Route path='/home' element={<Home />} />
                     <Route path='/journal' element={<Journal />} />
                     <Route path='/community' element={<Community 
-                        comPosts={comPosts}
-                        setComPosts={setComPosts}
                         setShow={setShow}
                     />} />
                     <Route path='*' element={<NotFound />} />
