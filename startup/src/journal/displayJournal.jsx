@@ -3,7 +3,7 @@ import React from "react";
 export function DisplayJournal({ journal }) {
   const journalRows = [];
   if (journal.length) {
-    for (const i=journal.length-1; i > 0; i--) {
+    for (let i = journal.length-1; i > 0; i--) {
       let entry = journal[i];
       journalRows.push(
         <tr key={i}>
