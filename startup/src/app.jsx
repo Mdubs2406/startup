@@ -47,7 +47,7 @@ function App() {
           </div>
 
           {accessState === Access.Granted && (
-            <div>{userEmail.split('@')[0]}</div>
+            <div className='mx-2 px-1 my-2 border d-inline-block'>User : {userEmail.split('@')[0]}</div>
           )}
 
           <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
