@@ -106,7 +106,10 @@ apiRouter.get('/community', checkAuth, (req, res) => {
 });
 
 apiRouter.post('/community/post', checkAuth, (req, res) => {
-  communityBoard.push(req.body);
+  communityBoard.push({ 
+    user: req.user.email,
+    date: new Date().toISOString(),
+    content: req.body, });
   res.send(communityBoard);
 });
 
