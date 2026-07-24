@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from 'react-bootstrap/Button';
+import { ErrorDisplay } from "./errorDisplay";
 
 export function Hold(props) {
     const [email, setEmail] = React.useState(props.email);
@@ -21,15 +22,8 @@ export function Hold(props) {
         });
     }, []);
 
-    function signInAccount() {
-        requestUserAccess(`/api/users/signin`);
-    }
-
-    function createAccount() {
-        requestUserAccess(`/api/users/create`);
-    }
-
     async function requestUserAccess(endpoint) {
+        setAccessError(null);
         setLoading(true);
 
         try {
@@ -92,7 +86,7 @@ export function Hold(props) {
                             type="submit" 
                             className="mx-1"
                             variant="primary"
-                            onClick={signInAccount}
+                            onClick={() => requestUserAccess(`/api/users/signin`)}
                             disabled={loading || !email || !password}>
                             Submit
                         </Button>
@@ -102,7 +96,7 @@ export function Hold(props) {
                             type="submit" 
                             className="mx-1"
                             variant="secondary"
-                            onClick={createAccount}
+                            onClick={() => requestUserAccess(`/api/users/create`)}
                             disabled={loading || !email || !password}>
                             Create Account
                         </Button>
@@ -116,6 +110,8 @@ export function Hold(props) {
                     <p className="card-text quote-source">{quoteSource}</p>
                 </div>
             </div>
+
+            <ErrorDisplay msg={accessError} dismiss={() => setAccessError(null)} />
         </>
     )
 }
