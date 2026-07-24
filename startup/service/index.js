@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
+const { deedPrompts } = require('./deedPrompts');
 
 const cookieName = 'authKey';
 
@@ -16,7 +17,7 @@ let usersLogin = [];
 // [userEmail, {date, time, desc}, ...]
 let allUserJournals = [];
 
-// {userEmai, streak, lastCompleted}
+// {userEmail, streak, lastCompleted}
 let allUserStats = [];
 
 // {name, desc, date, time}
@@ -24,6 +25,9 @@ let communityBoard = [];
 
 let totalCount = 0;
 let dayCount = 0;
+
+let currentDeed = deedPrompts();
+let lastUpdate = new Date().toDateString();;
 
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
@@ -52,7 +56,7 @@ apiRouter.post('/users/signin', async (req, res) => {
   }
 });
 
-apiRouter.delete('/users/logout', async (req, res) => {
+apiRouter.delete('/users/signout', async (req, res) => {
   const user = await findAccount('authToken', req.cookies[cookieName]);
 
   if (user) {
@@ -76,11 +80,13 @@ const checkAuth = async (req, res, next) => {
 
 apiRouter.get('/home', checkAuth, (req, res) => {
   const stats = findUserStats(req.body);
+  updateDeed();
 
   res.send({
     totalCount,
     dayCount,
     streak: stats.streak,
+    currentDeed,
   });
 });
 
@@ -188,7 +194,7 @@ function updateCounts(userData) {
   totalCount++;
   dayCount++;
 
-  const stats = findUserStats(userData.userEmail);
+  const stats = findUserStats(userData);
   const today = new Date().toDateString();
 
   if (stats.lastCompleted !== today) {
@@ -197,4 +203,13 @@ function updateCounts(userData) {
   }
 
   return stats;
+}
+
+function updateDeed() {
+  const today = new Date().toDateString();
+
+  if (lastUpdate !== today) {
+    lastUpdate = today;
+    currentDeed = deedPrompts();
+  } 
 }
