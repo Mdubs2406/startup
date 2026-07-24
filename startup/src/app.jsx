@@ -53,17 +53,17 @@ function App() {
           <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <ul className="navbar-nav flex-row flex-wrap mx-auto">
               <li className="nav-item px-4">
-                <NavLink className="nav-link" to="">Sign In</NavLink>
+                <NavLink className="nav-link" to='/'>Sign In</NavLink>
               </li>
               {accessState === Access.Granted && (
                 <li className="nav-item px-4">
-                  <NavLink className="nav-link" to="home">Home</NavLink>
+                  <NavLink className="nav-link" to='home'>Home</NavLink>
                 </li>)}
               {accessState === Access.Granted && (<li className="nav-item px-4">
-                <NavLink className="nav-link" to="community">Community</NavLink>
+                <NavLink className="nav-link" to='community'>Community</NavLink>
               </li>)}
               {accessState === Access.Granted && (<li className="nav-item px-4">
-                <NavLink className="nav-link" to="journal">My Journal</NavLink>
+                <NavLink className="nav-link" to='journal'>My Journal</NavLink>
               </li>)}
             </ul>
           </nav>
