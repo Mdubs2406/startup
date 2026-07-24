@@ -143,7 +143,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.use((req, res) => {
-  res.send('index.html', { root: 'public' });
+  res.sendFile('index.html', { root: 'public' });
 });
 
 // supporting functions //
