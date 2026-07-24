@@ -7,11 +7,11 @@ export function MakePost({ setComPosts, setShow }) {
   const [date, setDate] = React.useState('');
   const [time, setTime] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const [accessError, setAccessError] = React.useState(null);
+  const [errorMsg, setErrorMsg] = React.useState(null);
 
   async function logPost(title, desc, date, time) {
     setLoading(true);
-    setAccessError(null);
+    setErrorMsg(null);
 
     try {
       const res = await fetch(`/api/community/post`, {
@@ -30,7 +30,7 @@ export function MakePost({ setComPosts, setShow }) {
       return true;
 
       } catch (error) {
-        setAccessError(error.message);
+        setErrorMsg(error.message);
         return false;
       } finally {
         setLoading(false);
@@ -119,7 +119,7 @@ export function MakePost({ setComPosts, setShow }) {
       </div>
     </section>
 
-    <ErrorDisplay msg={accessError} dismiss={() => setAccessError(null)} />
+    <ErrorDisplay msg={errorMsg} dismiss={() => setErrorMsg(null)} />
     </>
   )
 }
