@@ -91,7 +91,7 @@ apiRouter.get('/home', checkAuth, (req, res) => {
   });
 });
 
-apiRouter.post('/home/count', checkAuth, (req, res) => {
+apiRouter.get('/home/count', checkAuth, (req, res) => {
   const stats = updateCounts(req.user);
 
   res.send({
