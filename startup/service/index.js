@@ -183,7 +183,7 @@ function findUserStats(user) {
       email: user.email,
       streak: 0,
       lastCompleted: null,
-    }
+    };
 
     allUserStats.push(stats);
   }
