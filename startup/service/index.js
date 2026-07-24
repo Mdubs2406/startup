@@ -27,7 +27,8 @@ let totalCount = 0;
 let dayCount = 0;
 
 let currentDeed = deedPrompts();
-let lastUpdate = new Date().toDateString();;
+let lastUpdate = new Date().toDateString();
+let countDate = new Date().toDateString();
 
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
@@ -71,7 +72,7 @@ const checkAuth = async (req, res, next) => {
   const user = await findAccount('authToken', req.cookies[cookieName]);
 
   if (user) {
-    req.body.userEmail = user.email;
+    req.user = user;
     next();
   } else {
     res.status(401).send({ msg: 'User not authorized.'});
@@ -79,7 +80,7 @@ const checkAuth = async (req, res, next) => {
 };
 
 apiRouter.get('/home', checkAuth, (req, res) => {
-  const stats = findUserStats(req.body);
+  const stats = findUserStats(req.user);
   updateDeed();
 
   res.send({
@@ -91,7 +92,7 @@ apiRouter.get('/home', checkAuth, (req, res) => {
 });
 
 apiRouter.post('/home/count', checkAuth, (req, res) => {
-  const stats = updateCounts(req.body);
+  const stats = updateCounts(req.user);
 
   res.send({
     totalCount,
@@ -110,11 +111,11 @@ apiRouter.post('/community/post', checkAuth, (req, res) => {
 });
 
 apiRouter.get('/journal', checkAuth, (req, res) => {
-  res.send(findJournal(req.body));
+  res.send(findJournal(req.user));
 });
 
 apiRouter.post('/journal/write', checkAuth, (req, res) => {
-  res.send(updateJournal(req.body));
+  res.send(updateJournal(req));
 });
 
 app.use(function (err, req, res, next) {
@@ -155,31 +156,31 @@ function setCookie(res, token) {
 }
 
 // Journal
-function findJournal(userData) {
-  const userList = allUserJournals.find(list => list[0] === userData.userEmail);
+function findJournal(user) {
+  const userList = allUserJournals.find(list => list[0] === user.email);
 
-  return userList ?? [userData.userEmail];
+  return userList ?? [user.email];
 }
 
-function updateJournal(journalData) {
+function updateJournal(req) {
    for (const [i, List] of allUserJournals.entries()) {
-    if (journalData.userEmail === List[0]) {
-      allUserJournals[i].push(journalData.entry);
+    if (req.user.email === List[0]) {
+      allUserJournals[i].push(req.body);
       return allUserJournals[i];
     }
    }
 
-   allUserJournals.push([journalData.userEmail, journalData.entry]);
-  return [journalData.userEmail, journalData.entry];
+  allUserJournals.push([req.user.email, req.body]);
+  return [req.user.email, req.body];
 }
 
 // Home
-function findUserStats(userData) {
-  let stats = allUserStats.find(stats => stats.email === userData.userEmail);
+function findUserStats(user) {
+  let stats = allUserStats.find(stats => stats.email === user.email);
 
   if (!stats) {
     stats = {
-      email: userData.userEmail,
+      email: user.email,
       streak: 0,
       lastCompleted: null,
     }
@@ -190,12 +191,17 @@ function findUserStats(userData) {
   return stats;
 }
 
-function updateCounts(userData) {
+function updateCounts(user) {
+  const stats = findUserStats(user);
+  const today = new Date().toDateString();
+
+  if (countDate !== today) {
+    countDate = today;
+    dayCount = 0;
+  }
+
   totalCount++;
   dayCount++;
-
-  const stats = findUserStats(userData);
-  const today = new Date().toDateString();
 
   if (stats.lastCompleted !== today) {
     stats.streak++;
