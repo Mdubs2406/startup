@@ -11,6 +11,7 @@ export function Home() {
   const [deedSnip, setDeedSnip] = React.useState('A small gesture that takes two seconds, but can brighten someone\'s entire day.');
   const [loading, setLoading] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
+  const [completedToday, setCompletedToday] = React.useState(false);
 
   React.useEffect(() => {
     fetch(`/api/home`)
@@ -26,6 +27,7 @@ export function Home() {
         setTotalCount(data.totalCount);
         setDayCount(data.dayCount);
         setUserStreak(data.streak);
+        setCompletedToday(data.completedToday);
         setDeedDesc(data.currentDeed.desc);
         setDeedSnip(data.currentDeed.snip);
       })
@@ -52,6 +54,7 @@ export function Home() {
       setTotalCount(data.totalCount);
       setDayCount(data.dayCount);
       setUserStreak(data.streak);
+      setCompletedToday(true);
     } catch (error) {
       setErrorMsg(error.message);
     } finally {
@@ -94,8 +97,8 @@ export function Home() {
             <button
               className="btn btn-primary mx-1"
               onClick={updateHome}
-              disabled={loading}
-            >I did it!</button>
+              disabled={loading || completedToday}
+            >{completedToday ? 'Completed Today' : 'I did it!'}</button>
           </div>
           <div className="card-footer"></div>
         </div>

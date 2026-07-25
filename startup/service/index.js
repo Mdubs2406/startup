@@ -98,23 +98,40 @@ const checkAuth = async (req, res, next) => {
 
 apiRouter.get('/home', checkAuth, (req, res) => {
   const stats = findUserStats(req.user);
+  const today = new Date().toDateString();
+  const completedToday = stats.lastCompleted === today;
+
   updateDeed();
+  updateDayCount();
 
   res.send({
     totalCount,
     dayCount,
     streak: stats.streak,
+    completedToday,
     currentDeed,
   });
 });
 
 apiRouter.post('/home/count', checkAuth, (req, res) => {
-  const stats = updateCounts(req.user);
+  const result = updateCounts(req.user);
+
+  if (result.alreadyCompleted) {
+    res.status(409).send({
+      msg: 'You have already completed today\'s good deed.',
+      totalCount,
+      dayCount,
+      streak: result.stats.streak,
+      completedToday: true,
+    });
+    return;
+  }
 
   res.send({
     totalCount,
     dayCount,
-    streak: stats.streak,
+    streak: result.stats.streak,
+    completedToday: true,
   });
 });
 
@@ -212,24 +229,37 @@ function findUserStats(user) {
   return stats;
 }
 
-function updateCounts(user) {
-  const stats = findUserStats(user);
+function updateDayCount() {
   const today = new Date().toDateString();
 
   if (countDate !== today) {
     countDate = today;
     dayCount = 0;
   }
+}
+
+function updateCounts(user) {
+  const stats = findUserStats(user);
+  const today = new Date().toDateString();
+
+  updateDayCount();
+
+  if (stats.lastCompleted === today) {
+    return {
+      stats,
+      alreadyCompleted: true,
+    };
+  }
 
   totalCount++;
   dayCount++;
+  stats.streak++;
+  stats.lastCompleted = today;
 
-  if (stats.lastCompleted !== today) {
-    stats.streak++;
-    stats.lastCompleted = today;
-  }
-
-  return stats;
+  return {
+    stats,
+    alreadyCompleted: false,
+  };
 }
 
 function updateDeed() {
