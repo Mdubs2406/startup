@@ -18,7 +18,7 @@ export function MakeTable({ comPosts }) {
   } else {
     postRows.push(
       <tr key='empty'>
-        <td colSpan='4' className='text-center'>No post yet. Share Yours!</td>
+        <td colSpan='5' className='text-center'>No posts yet. Share Yours!</td>
       </tr>
     )
   }
