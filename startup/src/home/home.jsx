@@ -38,7 +38,9 @@ export function Home() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/home/count');
+      const res = await fetch('/api/home/count', {
+        method: 'POST',
+      });
 
       if (!res.ok) {
         const err = await res.json();
