@@ -34,7 +34,7 @@ export function UserPortal(props) {
   return (
     <>
       <div className="card mx-2">
-        <div className="card-header">Hello, {props.email}. We hope you are having a wonderful day!</div>
+        <div className="card-header">Hello, {props.email.splice('@')[0]}. We hope you are having a wonderful day!</div>
         <div className="card-body">
           <Button variant="primary" className="mx-2" onClick={() => nav('/home')}>
             Explore
