@@ -98,7 +98,7 @@ export function Hold(props) {
                 className="mx-1"
                 variant="primary"
                 disabled={loading || !email || !password}>
-                Submit
+                Sign In
               </Button>
               <Button
                 value="create"
