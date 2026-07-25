@@ -34,7 +34,19 @@ let countDate = new Date().toDateString();
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-apiRouter.post('/users/create', async (req, res) => {
+const validateEmail = (req, res, next) => {
+  const email = req.body.email;
+
+  if (!email || !email.includes('@') || email.indexOf('@') === email.length - 1) {
+    return res.status(400).send({
+      msg: 'Please enter a valid email address.'
+    });
+  }
+
+  next();
+};
+
+apiRouter.post('/users/create', validateEmail, async (req, res) => {
   if (await findAccount('email', req.body.email)) {
     res.status(409).send({ msg: 'You already have an account. Use login instead.' });
   } else {
@@ -45,7 +57,7 @@ apiRouter.post('/users/create', async (req, res) => {
   }
 });
 
-apiRouter.post('/users/signin', async (req, res) => {
+apiRouter.post('/users/signin', validateEmail, async (req, res) => {
   const user = await findAccount('email', req.body.email);
 
   if (!user) {
