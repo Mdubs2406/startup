@@ -58,18 +58,14 @@ export function Home() {
   }
 
   // Simulates WebSocket updating the Deed Count
-  // React.useEffect(() => {
-  //     const interval = setInterval(() => {
-  //         setGlobalStats(e => {
-  //             const newStats = { 
-  //                 dayCount: e.dayCount + 1,
-  //                 totalCount: e.totalCount + 1
-  //             };
-  //             localStorage.setItem('globalStats', JSON.stringify(newStats));
-  //             return newStats;
-  //         });
-  //     }, 5000);
-  // }, []);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setDayCount((current) => current + 1);
+      setTotalCount((current) => current + 1);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>

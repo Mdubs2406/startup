@@ -23,8 +23,9 @@ let allUserStats = [];
 // {name, desc, date, time}
 let communityBoard = [];
 
-let totalCount = 0;
-let dayCount = 0;
+// Non-zero values to simulate DB
+let totalCount = 107;
+let dayCount = 11;
 
 let currentDeed = deedPrompts();
 let lastUpdate = new Date().toDateString();
@@ -169,7 +170,7 @@ function findAccount(idType, value) {
 function setCookie(res, token) {
   res.cookie(cookieName, token, {
     maxAge: 1000 * 60 * 60 * 24,
-    secure: false,
+    secure: true,
     httpOnly: true,
     sameSite: 'strict',
   })
