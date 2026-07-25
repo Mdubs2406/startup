@@ -64,57 +64,51 @@ export function Unauthenticated(props) {
       </p>
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <form onSubmit={(x) => {
-            x.preventDefault();
-            requestUserAccess(`/api/users/signin`);
-          }}>
-            <div className="input-group mb-3">
-              <span className="input-group-text">Email</span>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="email@example.com"
-                className="form-control"
-                value={email}
-                onChange={(x) => setEmail(x.target.value)} />
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text">Password</span>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="********"
-                className="form-control"
-                value={password}
-                onChange={(x) => setPassword(x.target.value)} />
-            </div>
-            <div>
-              <Button
-                value="login"
-                name="submit"
-                type="submit"
-                className="mx-1"
-                variant="primary"
-                disabled={loading || !email || !password}>
-                Sign In
-              </Button>
-              <Button
-                value="create"
-                name="create"
-                type="button"
-                className="mx-1"
-                variant="secondary"
-                onClick={() => requestUserAccess(`/api/users/create`)}
-                disabled={loading || !email || !password}>
-                Create Account
-              </Button>
-            </div>
-          </form>
+          <div className="input-group mb-3">
+            <span className="input-group-text">Email</span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email@example.com"
+              className="form-control"
+              value={email}
+              onChange={(x) => setEmail(x.target.value)} />
+          </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text">Password</span>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="********"
+              className="form-control"
+              value={password}
+              onChange={(x) => setPassword(x.target.value)} />
+          </div>
+          <div>
+            <Button
+              value="login"
+              name="submit"
+              className="mx-1"
+              variant="primary"
+              onClick={() => requestUserAccess(`/api/users/signin`)}
+              disabled={loading || !email || !password}>
+              Sign In
+            </Button>
+            <Button
+              value="create"
+              name="create"
+              className="mx-1"
+              variant="secondary"
+              onClick={() => requestUserAccess(`/api/users/create`)}
+              disabled={loading || !email || !password}>
+              Create Account
+            </Button>
+          </div>
         </div>
       </div>
-      {/* API placeholder. Random Inspirational Quote */}
+
       <div id="inspiration-quote" className="card border-light text-center mt-3">
         <div className="card-body">
           <h4 className="card-title">{quote}</h4>
