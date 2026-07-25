@@ -2,7 +2,7 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import { ErrorDisplay } from "../notification/errorDisplay";
 
-export function Hold(props) {
+export function Unauthenticated(props) {
   const [email, setEmail] = React.useState(props.email);
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
