@@ -14,7 +14,7 @@ export function Hold(props) {
     fetch('/api/quote')
       .then((res) => {
         if (!res.ok) {
-          throw new Error('Could not retrieve quote');
+          throw new Error('No quote received');
         }
 
         return res.json();
@@ -23,7 +23,8 @@ export function Hold(props) {
         setQuote(quoteData[0].q);
         setQuoteSource(quoteData[0].a);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error('Quote fetch failed:', error.message);
         // Keep default quote and source
       });
   }, []);
