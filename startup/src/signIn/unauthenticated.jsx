@@ -114,7 +114,7 @@ export function Unauthenticated(props) {
           </form>
         </div>
       </div>
-      {/* API placeholder. Random Inspirational Quote */}
+
       <div id="inspiration-quote" className="card border-light text-center mt-3">
         <div className="card-body">
           <h4 className="card-title">{quote}</h4>
