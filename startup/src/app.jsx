@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom';
 import { SignIn } from './signIn/signIn';
 import { Home } from './home/home';
 import { Journal } from './journal/journal';
@@ -79,11 +79,30 @@ function App() {
               setUserEmail(userEmail);
             }}
           />} exact />
-          <Route path='/home' element={<Home />} />
-          <Route path='/journal' element={<Journal />} />
-          <Route path='/community' element={<Community
-            setShow={setShow}
-          />} />
+          <Route 
+            path='/home' 
+            element={
+              accessState === Access.Granted
+                ? <Home />
+                : <Navigate to='/' />              
+              } 
+          />
+          <Route 
+            path='/journal' 
+            element={
+              accessState === Access.Granted
+              ? <Journal />
+              : <Navigate to='/' />
+            } 
+          />
+          <Route 
+            path='/community' 
+            element={
+              accessState === Access.Granted
+              ? <Community setShow={setShow} />
+              : <Navigate to='/' />
+            } 
+          />
           <Route path='*' element={<NotFound />} />
         </Routes>
 
