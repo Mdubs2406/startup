@@ -72,6 +72,7 @@ apiRouter.post('/users/signin', validateEmail, async (req, res) => {
     }
 
   user.authToken = uuid.v4();
+  await DB.updateUser(user);
   setCookie(res, user.authToken);
   res.send({ email: user.email });
 });
