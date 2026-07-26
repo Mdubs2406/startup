@@ -64,3 +64,17 @@ async function updateStats(stats) {
 async function getStats() {
   return statsCollection.find();
 }
+
+module.exports = {
+  getUserByEmail,
+  getUserByToken,
+  addUser,
+  updateUserToken,
+  removeUserToken,
+  addPost,
+  getAllPosts,
+  addJournalEntry,
+  getAllJournalEntries,
+  updateStats,
+  getStats,
+};
