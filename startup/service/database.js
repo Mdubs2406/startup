@@ -60,3 +60,7 @@ async function getAllJournalEntries() {
 async function updateStats(stats) {
   await statsCollection.updateOne({ _id: "stats" }, { $set: stats }, { upsert: true });
 }
+
+async function getStats() {
+  return statsCollection.find();
+}
