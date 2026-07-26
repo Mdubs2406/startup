@@ -32,7 +32,7 @@ let currentDeed = deedPrompts();
 let lastUpdate = new Date().toDateString();
 let countDate = new Date().toDateString();
 
-let apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
 const validateEmail = (req, res, next) => {
