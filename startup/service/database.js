@@ -8,7 +8,8 @@ const db = client.db('startup');
 const userCollection = db.collection('user');
 const postCollection = db.collection('post');
 const journalCollection = db.collection('journal');
-const statsCollection = db.collection('stats')
+const statsCollection = db.collection('stats');
+const allUserStatsCollection = db.collection('allUserStats');
 
 // For connection error handling and testing
 (async function testConnection() {
@@ -61,8 +62,12 @@ async function updateStats(stats) {
   await statsCollection.updateOne({ _id: "stats" }, { $set: stats }, { upsert: true });
 }
 
-async function getStats() {
+async function getGlobalStats() {
   return statsCollection.findOne({ _id: "stats" });
+}
+
+async function getUserStats(email) {
+  return allUserStatsCollection.findOne({ email: email });
 }
 
 module.exports = {
@@ -76,5 +81,6 @@ module.exports = {
   addJournalEntry,
   getAllJournalEntries,
   updateStats,
-  getStats,
+  getGlobalStats,
+  getUserStats,
 };
