@@ -8,6 +8,7 @@ const db = client.db('startup');
 const userCollection = db.collection('user');
 const postCollection = db.collection('post');
 const journalCollection = db.collection('journal');
+const statsCollection = db.collection('')
 
 // For connection error handling and testing
 (async function testConnection() {
