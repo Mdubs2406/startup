@@ -36,3 +36,7 @@ async function addUser(user) {
 async function updateUserToken(user) {
   await userCollection.updateOne({ email: user.email}, { $set: user});
 }
+
+async function removeUserToken(user) {
+  await userCollection.updateOne({ email: user.email }, { $unset: { authToken: 1 } });
+}
