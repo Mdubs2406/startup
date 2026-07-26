@@ -1,5 +1,5 @@
 import React from 'react';
-import { Unauthenticated } from './hold';
+import { Unauthenticated } from './unauthenticated';
 import { UserPortal } from './userPortal';
 import { Access } from './access';
 
@@ -9,7 +9,7 @@ export function SignIn({ email, access, setAccess }) {
       <div>
         {access === Access.Unknown && <h1>Preparing to do good . . .</h1>}
         {access === Access.Granted && <UserPortal email={email} onSignOut={() =>
-          setAccess(email, Access.onHold)}
+          setAccess(email, Access.Pending)}
         />}
         {access === Access.Pending &&
           <Unauthenticated email={email} onSignIn={(userEmail) =>
