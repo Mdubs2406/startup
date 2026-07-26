@@ -11,6 +11,7 @@ const journalCollection = db.collection('journal');
 const statsCollection = db.collection('stats');
 const allUserStatsCollection = db.collection('allUserStats');
 const deedCollection = db.collection('deeds');
+const dailyDeedCollection = db.collection('dailyDeed');
 
 // For connection error handling and testing
 (async function testConnection() {
@@ -84,10 +85,32 @@ async function getUserStats(email) {
     return result;
 }
 
-async function getDeed() {
-  return deedCollection.aggregate([
+async function updateDaily(current, today) {
+  const newDeed = await deedCollection.aggregate([
     { $sample: { size: 1 } }
   ]).next();
+
+  if (current) {
+    await deedCollection.insertOne(current);
+    await dailyDeedCollection.deleteOne({ _id: current._id });
+  }
+  
+  const updatedDeed = {...newDeed, date: today};
+  await dailyDeedCollection.insertOne(updatedDeed);
+  await deedCollection.deleteOne({ _id: newDeed._id });
+
+  return updatedDeed;
+}
+
+async function getDeed() {
+  const today = new Date().toDateString();
+  const dailyDeed = await dailyDeedCollection.findOne({});
+
+  if (!dailyDeed || dailyDeed.date !== today) {
+    return updateDaily(dailyDeed, today);
+  }
+
+  return dailyDeed;
 }
 
 module.exports = {
