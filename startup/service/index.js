@@ -194,7 +194,7 @@ async function createAccount(email, password) {
     authToken: uuid.v4(),
   };
 
-  usersLogin.push(account);
+  await DB.addUser(user);
   return account;
 }
 
