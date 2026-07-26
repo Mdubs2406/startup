@@ -8,7 +8,7 @@ const db = client.db('startup');
 const userCollection = db.collection('user');
 const postCollection = db.collection('post');
 const journalCollection = db.collection('journal');
-const statsCollection = db.collection('')
+const statsCollection = db.collection('stats')
 
 // For connection error handling and testing
 (async function testConnection() {
@@ -25,15 +25,15 @@ function getUserByEmail(email) {
   return userCollection.findOne({ email: email});
 }
 
-function getUserByToken(token) {
-  return userCollection.findOne({ token: token });
+function getUserByToken(authToken) {
+  return userCollection.findOne({ authToken: authToken });
 }
 
 async function addUser(user) {
   await userCollection.insertOne(user);
 }
 
-async function updateUserToken(user) {
+async function updateUser(user) {
   await userCollection.updateOne({ email: user.email}, { $set: user});
 }
 
@@ -46,7 +46,7 @@ async function addPost(post) {
 }
 
 async function getAllPosts() {
-  return postCollection.find();
+  return postCollection.find().toArray();
 }
 
 async function addJournalEntry(entry) {
@@ -54,7 +54,7 @@ async function addJournalEntry(entry) {
 }
 
 async function getAllJournalEntries() {
-  return journalCollection.find();
+  return journalCollection.find().toArray();
 }
 
 async function updateStats(stats) {
@@ -62,14 +62,14 @@ async function updateStats(stats) {
 }
 
 async function getStats() {
-  return statsCollection.find();
+  return statsCollection.findOne({ _id: "stats" });
 }
 
 module.exports = {
   getUserByEmail,
   getUserByToken,
   addUser,
-  updateUserToken,
+  updateUser,
   removeUserToken,
   addPost,
   getAllPosts,
