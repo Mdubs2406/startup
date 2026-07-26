@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 const { deedPrompts } = require('./deedPrompts');
+const DB = require('./database.js');
 
 const cookieName = 'authKey';
 
