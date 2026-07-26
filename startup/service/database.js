@@ -20,3 +20,7 @@ const statsCollection = db.collection('')
     process.exit(1);
   }
 })();
+
+function getUserByEmail(email) {
+  return userCollection.findOne({ email: email});
+}
