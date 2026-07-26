@@ -29,3 +29,6 @@ function getUserByToken(token) {
   return userCollection.findOne({ token: token });
 }
 
+async function addUser(user) {
+  await userCollection.insertOne(user);
+}
