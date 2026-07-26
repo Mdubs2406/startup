@@ -32,3 +32,7 @@ function getUserByToken(token) {
 async function addUser(user) {
   await userCollection.insertOne(user);
 }
+
+async function updateUserToken(user) {
+  await userCollection.updateOne({ email: user.email}, { $set: user});
+}
