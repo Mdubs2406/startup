@@ -67,7 +67,20 @@ async function getGlobalStats() {
 }
 
 async function getUserStats(email) {
-  return allUserStatsCollection.findOne({ email: email });
+  const result = await allUserStatsCollection.findOneAndUpdate(
+    { email: email }, 
+    { 
+      $setOnInsert: {
+      email,
+      streak: 0,
+      lastCompleted: null,
+    }}, 
+    {
+      upsert: true,
+      returnDocument: "after"
+    });
+  
+    return result;
 }
 
 module.exports = {
