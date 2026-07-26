@@ -82,6 +82,7 @@ apiRouter.delete('/users/signout', async (req, res) => {
 
   if (user) {
     delete user.authToken;
+    await DB.removeUserToken(user);
   }
 
   res.clearCookie(cookieName);
