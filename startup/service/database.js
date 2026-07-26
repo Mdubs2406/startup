@@ -58,5 +58,5 @@ async function getAllJournalEntries() {
 }
 
 async function updateStats(stats) {
-  await statsCollection.updateOne({ _id: "stats" }, { $set: stats });
+  await statsCollection.updateOne({ _id: "stats" }, { $set: stats }, { upsert: true });
 }
