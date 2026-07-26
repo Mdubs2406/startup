@@ -44,3 +44,19 @@ async function removeUserToken(user) {
 async function addPost(post) {
   await postCollection.insertOne(post);
 }
+
+async function getAllPosts() {
+  return postCollection.find();
+}
+
+async function addJournalEntry(entry) {
+  await journalCollection.insertOne(entry);
+}
+
+async function getAllJournalEntries() {
+  return journalCollection.find();
+}
+
+async function updateStats(stats) {
+  await statsCollection.updateOne({ _id: "stats" }, { $set: stats });
+}
