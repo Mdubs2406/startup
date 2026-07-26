@@ -199,7 +199,10 @@ async function createAccount(email, password) {
 }
 
 function findAccount(idType, value) {
-  return usersLogin.find(user => user[idType] === value);
+  if (idType === 'email') {
+    return DB.getUserByEmail(value);
+  }
+  return DB.getUserByToken(value);
 }
 
 function setCookie(res, token) {
