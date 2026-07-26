@@ -10,6 +10,7 @@ const postCollection = db.collection('post');
 const journalCollection = db.collection('journal');
 const statsCollection = db.collection('stats');
 const allUserStatsCollection = db.collection('allUserStats');
+const deedCollection = db.collection('deeds');
 
 // For connection error handling and testing
 (async function testConnection() {
@@ -83,6 +84,12 @@ async function getUserStats(email) {
     return result;
 }
 
+async function getDeed() {
+  return deedCollection.aggregate([
+    { $sample: { size: 1 } }
+  ]).next();
+}
+
 module.exports = {
   getUserByEmail,
   getUserByToken,
@@ -96,4 +103,5 @@ module.exports = {
   updateStats,
   getGlobalStats,
   getUserStats,
+  getDeed,
 };
