@@ -75,13 +75,13 @@ async function getJournalEntries(email) {
   return journal.record;
 }
 
-async function updateStats(stats) {
-  await statsCollection.updateOne({ _id: "stats" }, { $set: stats }, { upsert: true });
+async function updateGlobalStats(stats) {
+  await statsCollection.updateOne({ _id: 'stats' }, { $set: stats }, { upsert: true });
 }
 
 async function getGlobalStats() {
   const stats = statsCollection.findOneAndUpdate(
-    { _id: "stats" },
+    { _id: 'stats' },
   {
     $setOnInsert: {
       _id: 'stats',
@@ -91,15 +91,26 @@ async function getGlobalStats() {
   }},
   {
     upsert: true,
-    returnDocument: "after",
+    returnDocument: 'after',
   });
 
   return stats;
 }
 
+async function updateUserStats(stats) {
+  await allUserStatsCollection.updateOne(
+    { email: stats.email }, 
+    { $set: {
+        streak: stats.streak,
+        lastCompleted: stats.lastCompleted,
+      }
+    }
+   );
+}
+
 async function getUserStats(email) {
   const result = await allUserStatsCollection.findOneAndUpdate(
-    { email: email }, 
+    { email }, 
     { 
       $setOnInsert: {
       email,
@@ -108,7 +119,7 @@ async function getUserStats(email) {
     }}, 
     {
       upsert: true,
-      returnDocument: "after",
+      returnDocument: 'after',
     });
   
     return result;
@@ -156,12 +167,26 @@ async function completeDeed(email) {
     };
   }
 
-  let globalStats = await getGlobalStats();
+  const globalStats = await getGlobalStats();
 
   if (globalStats.countDate !== today) {
     globalStats.dayCount = 0;
     globalStats.countDate = today;
   }
+
+  userStats.streak++;
+  userStats.lastCompleted = today;
+  globalStats.totalCount++;
+  globalStats.dayCount++;
+
+  await updateGlobalStats(globalStats);
+  await updateUserStats(userStats);
+
+  return {
+    alreadycompleted: false,
+    userStats,
+    globalStats,
+  };
 }
 
 module.exports = {
@@ -174,8 +199,10 @@ module.exports = {
   getAllPosts,
   addJournalEntry,
   getJournalEntries,
-  updateStats,
+  updateGlobalStats,
   getGlobalStats,
   getUserStats,
   getDeed,
+  completeDeed,
+  updateUserStats,
 };
