@@ -117,17 +117,18 @@ const checkAuth = async (req, res, next) => {
 };
 
 apiRouter.get('/home', checkAuth, (req, res) => {
-  const stats = findUserStats(req.user);
+  const userStats = await DB.getUserStats(user.email);
+  const globalStats = await DB.getGlobalStats();
   const today = new Date().toDateString();
-  const completedToday = stats.lastCompleted === today;
+  const completedToday = userStats.lastCompleted === today;
 
-  updateDeed();
+  const currentDeed = DB.getDeed();
   updateDayCount();
 
   res.send({
-    totalCount,
-    dayCount,
-    streak: stats.streak,
+    totalCount: globalStats.totalCount,
+    dayCount: globalStats.dayCount,
+    streak: userStats.streak,
     completedToday,
     currentDeed,
   });
@@ -236,22 +237,6 @@ function updateJournal(req) {
 }
 
 // Home
-function findUserStats(user) {
-  let stats = allUserStats.find(stats => stats.email === user.email);
-
-  if (!stats) {
-    stats = {
-      email: user.email,
-      streak: 0,
-      lastCompleted: null,
-    };
-
-    allUserStats.push(stats);
-  }
-
-  return stats;
-}
-
 function updateDayCount() {
   const today = new Date().toDateString();
 
@@ -262,7 +247,7 @@ function updateDayCount() {
 }
 
 function updateCounts(user) {
-  const stats = findUserStats(user);
+  const stats = DB.getUserStats(user.email);
   const today = new Date().toDateString();
 
   updateDayCount();
@@ -283,15 +268,6 @@ function updateCounts(user) {
     stats,
     alreadyCompleted: false,
   };
-}
-
-function updateDeed() {
-  const today = new Date().toDateString();
-
-  if (lastUpdate !== today) {
-    lastUpdate = today;
-    currentDeed = deedPrompts();
-  }
 }
 
 // Service hosting
