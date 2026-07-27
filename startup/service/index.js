@@ -112,20 +112,8 @@ const checkAuth = async (req, res, next) => {
 };
 
 apiRouter.get('/home', checkAuth, async (req, res) => {
-  const userStats = await DB.getUserStats(req.user.email);
-  const globalStats = await DB.getGlobalStats();
-  const currentDeed = DB.getDeed();
-
-  const today = new Date().toDateString();
-  const completedToday = userStats.lastCompleted === today;
-  
-  res.send({
-    totalCount: globalStats.totalCount,
-    dayCount: globalStats.dayCount,
-    streak: userStats.streak,
-    completedToday,
-    currentDeed,
-  });
+  const homeData = await DB.getHomeData(req.user.email);
+  res.send(homeData);
 });
 
 apiRouter.post('/home/count', checkAuth, (req, res) => {
