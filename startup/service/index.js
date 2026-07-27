@@ -116,8 +116,8 @@ const checkAuth = async (req, res, next) => {
   }
 };
 
-apiRouter.get('/home', checkAuth, (req, res) => {
-  const userStats = await DB.getUserStats(user.email);
+apiRouter.get('/home', checkAuth, async (req, res) => {
+  const userStats = await DB.getUserStats(req.user.email);
   const globalStats = await DB.getGlobalStats();
   const today = new Date().toDateString();
   const completedToday = userStats.lastCompleted === today;
@@ -139,8 +139,8 @@ apiRouter.post('/home/count', checkAuth, (req, res) => {
   if (result.alreadyCompleted) {
     res.status(409).send({
       msg: 'You have already completed today\'s good deed.',
-      totalCount,
-      dayCount,
+      totalCount: result.totalCount,
+      dayCount: result.dayCount,
       streak: result.stats.streak,
       completedToday: true,
     });
@@ -199,7 +199,7 @@ async function createAccount(email, password) {
     authToken: uuid.v4(),
   };
 
-  await DB.addUser(user);
+  await DB.addUser(account);
   return account;
 }
 
