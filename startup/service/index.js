@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
-const { deedPrompts } = require('./deedPrompts');
 const DB = require('./database.js');
 
 const cookieName = 'authKey';
@@ -11,21 +10,6 @@ const cookieName = 'authKey';
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
-
-// {userEmail, password}
-let usersLogin = [];
-
-// [userEmail, {date, time, desc}, ...]
-let allUserJournals = [];
-
-// [{userEmail, streak, lastCompleted}, ...]
-let allUserStats = [];
-
-// {name, desc, date, time}
-let communityBoard = [];
-
-let currentDeed = deedPrompts();
-let lastUpdate = new Date().toDateString();
 
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
