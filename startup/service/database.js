@@ -189,6 +189,22 @@ async function completeDeed(email) {
   };
 }
 
+async function getHomeData(email) {
+  const userStats = await getUserStats(email);
+  const globalStats = await getGlobalStats();
+  const currentDeed = await getDeed();
+
+  const today = new Date().toDateString();
+
+  return {
+    totalCount: globalStats.totalCount,
+    dayCount: globalStats.dayCount,
+    streak: userStats.streak,
+    completeToday: userStats.lastCompleted === today,
+    currentDeed,
+  };
+}
+
 module.exports = {
   getUserByEmail,
   getUserByToken,
@@ -205,4 +221,5 @@ module.exports = {
   getDeed,
   completeDeed,
   updateUserStats,
+  getHomeData,
 };
