@@ -62,14 +62,14 @@ apiRouter.post('/users/signin', validateEmail, async (req, res) => {
   const user = await findAccount('email', req.body.email);
 
   if (!user) {
-    res.status(404).send({ msg: 'Account not found. Please create an account.'});
+    res.status(404).send({ msg: 'Account not found. Please create an account.' });
     return;
   }
 
   if (!(await bcrypt.compare(req.body.password, user.password))) {
-      res.status(401).send({ msg: 'Incorrect Email or Password.' });
-      return;
-    }
+    res.status(401).send({ msg: 'Incorrect Email or Password.' });
+    return;
+  }
 
   user.authToken = uuid.v4();
   await DB.updateUser(user);
