@@ -24,13 +24,8 @@ let allUserStats = [];
 // {name, desc, date, time}
 let communityBoard = [];
 
-// Non-zero values to simulate DB
-let totalCount = 107;
-let dayCount = 11;
-
 let currentDeed = deedPrompts();
 let lastUpdate = new Date().toDateString();
-let countDate = new Date().toDateString();
 
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
@@ -134,23 +129,23 @@ apiRouter.get('/home', checkAuth, async (req, res) => {
 });
 
 apiRouter.post('/home/count', checkAuth, (req, res) => {
-  const result = updateCounts(req.user);
+  const result = await DB.completeDeed(req.user.email);
 
   if (result.alreadyCompleted) {
     res.status(409).send({
       msg: 'You have already completed today\'s good deed.',
-      totalCount: result.totalCount,
-      dayCount: result.dayCount,
-      streak: result.stats.streak,
+      totalCount: result.globalStats.totalCount,
+      dayCount: result.globalStats.dayCount,
+      streak: result.userStats.streak,
       completedToday: true,
     });
     return;
   }
 
   res.send({
-    totalCount,
-    dayCount,
-    streak: result.stats.streak,
+    totalCount: result.globalStats.totalCount,
+    dayCount: result.globalStats.dayCount,
+    streak: result.userStats.streak,
     completedToday: true,
   });
 });
@@ -236,40 +231,6 @@ function updateJournal(req) {
 
   allUserJournals.push([req.user.email, req.body]);
   return [req.user.email, req.body];
-}
-
-// Home
-function updateDayCount() {
-  const today = new Date().toDateString();
-
-  if (countDate !== today) {
-    countDate = today;
-    dayCount = 0;
-  }
-}
-
-function updateCounts(user) {
-  const stats = DB.getUserStats(user.email);
-  const today = new Date().toDateString();
-
-  updateDayCount();
-
-  if (stats.lastCompleted === today) {
-    return {
-      stats,
-      alreadyCompleted: true,
-    };
-  }
-
-  totalCount++;
-  dayCount++;
-  stats.streak++;
-  stats.lastCompleted = today;
-
-  return {
-    stats,
-    alreadyCompleted: false,
-  };
 }
 
 // Service hosting
