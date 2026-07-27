@@ -121,7 +121,6 @@ apiRouter.get('/home', checkAuth, (req, res) => {
   const globalStats = await DB.getGlobalStats();
   const today = new Date().toDateString();
   const completedToday = userStats.lastCompleted === today;
-
   const currentDeed = DB.getDeed();
   updateDayCount();
 
@@ -157,6 +156,7 @@ apiRouter.post('/home/count', checkAuth, (req, res) => {
 });
 
 apiRouter.get('/community', checkAuth, (req, res) => {
+  const communityBoard = DB.getAllPosts();
   res.send(communityBoard);
 });
 
@@ -169,12 +169,14 @@ apiRouter.post('/community/post', checkAuth, (req, res) => {
   res.send(communityBoard);
 });
 
-apiRouter.get('/journal', checkAuth, (req, res) => {
-  res.send(findJournal(req.user));
+apiRouter.get('/journal', checkAuth, async (req, res) => {
+  const journal = await DB.getJournalEntries(req.user.email);
+  res.send(journal);
 });
 
-apiRouter.post('/journal/save', checkAuth, (req, res) => {
-  res.send(updateJournal(req));
+apiRouter.post('/journal/save', checkAuth, async (req, res) => {
+  const newJournal = await DB.addJournalEntry(req.body, req.user.email);
+  res.send(newJournal);
 });
 
 app.use(function (err, req, res, next) {

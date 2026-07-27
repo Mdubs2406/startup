@@ -53,11 +53,16 @@ async function getAllPosts() {
 }
 
 async function addJournalEntry(entry, email) {
-  await journalCollection.findOneAndUpdate(
+  const newJournal = await journalCollection.findOneAndUpdate(
     { email: email },
     { $push: { record: entry } },
-    { upsert: true }
+    { 
+      upsert: true,
+      returnDocument: 'after' 
+    }
   );
+
+  return newJournal.record;
 }
 
 async function getJournalEntries(email) {
