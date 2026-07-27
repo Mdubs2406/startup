@@ -3,7 +3,7 @@ import React from "react";
 export function DisplayJournal({ journal }) {
   const journalRows = [];
   if (journal.length) {
-    for (let i = journal.length-1; i > 0; i--) {
+    for (let i = journal.length-1; i >= 0; i--) {
       let entry = journal[i];
       journalRows.push(
         <tr key={i}>
@@ -15,7 +15,7 @@ export function DisplayJournal({ journal }) {
   } else {
     journalRows.push(
       <tr key='empty'>
-        <td colSpan='4' className='text-center'>Start recording your story of kindness!</td>
+        <td colSpan='3' className='text-center'>Start recording your story of kindness!</td>
       </tr>
     )
   }
