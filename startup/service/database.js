@@ -52,12 +52,22 @@ async function getAllPosts() {
   return postCollection.find().toArray();
 }
 
-async function addJournalEntry(entry) {
-  await journalCollection.insertOne(entry);
+async function addJournalEntry(entry, email) {
+  await journalCollection.findOneAndUpdate(
+    { email: email },
+    { $push: { record: entry } },
+    { upsert: true }
+  );
 }
 
-async function getAllJournalEntries() {
-  return journalCollection.find().toArray();
+async function getJournalEntries(email) {
+  const journal = await journalCollection.findOne({ email: email });
+
+  if (!journal) {
+    return [];
+  }
+
+  return journal.record;
 }
 
 async function updateStats(stats) {
@@ -122,7 +132,7 @@ module.exports = {
   addPost,
   getAllPosts,
   addJournalEntry,
-  getAllJournalEntries,
+  getJournalEntries,
   updateStats,
   getGlobalStats,
   getUserStats,
