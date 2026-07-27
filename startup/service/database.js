@@ -80,7 +80,21 @@ async function updateStats(stats) {
 }
 
 async function getGlobalStats() {
-  return statsCollection.findOne({ _id: "stats" });
+  const stats = statsCollection.findOneAndUpdate(
+    { _id: "stats" },
+  {
+    $setOnInsert: {
+      _id: 'stats',
+      totalCount: 0,
+      dayCount: 0,
+      countDate: today,
+  }},
+  {
+    upsert: true,
+    returnDocument: "after",
+  });
+
+  return stats;
 }
 
 async function getUserStats(email) {
@@ -94,7 +108,7 @@ async function getUserStats(email) {
     }}, 
     {
       upsert: true,
-      returnDocument: "after"
+      returnDocument: "after",
     });
   
     return result;
@@ -126,6 +140,28 @@ async function getDeed() {
   }
 
   return dailyDeed;
+}
+
+async function completeDeed(email) {
+  const today = new Date().toDateString();
+  const userStats = await getUserStats(email);
+
+  if (userStats.lastCompleted === today) {
+    const globalStats = await getGlobalStats();
+
+    return {
+      alreadycompleted: true,
+      userStats,
+      globalStats,
+    };
+  }
+
+  let globalStats = await getGlobalStats();
+
+  if (globalStats.countDate !== today) {
+    globalStats.dayCount = 0;
+    globalStats.countDate = today;
+  }
 }
 
 module.exports = {
