@@ -191,25 +191,6 @@ function setCookie(res, token) {
   })
 }
 
-// Journal
-function findJournal(user) {
-  const userList = allUserJournals.find(list => list[0] === user.email);
-
-  return userList ?? [user.email];
-}
-
-function updateJournal(req) {
-  for (const [i, List] of allUserJournals.entries()) {
-    if (req.user.email === List[0]) {
-      allUserJournals[i].push(req.body);
-      return allUserJournals[i];
-    }
-  }
-
-  allUserJournals.push([req.user.email, req.body]);
-  return [req.user.email, req.body];
-}
-
 // Service hosting
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
