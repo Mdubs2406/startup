@@ -80,7 +80,7 @@ async function updateGlobalStats(stats) {
 }
 
 async function getGlobalStats() {
-  const today = new Date().toString();
+  const today = new Date().toDateString();
 
   const stats = await statsCollection.findOneAndUpdate(
     { _id: 'stats' },

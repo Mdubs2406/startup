@@ -131,7 +131,7 @@ apiRouter.post('/community/post', checkAuth, async (req, res) => {
   const post = {
     author: req.user.email.split('@')[0],
     content: req.body,
-    postDate: new Date().toString(),
+    postDate: new Date().toDateString(),
   };
 
   await DB.addPost(post);
