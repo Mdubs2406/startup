@@ -7,8 +7,8 @@ export function Unauthenticated(props) {
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [accessError, setAccessError] = React.useState(null);
-  const [quote, setQuote] = React.useState('A wise man once said, it is a good day to do something good.');
-  const [quoteSource, setQuoteSource] = React.useState('Someone, probably');
+  const [quote, setQuote] = React.useState('A little inspiration is on its way...');
+  const [quoteSource, setQuoteSource] = React.useState('Ripple Effect');
 
   React.useEffect(() => {
     fetch('/api/quote')

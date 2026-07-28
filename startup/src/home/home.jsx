@@ -7,8 +7,8 @@ export function Home() {
   const [totalCount, setTotalCount] = React.useState(0);
   const [dayCount, setDayCount] = React.useState(0);
   const [userStreak, setUserStreak] = React.useState(0);
-  const [deedDesc, setDeedDesc] = React.useState('Hold the door open for a stranger');
-  const [deedSnip, setDeedSnip] = React.useState('A small gesture that takes two seconds, but can brighten someone\'s entire day.');
+  const [deedDesc, setDeedDesc] = React.useState('Loading today\'s good deed...');
+  const [deedSnip, setDeedSnip] = React.useState('A small act of kindness is on its way.');
   const [loading, setLoading] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
   const [completedToday, setCompletedToday] = React.useState(false);
