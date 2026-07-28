@@ -166,4 +166,4 @@ function deedPrompts() {
   return deeds[index];
 }
 
-module.exports = { deedPrompts };
+module.exports = { deedPrompts, deeds };
