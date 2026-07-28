@@ -53,7 +53,7 @@ function App() {
           <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
             <ul className="navbar-nav flex-row flex-wrap mx-auto">
               <li className="nav-item px-4">
-                <NavLink className="nav-link" to='/'>Sign In</NavLink>
+                <NavLink className="nav-link" to='/'>{accessState === Access.Granted ? 'User Portal' : 'Sign In'}</NavLink>
               </li>
               {accessState === Access.Granted && (
                 <li className="nav-item px-4">
