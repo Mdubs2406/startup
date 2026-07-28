@@ -136,8 +136,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - Data for both user and global stats, daily deeds, community posts, and individual users journals all store in mongodb.
+- [x] **Stores credentials in MongoDB** - User credenitals (email, password, and authentication cookies) store in the mongodb.
 
 ## 🚀 WebSocket deliverable
 
