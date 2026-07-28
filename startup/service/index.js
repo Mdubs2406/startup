@@ -122,17 +122,22 @@ apiRouter.post('/home/count', checkAuth, (req, res) => {
   });
 });
 
-apiRouter.get('/community', checkAuth, (req, res) => {
-  const communityBoard = DB.getAllPosts();
+apiRouter.get('/community', checkAuth, async (req, res) => {
+  const communityBoard = await DB.getAllPosts();
   res.send(communityBoard);
 });
 
-apiRouter.post('/community/post', checkAuth, (req, res) => {
-  communityBoard.push({
+apiRouter.post('/community/post', checkAuth, async (req, res) => {
+  const post = {
     author: req.user.email.split('@')[0],
     content: req.body,
-    postDate: new Date().toISOString(),
-  });
+    postDate: new Date().toString(),
+  };
+
+  await DB.addPost(post);
+
+  const communityBoard = await DB.getAllPosts();
+
   res.send(communityBoard);
 });
 
