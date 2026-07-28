@@ -67,7 +67,7 @@ export function Home() {
     const interval = setInterval(() => {
       setDayCount((current) => current + 1);
       setTotalCount((current) => current + 1);
-    }, 5000);
+    }, 7500);
 
     return () => clearInterval(interval);
   }, []);
