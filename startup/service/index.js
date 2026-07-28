@@ -100,7 +100,7 @@ apiRouter.get('/home', checkAuth, async (req, res) => {
   res.send(homeData);
 });
 
-apiRouter.post('/home/count', checkAuth, (req, res) => {
+apiRouter.post('/home/count', checkAuth, async (req, res) => {
   const result = await DB.completeDeed(req.user.email);
 
   if (result.alreadyCompleted) {

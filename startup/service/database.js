@@ -80,7 +80,9 @@ async function updateGlobalStats(stats) {
 }
 
 async function getGlobalStats() {
-  const stats = statsCollection.findOneAndUpdate(
+  const today = new Date().toString();
+
+  const stats = await statsCollection.findOneAndUpdate(
     { _id: 'stats' },
   {
     $setOnInsert: {
@@ -161,7 +163,7 @@ async function completeDeed(email) {
     const globalStats = await getGlobalStats();
 
     return {
-      alreadycompleted: true,
+      alreadyCompleted: true,
       userStats,
       globalStats,
     };
@@ -183,7 +185,7 @@ async function completeDeed(email) {
   await updateUserStats(userStats);
 
   return {
-    alreadycompleted: false,
+    alreadyCompleted: false,
     userStats,
     globalStats,
   };
@@ -200,7 +202,7 @@ async function getHomeData(email) {
     totalCount: globalStats.totalCount,
     dayCount: globalStats.dayCount,
     streak: userStats.streak,
-    completeToday: userStats.lastCompleted === today,
+    completedToday: userStats.lastCompleted === today,
     currentDeed,
   };
 }
