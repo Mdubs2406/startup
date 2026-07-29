@@ -62,16 +62,6 @@ export function Home() {
     }
   }
 
-  // Simulates WebSocket updating the Deed Count
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setDayCount((current) => current + 1);
-      setTotalCount((current) => current + 1);
-    }, 7500);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
       <main className="py-3">
