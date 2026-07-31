@@ -30,6 +30,12 @@ function seUpWebSocket(httpServer) {
     connection.ping();
   }
  }, 10000);
+
+ wsServer.on('close', () => {
+  clearInterval(heartbeat);
+ });
+
+ return wsServer;
 }
 
-module.exports = { peerProxy };
+module.exports = { setUpWebSocket };
