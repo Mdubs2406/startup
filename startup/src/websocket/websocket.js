@@ -1,7 +1,7 @@
 const protocol = window.location.protocol === 'http' ? 'ws' : 'wss';
 
 const socket = new WebSocket(
-  `${protcol}://${window.location.host}`
+  `${protocol}://${window.location.host}`
 );
 
 const handlers = [];
@@ -14,7 +14,7 @@ socket.onmessage = async (message) => {
   }
 };
 
-export function addWebSocketHandeler(handler) {
+export function addWebSocketHandler(handler) {
   handlers.push(handler);
 }
 
