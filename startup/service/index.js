@@ -12,9 +12,18 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
+// API routing
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
+// Service and webSocket hositng
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const httpServic = app.listen(port, () => {
+  console.log(`Listinen on port ${port}`);
+});
+const wsServer = setUpWebSocket(httpService);
+
+// Email validation
 const validateEmail = (req, res, next) => {
   const email = req.body.email;
 
@@ -27,6 +36,7 @@ const validateEmail = (req, res, next) => {
   next();
 };
 
+// API routes
 apiRouter.post('/users/create', validateEmail, async (req, res) => {
   if (await findAccount('email', req.body.email)) {
     res.status(409).send({ msg: 'You already have an account. Use login instead.' });
@@ -68,7 +78,6 @@ apiRouter.delete('/users/signout', async (req, res) => {
   res.clearCookie(cookieName);
   res.status(204).end();
 });
-
 
 apiRouter.get('/quote', async (req, res) => {
   try {
@@ -160,9 +169,7 @@ app.use((req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-// supporting functions //
-
-// Login
+// supporting functions
 async function createAccount(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
@@ -191,12 +198,3 @@ function setCookie(res, token) {
     sameSite: 'strict',
   })
 }
-
-// Service hosting
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
-
-const httpServic = app.listen(port, () => {
-  console.log(`Listinen on port ${port}`);
-});
-
-setUpWebSocket(httpService);
