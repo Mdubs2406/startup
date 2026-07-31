@@ -203,4 +203,4 @@ const httpServer = app.listen(port, () => {
   console.log(`Listinen on port ${port}`);
 });
 
-setUpWebSocket(httpService);
+setUpWebSocket(httpServer);
