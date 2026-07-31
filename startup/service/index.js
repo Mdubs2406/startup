@@ -195,10 +195,6 @@ function setCookie(res, token) {
 // Service hosting
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
 const httpServer = app.listen(port, () => {
   console.log(`Listinen on port ${port}`);
 });
