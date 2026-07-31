@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
-const { setUpWebSocket } = requre('./setUpWebSocket.js');
+const { setUpWebSocket } = require('./setUpWebSocket.js');
 
 const cookieName = 'authKey';
 
