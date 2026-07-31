@@ -18,6 +18,18 @@ function seUpWebSocket(httpServer) {
     }
   });
  });
+
+ const hearbeat = setInterval(() => {
+  for (const connection of wsServer.clients) {
+    if (!connection.alive) {
+      connection.terminate();
+      continue;
+    }
+
+    connection.alive = false;
+    connection.ping();
+  }
+ }, 10000);
 }
 
 module.exports = { peerProxy };
