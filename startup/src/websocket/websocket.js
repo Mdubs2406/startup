@@ -6,10 +6,11 @@ const socket = new WebSocket(
 
 const handlers = [];
 
-socket.onmessage = aysnc (message) => {
-  const event = JSON.parse(await message.data.text());
+socket.onmessage = async (message) => {
+  const event = JSON.parse(await message.data);
 
   for (const handler of handlers) {
     handler(event);
   }
 };
+
