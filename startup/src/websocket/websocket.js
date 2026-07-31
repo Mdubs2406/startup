@@ -14,3 +14,18 @@ socket.onmessage = async (message) => {
   }
 };
 
+export function addWebSocketHandeler(handler) {
+  handlers.push(handler);
+}
+
+export function removeWebSocketHandler(handler) {
+  const index = handlers.indexOf(handler);
+
+  if (index !== -1) {
+    handlers.splice(index, 1);
+  }
+}
+
+export function sendWebSocketEvent(event) {
+  socket.send(JSON.stringify(event));
+}
