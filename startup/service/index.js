@@ -18,7 +18,7 @@ app.use('/api', apiRouter);
 
 // Service and webSocket hositng
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
-const httpServic = app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listinen on port ${port}`);
 });
 const wsServer = setUpWebSocket(httpService);
