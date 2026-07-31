@@ -1,4 +1,4 @@
-const {WebSocketServer, webSocket } = require('ws');
+const {WebSocketServer, WebSocketebSocket } = require('ws');
 
 function setUpWebSocket(httpServer) {
  const wsServer = new WebSocketServer({ server: httpServer });
@@ -12,7 +12,7 @@ function setUpWebSocket(httpServer) {
 
   connection.on('message', (message) => {
     for (const client of wsServer.clients) {
-      if (client !== connection && client.readyState === webSocket.OPEN) {
+      if (client !== connection && client.readyState === WebSocket.OPEN) {
         client.send(message);
       }
     }
