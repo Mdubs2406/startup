@@ -5,3 +5,11 @@ const socket = new WebSocket(
 );
 
 const handlers = [];
+
+socket.onmessage = aysnc (message) => {
+  const event = JSON.parse(await message.data.text());
+
+  for (const handler of handlers) {
+    handler(event);
+  }
+};
