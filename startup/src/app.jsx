@@ -9,12 +9,27 @@ import { Journal } from './journal/journal';
 import { Community } from './community/community';
 import { Access } from './signIn/access';
 import { PostNotification } from './notification/postNotification';
+import { addWebSocketHandler, removeWebSocketHandler } from './websocket/websocket';
 
 function App() {
   const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
   const currentAccessState = userEmail ? Access.Granted : Access.Pending;
   const [accessState, updateAccess] = React.useState(currentAccessState);
   const [show, setShow] = React.useState(false);
+
+  React.useEffect(() => {
+    function handleWebSocketEvent(event) {
+        if (event.type === 'NEW_COMMUNITY_POST' && event.data.author !== userEmail) {
+          setShow(true);
+        }
+      }
+
+    addWebSocketHandler(handleWebSocketEvent);
+
+    return () => {
+      removeWebSocketHandler(handleWebSocketEvent);
+    }
+  }, [userEmail]);
 
   React.useEffect(() => {
     if (!show) {
@@ -99,7 +114,7 @@ function App() {
             path='/community' 
             element={
               accessState === Access.Granted
-              ? <Community setShow={setShow} />
+              ? <Community />
               : <Navigate to='/' />
             } 
           />
