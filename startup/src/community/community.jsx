@@ -4,14 +4,13 @@ import { MakeTable } from './makeTable';
 import { ErrorDisplay } from '../notification/errorDisplay';
 import { addWebSocketHandler, removeWebSocketHandler } from '../websocket/websocket';
 
-export function Community({ setShow }) {
+export function Community() {
   const [comPosts, setComPosts] = React.useState([]);
   const [errorMsg, setErrorMsg] = React.useState(null);
 
   function handleWebSocketEvent(event) {
     if (event.type === 'NEW_COMMUNITY_POST') {
-      setComPosts((currentPosts) => [...comPosts, event.data.post]);
-      setShow(true);
+      setComPosts((currentPosts) => [...currentPosts, event.data.post]);
     }
   }
 
@@ -43,7 +42,7 @@ export function Community({ setShow }) {
 
   return (
     <main className="py-3">
-      <MakePost setComPosts={setComPosts} setShow={setShow} />
+      <MakePost />
       <MakeTable comPosts={comPosts} />
       <ErrorDisplay msg={errorMsg} dismiss={() => setErrorMsg(null)} />
     </main>

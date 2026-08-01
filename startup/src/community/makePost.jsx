@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorDisplay } from "../notification/errorDisplay";
 
-export function MakePost({ setComPosts }) {
+export function MakePost() {
   const [title, setTitle] = React.useState('');
   const [desc, setDesc] = React.useState('');
   const [date, setDate] = React.useState('');
@@ -25,8 +25,6 @@ export function MakePost({ setComPosts }) {
         throw new Error(err.msg || 'Could not save post');
       } 
 
-      const data = await res.json();
-      setComPosts(data);
       return true;
 
       } catch (error) {
