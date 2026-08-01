@@ -2,10 +2,25 @@ import React from 'react';
 import { MakePost } from './makePost';
 import { MakeTable } from './makeTable';
 import { ErrorDisplay } from '../notification/errorDisplay';
+import { addWebSocketHandler, removeWebSocketHandler } from '../websocket/websocket';
 
 export function Community({ setShow }) {
   const [comPosts, setComPosts] = React.useState([]);
   const [errorMsg, setErrorMsg] = React.useState(null);
+
+  function handleWebSocketEvent(event) {
+    if (event.type === 'NEW_COMMUNITY_POST') {
+      setComPosts([...comPosts, event.data.post]);
+    }
+  }
+
+  React.useEffect(() => {
+    addWebSocketHandler(handleWebSocketEvent);
+
+    return () => {
+      removeWebSocketHandler(handleWebSocketEvent);
+    }
+  }, []);
 
   React.useEffect(() => {
     fetch(`/api/community`)
