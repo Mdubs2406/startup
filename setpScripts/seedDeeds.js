@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
+const config = require('../startup/service/dbConfig.json');
 const { deeds } = require('./deedPrompts');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
