@@ -2,6 +2,7 @@ import React from 'react';
 
 import { DisplayStreak, NoStreak } from './displayStreak';
 import { ErrorDisplay } from '../notification/errorDisplay';
+import { addWebSocketHandler, removeWebSocketHandler } from '../websocket/websocket';
 
 export function Home() {
   const [totalCount, setTotalCount] = React.useState(0);
@@ -61,6 +62,21 @@ export function Home() {
       setLoading(false);
     }
   }
+
+  function handleWebSocketEvent(event) {
+    if (event.type === 'DEED_COMPETE') {
+      setTotalCount(event.data.totalCount);
+      setDayCount(event.data.dayCount);
+    }
+  }
+
+  React.useEffect(() => {
+    addWebSocketHandler(handleWebSocketEvent);
+
+    return () => {
+      removeWebSocketHandler(handleWebSocketEvent);
+    }
+  });
 
   return (
     <>
