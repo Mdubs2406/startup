@@ -9,14 +9,6 @@ function setUpWebSocket(httpServer) {
   connection.on('pong', () => {
     connection.alive = true;
   });
-
-  connection.on('message', (message) => {
-    for (const client of wsServer.clients) {
-      if (client !== connection && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
-    }
-  });
  });
 
  wsServer.broadcast = (event) => {
