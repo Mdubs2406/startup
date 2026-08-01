@@ -10,7 +10,7 @@ export function Community({ setShow }) {
 
   function handleWebSocketEvent(event) {
     if (event.type === 'NEW_COMMUNITY_POST') {
-      setComPosts([...comPosts, event.data.post]);
+      setComPosts((currentPosts) => [...comPosts, event.data.post]);
       setShow(true);
     }
   }

@@ -64,7 +64,7 @@ export function Home() {
   }
 
   function handleWebSocketEvent(event) {
-    if (event.type === 'DEED_COMPETE') {
+    if (event.type === 'DEED_COMPLETE') {
       setTotalCount(event.data.totalCount);
       setDayCount(event.data.dayCount);
     }

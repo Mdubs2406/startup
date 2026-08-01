@@ -157,7 +157,7 @@ apiRouter.post('/community/post', checkAuth, async (req, res) => {
   const communityBoard = await DB.getAllPosts();
 
   wsServer.broadcast({
-    type: 'NEW_COMMMUNITY_POST',
+    type: 'NEW_COMMUNITY_POST',
     data: {
       post,
     }
