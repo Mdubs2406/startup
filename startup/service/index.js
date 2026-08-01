@@ -130,7 +130,7 @@ apiRouter.post('/home/count', checkAuth, async (req, res) => {
       totalCount: result.globalStats.totalCount,
       dayCount: result.globalStats.dayCount,
     },
-   });
+  });
 
   res.send({
     totalCount: result.globalStats.totalCount,
