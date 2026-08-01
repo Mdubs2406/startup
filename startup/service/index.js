@@ -154,16 +154,15 @@ apiRouter.post('/community/post', checkAuth, async (req, res) => {
 
   await DB.addPost(post);
 
-  const communityBoard = await DB.getAllPosts();
-
   wsServer.broadcast({
     type: 'NEW_COMMUNITY_POST',
     data: {
       post,
+      author: req.user.email,
     }
   });
 
-  res.send(communityBoard);
+  res.status(201).end();
 });
 
 apiRouter.get('/journal', checkAuth, async (req, res) => {
