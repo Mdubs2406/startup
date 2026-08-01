@@ -19,6 +19,16 @@ function setUpWebSocket(httpServer) {
   });
  });
 
+ wsServer.broadcast = (event) => {
+  const message = JSON.stringify(event);
+
+  for (const client of wsServer.clients) {
+    if (client.readyState == WebSocket.OPEN) {
+      client.send(message);
+    }
+  }
+ }
+
  const heartbeat = setInterval(() => {
   for (const connection of wsServer.clients) {
     if (!connection.alive) {
