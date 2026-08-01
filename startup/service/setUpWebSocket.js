@@ -1,4 +1,4 @@
-const {WebSocketServer, WebSocketebSocket } = require('ws');
+const {WebSocketServer, WebSocket } = require('ws');
 
 function setUpWebSocket(httpServer) {
  const wsServer = new WebSocketServer({ server: httpServer });
