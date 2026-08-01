@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorDisplay } from "../notification/errorDisplay";
 
-export function MakePost({ setComPosts, setShow }) {
+export function MakePost({ setComPosts }) {
   const [title, setTitle] = React.useState('');
   const [desc, setDesc] = React.useState('');
   const [date, setDate] = React.useState('');
@@ -48,7 +48,6 @@ export function MakePost({ setComPosts, setShow }) {
             const success = await logPost(title, desc, date, time);
 
             if (success) {
-              setShow(true);
               setTitle('');
               setDate('');
               setDesc('');
