@@ -124,6 +124,14 @@ apiRouter.post('/home/count', checkAuth, async (req, res) => {
     return;
   }
 
+  wsServer.broadcast({ 
+    type: 'DEED_COMPLETE',
+    data: {
+      totalCount: result.globalStats.totalCount,
+      dayCount: result.globalStats.dayCount,
+    },
+   });
+
   res.send({
     totalCount: result.globalStats.totalCount,
     dayCount: result.globalStats.dayCount,
