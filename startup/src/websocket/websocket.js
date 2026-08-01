@@ -25,7 +25,3 @@ export function removeWebSocketHandler(handler) {
     handlers.splice(index, 1);
   }
 }
-
-export function sendWebSocketEvent(event) {
-  socket.send(JSON.stringify(event));
-}
