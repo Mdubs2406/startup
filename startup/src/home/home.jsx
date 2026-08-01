@@ -76,7 +76,7 @@ export function Home() {
     return () => {
       removeWebSocketHandler(handleWebSocketEvent);
     }
-  });
+  }, []);
 
   return (
     <>
