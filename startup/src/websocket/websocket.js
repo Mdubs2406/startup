@@ -23,6 +23,14 @@ export function connectWebSocket() {
       console.error('Failed to parse WS message', error);
     }
   };
+
+  socket.onclose = () => {
+    socket = null;
+  };
+
+  socket.onerror = (error) => {
+    console.error('WebSocket error', error);
+  }
 }
 
 export function addWebSocketHandler(handler) {
