@@ -110,6 +110,17 @@ async function updateUserStats(stats) {
    );
 }
 
+function isYesterday(dateString) {
+  if (!dateString) {
+    return false;
+  }
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  return dateString === yesterday.toDateString();
+}
+
 async function getUserStats(email) {
   const result = await allUserStatsCollection.findOneAndUpdate(
     { email }, 
@@ -123,6 +134,25 @@ async function getUserStats(email) {
       upsert: true,
       returnDocument: 'after',
     });
+
+    const today = new Date().toDateString();
+
+    if (
+      result.lastCompleted &&
+      result.lastCompleted !== today &&
+      !isYesterday(result.lastCompleted)
+    ) {
+      result.streak = 0;
+
+      await allUserStatsCollection.updateOne(
+        { email },
+        {
+          $set: {
+            streak: 0,
+          }
+        }
+      );
+    }
   
     return result;
 }
