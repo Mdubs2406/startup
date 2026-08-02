@@ -143,15 +143,7 @@ async function getUserStats(email) {
       !isYesterday(result.lastCompleted)
     ) {
       result.streak = 0;
-
-      await allUserStatsCollection.updateOne(
-        { email },
-        {
-          $set: {
-            streak: 0,
-          }
-        }
-      );
+      await updateUserStats(result);
     }
   
     return result;
