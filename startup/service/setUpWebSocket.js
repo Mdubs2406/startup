@@ -27,7 +27,7 @@ function setUpWebSocket(httpServer) {
     wsServer.handleUpgrade(req, socket, head, (connection) => {
       connection.user = user;
 
-      wsServer.emit('conneciton', connection, request);
+      wsServer.emit('connection', connection, req);
     })
   } catch (error) {
     console.error('WebSocket authentication error:', error);
