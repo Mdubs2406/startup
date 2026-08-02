@@ -1,7 +1,39 @@
 const {WebSocketServer, WebSocket } = require('ws');
+const cookieParser = require('cookie');
+const DB = require('./database');
 
 function setUpWebSocket(httpServer) {
- const wsServer = new WebSocketServer({ server: httpServer });
+ const wsServer = new WebSocketServer({ noServer: true });
+
+ httpServer.on('upgrade', async (req, socket, head) => {
+  try {
+    const cookie = cookieParser.parse(req.headers.cookie || '');
+    const authToken = cookie.authKey;
+
+    if (!authToken) {
+      socket.write('Unathorized');
+      socket.destroy();
+      return;
+    }
+
+    const user = await DB.getUserByToken(authToken);
+
+    if (!user) {
+      socket.write('Unauthorized');
+      socket.destroy();
+      return;
+    }
+
+    wsServer.handleUpgrade(req, socket, head, (connection) => {
+      connection.user = user;
+
+      wsServer.emit('conneciton', connection, request);
+    })
+  } catch (error) {
+    console.error('WebSocket authentication error:', error);
+    socket.destroy();
+  }
+ });
 
  wsServer.on('connection', (connection) => {
   connection.alive = true;
