@@ -143,9 +143,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+e- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **Backend listens for WebSocket connection** - Backend listens for connection to WebSocket Server.
+- [x] **Frontend makes WebSocket connection** - Frontend adds itself to WebSocket Clients.
+- [x] **Data sent over WebSocket connection** - Global Stats and new Community Posts sent over WebSocket connection.
+- [x] **WebSocket data displayed** - Gloabl Stat displays updated on home page. New post displayed to all users, and new post notification sent to all other users.
+- [x] **Application is fully functional** - All other deliverables completed. Mock functionality removed.
