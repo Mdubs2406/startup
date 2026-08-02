@@ -61,7 +61,12 @@ function setUpWebSocket(httpServer) {
     }
 
     connection.alive = false;
-    connection.ping();
+
+    try {
+      connection.ping();
+    } catch (error) {
+      connection.terminate();
+    }
   }
  }, 10000);
 
