@@ -52,8 +52,6 @@ export function Home() {
 
       const data = await res.json();
 
-      setTotalCount(data.totalCount);
-      setDayCount(data.dayCount);
       setUserStreak(data.streak);
       setCompletedToday(true);
     } catch (error) {

@@ -133,8 +133,6 @@ apiRouter.post('/home/count', checkAuth, async (req, res) => {
   });
 
   res.send({
-    totalCount: result.globalStats.totalCount,
-    dayCount: result.globalStats.dayCount,
     streak: result.userStats.streak,
     completedToday: true,
   });
