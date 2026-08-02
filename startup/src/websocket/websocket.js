@@ -9,7 +9,7 @@ export function connectWebSocket() {
   const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 
   socket = new WebSocket(
-    `${protocol}://${window.location.host}`
+    `${protocol}://${window.location.host}/ws`
   );
 
   socket.onmessage = async (message) => {
