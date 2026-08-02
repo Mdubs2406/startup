@@ -14,7 +14,7 @@ export function connectWebSocket() {
 
   socket.onmessage = async (message) => {
     try {
-      const event = JSON.parse(await message.data);
+      const event = JSON.parse(message.data);
 
       for (const handler of handlers) {
         handler(event);
