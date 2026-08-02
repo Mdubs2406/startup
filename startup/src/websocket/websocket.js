@@ -1,4 +1,5 @@
 let socket;
+let reconnectTimer;
 const handlers = [];
 
 export function connectWebSocket() {
@@ -29,6 +30,10 @@ export function connectWebSocket() {
 
   socket.onclose = () => {
     socket = null;
+
+    reconnectTimer = setTimeout(() => {
+      connectWebSocket();
+    }, 3000);
   };
 
   socket.onerror = (error) => {
@@ -37,6 +42,11 @@ export function connectWebSocket() {
 }
 
 export function closeWebSocket() {
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer);
+    reconnectTimer = null;
+  }
+
   if (socket) {
     socket.close();
     socket = null;
