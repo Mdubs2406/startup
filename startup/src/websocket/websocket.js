@@ -2,7 +2,10 @@ let socket;
 const handlers = [];
 
 export function connectWebSocket() {
-  if (socket && socket.readyState === WebSocket.OPEN) {
+  if (socket && 
+    (socket.readyState === WebSocket.OPEN ||
+    socket.readyState === WebSocket.CONNECTING)
+  ) {
     return;
   }
 
