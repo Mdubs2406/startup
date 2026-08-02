@@ -54,7 +54,9 @@ export function closeWebSocket() {
 }
 
 export function addWebSocketHandler(handler) {
-  handlers.push(handler);
+  if (!handlers.includes(handler)) {
+    handlers.push(handler);
+  }
 }
 
 export function removeWebSocketHandler(handler) {
