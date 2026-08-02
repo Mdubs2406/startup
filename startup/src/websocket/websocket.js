@@ -33,6 +33,13 @@ export function connectWebSocket() {
   }
 }
 
+export function closeWebSocket() {
+  if (socket) {
+    socket.close();
+    socket = null;
+  }
+}
+
 export function addWebSocketHandler(handler) {
   handlers.push(handler);
 }
