@@ -7,10 +7,14 @@ const socket = new WebSocket(
 const handlers = [];
 
 socket.onmessage = async (message) => {
-  const event = JSON.parse(await message.data);
+  try {
+    const event = JSON.parse(await message.data);
 
-  for (const handler of handlers) {
-    handler(event);
+    for (const handler of handlers) {
+      handler(event);
+    }
+  } catch (error) {
+    console.error('Failed to parse WS message', error);
   }
 };
 
