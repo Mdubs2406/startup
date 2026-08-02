@@ -9,7 +9,7 @@ import { Journal } from './journal/journal';
 import { Community } from './community/community';
 import { Access } from './signIn/access';
 import { PostNotification } from './notification/postNotification';
-import { addWebSocketHandler, removeWebSocketHandler } from './websocket/websocket';
+import { addWebSocketHandler, removeWebSocketHandler, connectWebSocket, closeWebSocket } from './websocket/websocket';
 
 function App() {
   const [userEmail, setUserEmail] = React.useState(localStorage.getItem('email') || '');
