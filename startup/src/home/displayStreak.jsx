@@ -4,7 +4,7 @@ export function DisplayStreak({ streak }) {
   return (
     <div>
       <h4 className="card-title text-center pt-2">🔥<span>{streak}</span>-day🔥streak!</h4>
-      <div className="card-footer text-center">You've done goood <span>{streak}</span> days running. Keep Going!</div>
+      <div className="card-footer text-center">You've done good <span>{streak}</span> days running. Keep Going!</div>
     </div>
   );
 };
