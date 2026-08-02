@@ -18,6 +18,14 @@ function App() {
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
+    if (accessState === Access.Granted) {
+      connectWebSocket();
+    } else {
+      closeWebSocket();
+    }
+  }, [accessState]);
+
+  React.useEffect(() => {
     function handleWebSocketEvent(event) {
         if (event.type === 'NEW_COMMUNITY_POST' && event.data.author !== userEmail) {
           setShow(true);
