@@ -1,22 +1,29 @@
-const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-
-const socket = new WebSocket(
-  `${protocol}://${window.location.host}`
-);
-
+let socket;
 const handlers = [];
 
-socket.onmessage = async (message) => {
-  try {
-    const event = JSON.parse(await message.data);
-
-    for (const handler of handlers) {
-      handler(event);
-    }
-  } catch (error) {
-    console.error('Failed to parse WS message', error);
+export function connectWebSocket() {
+  if (socket && socket.readyState === WebSocket.OPEN) {
+    return;
   }
-};
+
+  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+
+  socket = new WebSocket(
+    `${protocol}://${window.location.host}`
+  );
+
+  socket.onmessage = async (message) => {
+    try {
+      const event = JSON.parse(await message.data);
+
+      for (const handler of handlers) {
+        handler(event);
+      }
+    } catch (error) {
+      console.error('Failed to parse WS message', error);
+    }
+  };
+}
 
 export function addWebSocketHandler(handler) {
   handlers.push(handler);
